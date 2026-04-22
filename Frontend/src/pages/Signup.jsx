@@ -107,7 +107,7 @@ export default function Signup() {
                   {field.label}
                 </label>
                 <input
-                  className="ff-input"
+                  className="ff-input w-60 rounded-r-xl"
                   type={field.type} name={field.name} autoComplete={field.auto}
                   value={form[field.name]} onChange={handleChange}
                   placeholder={field.placeholder} required
@@ -118,9 +118,9 @@ export default function Signup() {
             <button
               type="submit"
               disabled={loading}
-              className="ff-btn-primary ff-btn-lg w-full mt-2"
+              className="ff-btn-primary ff-btn-lg w-full mt-2 bg-gray-400 rounded-2xl"
             >
-              {loading ? <span className="ff-spinner" /> : 'Create Account →'}
+              {loading ? <span className="ff-spinner " /> : 'Create Account →'}
             </button>
           </form>
 

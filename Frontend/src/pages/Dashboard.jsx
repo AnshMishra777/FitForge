@@ -83,8 +83,8 @@ export default function Dashboard() {
           {activeProgram && todaySchedule && (
             <div className="animate-fade-up delay-150">
               <div className="flex items-center justify-between mb-3">
-                <h2 className="ff-section-title">Today's Session</h2>
-                <span className="ff-badge-orange">{activeProgram.name}</span>
+                <h2 className="ff-section-title text-white font-bold text-xl">Today's Session</h2>
+                <span className="ff-badge-orange text-white font-bold text-xl">{activeProgram.name}</span>
               </div>
 
               {todaySchedule.exercises.length === 0 ? (
@@ -138,7 +138,7 @@ export default function Dashboard() {
           {/* Programs */}
           <div className="animate-fade-up delay-225">
             <div className="flex items-center justify-between mb-3">
-              <h2 className="ff-section-title">Training Programs</h2>
+              <h2 className="ff-section-title text-white font-bold text-xl">Training Programs:</h2>
               {activeProgramId && (
                 <button onClick={clearProgram} className="ff-btn-ghost ff-btn-sm">
                   Clear Active
@@ -191,7 +191,7 @@ export default function Dashboard() {
 
           {/* Quick Actions */}
           <div className="animate-fade-up delay-150">
-            <h2 className="ff-section-title mb-3">Quick Actions</h2>
+            <h2 className="ff-section-title mb-3 text-white text-xl font-bold">Quick Actions</h2>
             <div className="flex flex-col gap-2">
               {[
                 { to: '/workouts', icon: '◈', label: 'Browse All Workouts', sub: '26 exercises · 4 programs' },

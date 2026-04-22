@@ -76,7 +76,7 @@ export default function Login() {
         </div>
 
         {/* Bottom stats */}
-        <div className="flex gap-6 relative z-10">
+        <div className="flex gap-6 relative z-10 mt-3 ">
           {[['26+','Exercises'],['4','Programs'],['AI','Diet Coach']].map(([num, label]) => (
             <div key={label}>
               <p className="font-display text-3xl text-forge-orange tracking-wide">{num}</p>
@@ -120,7 +120,7 @@ export default function Login() {
                 Email Address
               </label>
               <input
-                className="ff-input"
+                className="ff-input w-60 rounded-r-xl"
                 type="email" name="email" autoComplete="email"
                 value={form.email} onChange={handleChange}
                 placeholder="you@example.com" required
@@ -134,7 +134,7 @@ export default function Login() {
                 </label>
               </div>
               <input
-                className="ff-input"
+                className="w-60 rounded-r-xl"
                 type="password" name="password" autoComplete="current-password"
                 value={form.password} onChange={handleChange}
                 placeholder="••••••••" required
@@ -144,18 +144,18 @@ export default function Login() {
             <button
               type="submit"
               disabled={loading}
-              className="ff-btn-primary ff-btn-lg w-full mt-2"
+              className="ff-btn-primary ff-btn-lg w-full mt-2 bg-yellow-200 rounded-2xl"
             >
               {loading
-                ? <span className="ff-spinner" />
-                : 'Sign In →'
+                ? <span className="ff-spinner text-2xl font-bold" />
+                :<p className='text-lg font-semibold'> Sign In →</p>
               }
             </button>
           </form>
 
           {/* Divider */}
           <div className="flex items-center gap-3 my-5">
-            <div className="flex-1 h-px bg-forge-border" />
+            <div className="flex-1 h-px bg-forge-border " />
             <span className="text-[11px] text-forge-dim tracking-wider">OR</span>
             <div className="flex-1 h-px bg-forge-border" />
           </div>
@@ -163,9 +163,9 @@ export default function Login() {
           {/* Demo */}
           <button
             onClick={fillDemo}
-            className="ff-btn-secondary w-full"
+            className="ff-btn-secondary w-full bg-white rounded-2xl"
           >
-            <span>🎯</span> Use Demo Account
+            <span className='text-lg font-semibold'>🎯 Use Demo Account</span> 
           </button>
 
           <p className="text-center text-forge-dim text-sm mt-6">

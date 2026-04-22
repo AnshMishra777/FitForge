@@ -8,7 +8,7 @@ import Dashboard       from './pages/Dashboard'
 import Workouts        from './pages/Workouts'
 import Diet            from './pages/Diet'
 import CustomWorkout   from './pages/CustomWorkout'
-import SettingsPage from "./components/shared/Settingspage"
+
 export default function App() {
   return (
     <AuthProvider>
@@ -30,7 +30,7 @@ export default function App() {
           </Route>
 
           <Route path="*" element={<Navigate to="/dashboard" replace />} />
-          <Route path="settings" element={<SettingsPage />} />
+          
         </Routes>
       </BrowserRouter>
     </AuthProvider>

@@ -245,11 +245,14 @@ export default function Workouts() {
 
       {/* Page header */}
       <div className="mb-8">
-        <h1 className="font-display text-5xl sm:text-6xl tracking-tight leading-none mb-1">
-          WORKOUT <span className="text-[#ff5a1f]">LIBRARY</span>
-        </h1>
-        <p className="text-[#666] text-sm">Programs, exercises, and live session tracking</p>
-      </div>
+  <h1 className="font-display text-5xl sm:text-6xl tracking-tight leading-none mb-1">
+    <span className="text-white">WORKOUT</span>{' '}
+    <span className="text-[#ff5a1f]">LIBRARY</span>
+  </h1>
+  <p className="text-[#666] text-sm">
+    Programs, exercises, and live session tracking
+  </p>
+</div>
 
       {/* View toggle */}
       <div className="flex gap-1 bg-[#101010] border border-[#1e1e1e] rounded-xl p-1 w-fit mb-8">
