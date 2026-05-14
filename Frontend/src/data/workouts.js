@@ -1,4 +1,4 @@
-// FitForge — 26 exercises across 5 categories, 4 full programs
+// FitForge — exercises across 5 categories, 4 full programs
 
 export const EXERCISES = [
   /* ── PUSH ─────────────────────────────────────────── */
@@ -15,9 +15,15 @@ export const EXERCISES = [
     defaultSets: 4, defaultReps: 8, rest: 90,
   },
   {
-    id: 'overhead_press', name: 'Overhead Press', muscle: 'Shoulders · Triceps · Upper Chest', category: 'push',
-    image: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&q=80',
-    cues: ['Brace core like a plank','Bar path is perfectly vertical','Push head through at lockout','Re-rack by hinging at hips'],
+    id: 'incline_bench_press', name: 'Incline Bench Press', muscle: 'Upper Chest · Front Delts · Triceps', category: 'push',
+    image: 'https://images.unsplash.com/photo-1532029837206-abbe2b7620e3?w=600&q=80',
+    cues: ['Set bench to 30-45°','Bar touches upper chest','Elbows at 75° angle','Squeeze upper chest at top'],
+    defaultSets: 4, defaultReps: 8, rest: 90,
+  },
+  {
+    id: 'decline_bench_press', name: 'Decline Bench Press', muscle: 'Lower Chest · Triceps', category: 'push',
+    image: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=600&q=80',
+    cues: ['Feet secured on pad','Bar to lower chest','Keep back flat on bench','Drive bar in slight arc'],
     defaultSets: 3, defaultReps: 10, rest: 90,
   },
   {
@@ -27,15 +33,75 @@ export const EXERCISES = [
     defaultSets: 3, defaultReps: 12, rest: 60,
   },
   {
-    id: 'tricep_dip', name: 'Tricep Dip', muscle: 'Triceps · Lower Chest', category: 'push',
-    image: 'https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=600&q=80',
-    cues: ['Lean slightly forward for chest','Keep elbows tracking back','Lower until 90° elbow bend','Full lockout on the press'],
+    id: 'cable_crossover', name: 'Cable Crossover', muscle: 'Chest · Front Delts', category: 'push',
+    image: 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80',
+    cues: ['High pulley setting','Slight forward lean','Bring hands together below chest','Squeeze pecs at centre'],
+    defaultSets: 3, defaultReps: 15, rest: 60,
+  },
+  {
+    id: 'chest_dip', name: 'Chest Dip', muscle: 'Lower Chest · Triceps', category: 'push',
+    image: 'https://images.unsplash.com/photo-1616803689943-5601631c7fec?w=600&q=80',
+    cues: ['Lean forward ~30°','Elbows flare slightly out','Lower until pecs stretch','Full lockout at top'],
+    defaultSets: 3, defaultReps: 12, rest: 60,
+  },
+  {
+    id: 'overhead_press', name: 'Overhead Press', muscle: 'Shoulders · Triceps · Upper Chest', category: 'push',
+    image: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&q=80',
+    cues: ['Brace core like a plank','Bar path is perfectly vertical','Push head through at lockout','Re-rack by hinging at hips'],
+    defaultSets: 3, defaultReps: 10, rest: 90,
+  },
+  {
+    id: 'arnold_press', name: 'Arnold Press', muscle: 'All Three Delt Heads', category: 'push',
+    image: 'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=600&q=80',
+    cues: ['Start with palms facing you','Rotate palms out as you press','Reach full overhead lockout','Reverse rotation on the way down'],
     defaultSets: 3, defaultReps: 12, rest: 60,
   },
   {
     id: 'lateral_raise', name: 'Lateral Raise', muscle: 'Side Deltoid', category: 'push',
     image: 'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=600&q=80',
     cues: ['Slight forward torso lean','Lead movement with elbows','Stop exactly at shoulder height','Take 3s to lower the weight'],
+    defaultSets: 3, defaultReps: 15, rest: 45,
+  },
+  {
+    id: 'front_raise', name: 'Front Raise', muscle: 'Front Deltoid', category: 'push',
+    image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=600&q=80',
+    cues: ['Arms extended, slight elbow bend','Raise to eye level only','Avoid swinging torso','Squeeze front delt at top'],
+    defaultSets: 3, defaultReps: 12, rest: 45,
+  },
+  {
+    id: 'tricep_dip', name: 'Tricep Dip', muscle: 'Triceps · Lower Chest', category: 'push',
+    image: 'https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=600&q=80',
+    cues: ['Lean slightly forward for chest','Keep elbows tracking back','Lower until 90° elbow bend','Full lockout on the press'],
+    defaultSets: 3, defaultReps: 12, rest: 60,
+  },
+  {
+    id: 'skull_crusher', name: 'Skull Crusher', muscle: 'Triceps (long head)', category: 'push',
+    image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80',
+    cues: ['Bar above forehead, elbows vertical','Only forearms move','Lower bar behind head slightly','Extend explosively to lockout'],
+    defaultSets: 3, defaultReps: 10, rest: 60,
+  },
+  {
+    id: 'tricep_pushdown', name: 'Tricep Pushdown', muscle: 'Triceps (lateral head)', category: 'push',
+    image: 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80',
+    cues: ['Elbows glued to sides','Push bar to full lockout','Squeeze triceps hard at bottom','Slow 2s return to start'],
+    defaultSets: 4, defaultReps: 12, rest: 60,
+  },
+  {
+    id: 'overhead_tricep_extension', name: 'Overhead Tricep Extension', muscle: 'Triceps (long head)', category: 'push',
+    image: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&q=80',
+    cues: ['Arms vertical overhead','Lower dumbbell behind head slowly','Feel full long-head stretch','Press back to full lockout'],
+    defaultSets: 3, defaultReps: 12, rest: 60,
+  },
+  {
+    id: 'close_grip_bench', name: 'Close-Grip Bench Press', muscle: 'Triceps · Inner Chest', category: 'push',
+    image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80',
+    cues: ['Grip shoulder-width or slightly narrower','Elbows stay tucked in','Bar to lower chest','Full tricep lockout at top'],
+    defaultSets: 4, defaultReps: 8, rest: 90,
+  },
+  {
+    id: 'diamond_pushup', name: 'Diamond Push-Up', muscle: 'Triceps · Inner Chest', category: 'push',
+    image: 'https://images.unsplash.com/photo-1598971639058-fab3c3109a00?w=600&q=80',
+    cues: ['Form diamond shape with hands','Elbows flare backward not out','Chest touches thumbs at bottom','Squeeze triceps hard at top'],
     defaultSets: 3, defaultReps: 15, rest: 45,
   },
 
@@ -45,6 +111,12 @@ export const EXERCISES = [
     image: 'https://images.unsplash.com/photo-1616803689943-5601631c7fec?w=600&q=80',
     cues: ['Start from a full dead hang','Depress shoulders first','Pull elbows to pockets','Chin clears the bar cleanly'],
     defaultSets: 4, defaultReps: 8, rest: 90,
+  },
+  {
+    id: 'chin_up', name: 'Chin-Up', muscle: 'Lats · Biceps (supinated grip)', category: 'pull',
+    image: 'https://images.unsplash.com/photo-1616803689943-5601631c7fec?w=600&q=80',
+    cues: ['Underhand shoulder-width grip','Hang fully at the bottom','Pull until chin clears bar','Slow and controlled descent'],
+    defaultSets: 3, defaultReps: 8, rest: 90,
   },
   {
     id: 'barbell_row', name: 'Barbell Row', muscle: 'Mid Back · Lats · Biceps', category: 'pull',
@@ -65,15 +137,81 @@ export const EXERCISES = [
     defaultSets: 3, defaultReps: 12, rest: 60,
   },
   {
+    id: 'one_arm_db_row', name: 'Single-Arm Dumbbell Row', muscle: 'Lats · Mid Back · Biceps', category: 'pull',
+    image: 'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=600&q=80',
+    cues: ['Brace on bench with opposite hand','Pull elbow to hip, not armpit','Rotate torso slightly at top','Lower with full lat stretch'],
+    defaultSets: 4, defaultReps: 10, rest: 60,
+  },
+  {
+    id: 't_bar_row', name: 'T-Bar Row', muscle: 'Mid Back · Lats · Erectors', category: 'pull',
+    image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=600&q=80',
+    cues: ['Wide stance over bar','Hinge to 45° or lower','Row bar to lower chest','Squeeze shoulder blades at top'],
+    defaultSets: 4, defaultReps: 8, rest: 90,
+  },
+  {
+    id: 'straight_arm_pulldown', name: 'Straight-Arm Pulldown', muscle: 'Lats (isolation)', category: 'pull',
+    image: 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80',
+    cues: ['Arms straight throughout','Hinge slightly forward','Pull bar to hips using lats only','Squeeze lats fully at bottom'],
+    defaultSets: 3, defaultReps: 15, rest: 45,
+  },
+  {
+    id: 'face_pull', name: 'Face Pull', muscle: 'Rear Delts · Traps · Rotator Cuff', category: 'pull',
+    image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=600&q=80',
+    cues: ['Set cable at eye level','Pull rope to face, elbows high','Externally rotate at end range','Slow and deliberate always'],
+    defaultSets: 3, defaultReps: 15, rest: 45,
+  },
+  {
+    id: 'shrug', name: 'Barbell Shrug', muscle: 'Upper Traps', category: 'pull',
+    image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=600&q=80',
+    cues: ['Arms fully straight','Shrug straight up — no rolling','Hold 1s squeeze at the top','Lower with control each rep'],
+    defaultSets: 4, defaultReps: 15, rest: 60,
+  },
+  {
+    id: 'rear_delt_fly', name: 'Rear Delt Fly', muscle: 'Rear Deltoid · Rhomboids', category: 'pull',
+    image: 'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=600&q=80',
+    cues: ['Hinge forward to 45°','Slight bend in elbows','Raise arms to shoulder height','Squeeze rear delts at top'],
+    defaultSets: 3, defaultReps: 15, rest: 45,
+  },
+  {
     id: 'bicep_curl', name: 'Barbell Curl', muscle: 'Biceps · Brachialis', category: 'pull',
     image: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=600&q=80',
     cues: ['Elbows pinned to sides','Supinate wrist fully at top','Squeeze hard for 1 second','3-second controlled eccentric'],
     defaultSets: 3, defaultReps: 12, rest: 60,
   },
   {
-    id: 'face_pull', name: 'Face Pull', muscle: 'Rear Delts · Traps · Rotator Cuff', category: 'pull',
+    id: 'hammer_curl', name: 'Hammer Curl', muscle: 'Brachialis · Brachioradialis · Biceps', category: 'pull',
+    image: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=600&q=80',
+    cues: ['Neutral grip throughout','Elbows stay at sides','Curl to shoulder height','Slow 3s eccentric always'],
+    defaultSets: 3, defaultReps: 12, rest: 60,
+  },
+  {
+    id: 'incline_db_curl', name: 'Incline Dumbbell Curl', muscle: 'Biceps Long Head', category: 'pull',
+    image: 'https://images.unsplash.com/photo-1532029837206-abbe2b7620e3?w=600&q=80',
+    cues: ['Bench at 60°, arm hanging back','Full stretch at the bottom','Curl with supination','No swinging or momentum'],
+    defaultSets: 3, defaultReps: 12, rest: 60,
+  },
+  {
+    id: 'preacher_curl', name: 'Preacher Curl', muscle: 'Biceps Short Head', category: 'pull',
+    image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80',
+    cues: ['Upper arm flat on pad','Do not let elbow hyperextend','Squeeze bicep hard at top','Slow 3-4s lowering phase'],
+    defaultSets: 3, defaultReps: 10, rest: 60,
+  },
+  {
+    id: 'concentration_curl', name: 'Concentration Curl', muscle: 'Biceps (peak contraction)', category: 'pull',
+    image: 'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=600&q=80',
+    cues: ['Elbow braced against inner thigh','Full hang at the bottom','Supinate and squeeze at top','No body movement at all'],
+    defaultSets: 3, defaultReps: 12, rest: 45,
+  },
+  {
+    id: 'cable_curl', name: 'Cable Curl', muscle: 'Biceps · Brachialis', category: 'pull',
+    image: 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80',
+    cues: ['Constant tension from cable','Elbows pinned at sides','Curl to chin height','Controlled descent always'],
+    defaultSets: 3, defaultReps: 15, rest: 45,
+  },
+  {
+    id: 'reverse_curl', name: 'Reverse Curl', muscle: 'Brachioradialis · Biceps · Forearms', category: 'pull',
     image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=600&q=80',
-    cues: ['Set cable at eye level','Pull rope to face, elbows high','Externally rotate at end range','Slow and deliberate always'],
+    cues: ['Overhand (pronated) grip','Elbows stay at sides','Curl to shoulder height','Focus on forearm engagement'],
     defaultSets: 3, defaultReps: 15, rest: 45,
   },
 
@@ -85,9 +223,33 @@ export const EXERCISES = [
     defaultSets: 4, defaultReps: 6, rest: 120,
   },
   {
+    id: 'front_squat', name: 'Front Squat', muscle: 'Quads · Core · Upper Back', category: 'legs',
+    image: 'https://images.unsplash.com/photo-1566241142559-40e1dab266c6?w=600&q=80',
+    cues: ['Bar rests on front delts','Elbows high throughout','Upright torso is essential','Drive knees out, heels flat'],
+    defaultSets: 3, defaultReps: 6, rest: 120,
+  },
+  {
+    id: 'goblet_squat', name: 'Goblet Squat', muscle: 'Quads · Glutes · Core', category: 'legs',
+    image: 'https://images.unsplash.com/photo-1566241142559-40e1dab266c6?w=600&q=80',
+    cues: ['Hold kettlebell at chest','Keep chest up and tall','Squat deep between elbows','Drive through heels to stand'],
+    defaultSets: 3, defaultReps: 15, rest: 60,
+  },
+  {
+    id: 'bulgarian_split_squat', name: 'Bulgarian Split Squat', muscle: 'Quads · Glutes · Hip Flexors', category: 'legs',
+    image: 'https://images.unsplash.com/photo-1597452485669-2c7bb5fef90d?w=600&q=80',
+    cues: ['Rear foot elevated on bench','Front foot 2 steps forward','Back knee descends to floor','Front knee tracks over toes'],
+    defaultSets: 3, defaultReps: 10, rest: 90,
+  },
+  {
     id: 'deadlift', name: 'Deadlift', muscle: 'Hamstrings · Glutes · Erectors · Traps', category: 'legs',
     image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=600&q=80',
     cues: ['Bar over mid-foot always','Big breath — brace hard','Think "push floor away"','Lock hips out at top fully'],
+    defaultSets: 4, defaultReps: 5, rest: 180,
+  },
+  {
+    id: 'sumo_deadlift', name: 'Sumo Deadlift', muscle: 'Glutes · Inner Thighs · Hamstrings', category: 'legs',
+    image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=600&q=80',
+    cues: ['Wide stance, toes out 45°','Grip inside of legs','Drive knees out as you pull','Hips and shoulders rise together'],
     defaultSets: 4, defaultReps: 5, rest: 180,
   },
   {
@@ -95,6 +257,12 @@ export const EXERCISES = [
     image: 'https://images.unsplash.com/photo-1597452485669-2c7bb5fef90d?w=600&q=80',
     cues: ['Take a large forward step','Back knee nearly touches floor','Keep torso perfectly upright','Push through front heel to rise'],
     defaultSets: 3, defaultReps: 20, rest: 60,
+  },
+  {
+    id: 'reverse_lunge', name: 'Reverse Lunge', muscle: 'Quads · Glutes · Hamstrings', category: 'legs',
+    image: 'https://images.unsplash.com/photo-1597452485669-2c7bb5fef90d?w=600&q=80',
+    cues: ['Step directly backward','Back knee drops to near floor','Front shin stays vertical','Drive through front foot to return'],
+    defaultSets: 3, defaultReps: 12, rest: 60,
   },
   {
     id: 'leg_press', name: 'Leg Press', muscle: 'Quads · Glutes · Calves', category: 'legs',
@@ -109,10 +277,40 @@ export const EXERCISES = [
     defaultSets: 3, defaultReps: 10, rest: 90,
   },
   {
+    id: 'leg_extension', name: 'Leg Extension', muscle: 'Quads (isolation)', category: 'legs',
+    image: 'https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=600&q=80',
+    cues: ['Pad just above ankles','Extend to full lockout','Squeeze quads at top for 1s','Slow 3s lowering phase'],
+    defaultSets: 3, defaultReps: 15, rest: 60,
+  },
+  {
+    id: 'leg_curl', name: 'Lying Leg Curl', muscle: 'Hamstrings (isolation)', category: 'legs',
+    image: 'https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=600&q=80',
+    cues: ['Hips stay flat on pad','Curl heels to glutes','Squeeze hamstrings at top','Slow and controlled return'],
+    defaultSets: 3, defaultReps: 15, rest: 60,
+  },
+  {
+    id: 'hip_thrust', name: 'Hip Thrust', muscle: 'Glutes · Hamstrings', category: 'legs',
+    image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80',
+    cues: ['Upper back against bench','Bar padded across hips','Drive hips fully to ceiling','Squeeze glutes hard at top'],
+    defaultSets: 4, defaultReps: 12, rest: 90,
+  },
+  {
+    id: 'glute_bridge', name: 'Glute Bridge', muscle: 'Glutes · Hamstrings · Core', category: 'legs',
+    image: 'https://images.unsplash.com/photo-1591291621164-2c6367723315?w=600&q=80',
+    cues: ['Feet flat, knees at 90°','Drive hips up through heels','Hold for 2s at the top','Lower slowly with control'],
+    defaultSets: 3, defaultReps: 15, rest: 60,
+  },
+  {
     id: 'calf_raise', name: 'Calf Raise', muscle: 'Gastrocnemius · Soleus', category: 'legs',
     image: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&q=80',
     cues: ['Full stretch at the bottom','Pause 1s at the peak','4-second slow eccentric','No bouncing at the bottom'],
     defaultSets: 4, defaultReps: 20, rest: 45,
+  },
+  {
+    id: 'step_up', name: 'Step-Up', muscle: 'Quads · Glutes · Hamstrings', category: 'legs',
+    image: 'https://images.unsplash.com/photo-1597452485669-2c7bb5fef90d?w=600&q=80',
+    cues: ['Step to a knee-high box','Drive through the front heel','Stand fully upright at top','Step down with control'],
+    defaultSets: 3, defaultReps: 12, rest: 60,
   },
 
   /* ── CORE ─────────────────────────────────────────── */
@@ -123,10 +321,22 @@ export const EXERCISES = [
     defaultSets: 3, defaultReps: 1, rest: 60, isTime: true, duration: 45,
   },
   {
+    id: 'side_plank', name: 'Side Plank', muscle: 'Obliques · Lateral Core', category: 'core',
+    image: 'https://images.unsplash.com/photo-1591291621164-2c6367723315?w=600&q=80',
+    cues: ['Elbow directly under shoulder','Hips stacked perfectly','Squeeze obliques hard','Keep body in a straight line'],
+    defaultSets: 3, defaultReps: 1, rest: 60, isTime: true, duration: 30,
+  },
+  {
     id: 'crunch', name: 'Crunch', muscle: 'Rectus Abdominis', category: 'core',
     image: 'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=600&q=80',
     cues: ['Hands lightly behind ears','Curl shoulders off the mat','Do NOT pull on neck at all','Squeeze abs hard at the top'],
     defaultSets: 3, defaultReps: 20, rest: 45,
+  },
+  {
+    id: 'bicycle_crunch', name: 'Bicycle Crunch', muscle: 'Obliques · Rectus Abdominis', category: 'core',
+    image: 'https://images.unsplash.com/photo-1601422407692-ec4eeec1d9b3?w=600&q=80',
+    cues: ['Opposite elbow to knee','Fully extend the other leg','Rotate through the core','Slow and deliberate pace'],
+    defaultSets: 3, defaultReps: 30, rest: 45,
   },
   {
     id: 'leg_raise', name: 'Hanging Leg Raise', muscle: 'Lower Abs · Hip Flexors', category: 'core',
@@ -135,10 +345,22 @@ export const EXERCISES = [
     defaultSets: 3, defaultReps: 12, rest: 60,
   },
   {
+    id: 'russian_twist', name: 'Russian Twist', muscle: 'Obliques · Core', category: 'core',
+    image: 'https://images.unsplash.com/photo-1601422407692-ec4eeec1d9b3?w=600&q=80',
+    cues: ['Sit at 45°, feet off floor','Hold weight at chest','Rotate torso side to side','Touch ground beside each hip'],
+    defaultSets: 3, defaultReps: 30, rest: 45,
+  },
+  {
     id: 'mountain_climber', name: 'Mountain Climber', muscle: 'Core · Cardio · Hip Flexors', category: 'core',
     image: 'https://images.unsplash.com/photo-1601422407692-ec4eeec1d9b3?w=600&q=80',
     cues: ['High plank, wrists under shoulders','Drive alternating knees to chest','Move fast but keep hips stable','Breathe rhythmically throughout'],
     defaultSets: 3, defaultReps: 30, rest: 45,
+  },
+  {
+    id: 'dead_bug', name: 'Dead Bug', muscle: 'Deep Core · Stability', category: 'core',
+    image: 'https://images.unsplash.com/photo-1591291621164-2c6367723315?w=600&q=80',
+    cues: ['Press lower back flat to floor','Extend opposite arm and leg slowly','Do not let low back arch at all','Exhale as you extend, inhale to return'],
+    defaultSets: 3, defaultReps: 10, rest: 60,
   },
 
   /* ── CARDIO ───────────────────────────────────────── */
@@ -160,43 +382,106 @@ export const EXERCISES = [
     cues: ['Swing arms explosively forward','Jump from hip extension fully','Land softly, absorb with legs','Always step down — never jump'],
     defaultSets: 4, defaultReps: 8, rest: 90,
   },
+  {
+    id: 'jumping_jack', name: 'Jumping Jack', muscle: 'Cardiovascular · Coordination', category: 'cardio',
+    image: 'https://images.unsplash.com/photo-1601422407692-ec4eeec1d9b3?w=600&q=80',
+    cues: ['Land softly on the balls of feet','Arms fully extend overhead','Keep core engaged throughout','Maintain a steady rhythm'],
+    defaultSets: 3, defaultReps: 50, rest: 30,
+  },
+  {
+    id: 'high_knee', name: 'High Knees', muscle: 'Hip Flexors · Cardio · Core', category: 'cardio',
+    image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80',
+    cues: ['Drive knees to waist height','Pump arms in opposition','Stay on the balls of feet','Maintain tall posture throughout'],
+    defaultSets: 3, defaultReps: 1, rest: 45, isTime: true, duration: 30,
+  },
 ]
 
 export const PROGRAMS = [
   {
-    id: 'beginner',
-    name: 'Beginner Fundamentals',
-    level: 'Beginner', levelColor: '#22c55e',
-    duration: '8 Weeks', daysPerWeek: 3,
-    goal: 'Build Foundation',
-    description: 'Master the essential movement patterns and build a rock-solid foundation. Designed for those just starting their fitness journey.',
+    id: 'intermediate_split',
+    name: 'Intermediate 6-Day Split',
+    level: 'Intermediate',
+    levelColor: '#3b82f6',
+    duration: '12 Weeks',
+    daysPerWeek: 6,
+    goal: 'Muscle Growth + Strength',
+    description:
+      'An intermediate-level 6-day bodybuilding split focused on hypertrophy, strength, and muscle isolation with higher volume training.',
     schedule: [
-      { day: 1, label: 'Full Body A', exercises: [
-        { exerciseId: 'push_up',    sets: 3, reps: 10 },
-        { exerciseId: 'squat',      sets: 3, reps: 12 },
-        { exerciseId: 'pull_up',    sets: 3, reps: 5  },
-        { exerciseId: 'lunge',      sets: 2, reps: 12 },
-        { exerciseId: 'plank',      sets: 3, reps: 1, isTime: true, duration: 30 },
-      ]},
-      { day: 2, label: 'Rest', exercises: [] },
-      { day: 3, label: 'Full Body B', exercises: [
-        { exerciseId: 'bench_press', sets: 3, reps: 8  },
-        { exerciseId: 'barbell_row', sets: 3, reps: 8  },
-        { exerciseId: 'leg_press',   sets: 3, reps: 12 },
-        { exerciseId: 'calf_raise',  sets: 3, reps: 15 },
-        { exerciseId: 'crunch',      sets: 3, reps: 15 },
-      ]},
-      { day: 4, label: 'Rest', exercises: [] },
-      { day: 5, label: 'Full Body C', exercises: [
-        { exerciseId: 'overhead_press', sets: 3, reps: 8  },
-        { exerciseId: 'deadlift',       sets: 3, reps: 5  },
-        { exerciseId: 'lat_pulldown',   sets: 3, reps: 10 },
-        { exerciseId: 'mountain_climber', sets: 3, reps: 20 },
-        { exerciseId: 'burpee',         sets: 2, reps: 8  },
-      ]},
-      { day: 6, label: 'Rest', exercises: [] },
+      {
+        day: 1, label: 'Chest',
+        exercises: [
+          { exerciseId: 'push_up',            sets: 3, reps: 15 },
+          { exerciseId: 'bench_press',         sets: 4, reps: 8  },
+          { exerciseId: 'incline_bench_press', sets: 4, reps: 10 },
+          { exerciseId: 'dumbbell_fly',        sets: 3, reps: 12 },
+          { exerciseId: 'cable_crossover',     sets: 3, reps: 12 },
+          { exerciseId: 'chest_dip',           sets: 3, reps: 12 },
+          { exerciseId: 'diamond_pushup',      sets: 3, reps: 12 },
+        ],
+      },
+      {
+        day: 2, label: 'Triceps',
+        exercises: [
+          { exerciseId: 'tricep_pushdown',           sets: 4, reps: 12 },
+          { exerciseId: 'skull_crusher',             sets: 4, reps: 10 },
+          { exerciseId: 'overhead_tricep_extension', sets: 3, reps: 10 },
+          { exerciseId: 'tricep_dip',                sets: 3, reps: 12 },
+          { exerciseId: 'close_grip_bench',          sets: 3, reps: 8  },
+          { exerciseId: 'diamond_pushup',            sets: 2, reps: 15 },
+        ],
+      },
+      {
+        day: 3, label: 'Back',
+        exercises: [
+          { exerciseId: 'deadlift',              sets: 4, reps: 6  },
+          { exerciseId: 'lat_pulldown',          sets: 4, reps: 10 },
+          { exerciseId: 'seated_row',            sets: 4, reps: 10 },
+          { exerciseId: 'barbell_row',           sets: 4, reps: 8  },
+          { exerciseId: 'one_arm_db_row',        sets: 3, reps: 10 },
+          { exerciseId: 'pull_up',               sets: 3, reps: 10 },
+          { exerciseId: 'straight_arm_pulldown', sets: 3, reps: 12 },
+        ],
+      },
+      {
+        day: 4, label: 'Biceps',
+        exercises: [
+          { exerciseId: 'bicep_curl',         sets: 4, reps: 12 },
+          { exerciseId: 'hammer_curl',        sets: 4, reps: 10 },
+          { exerciseId: 'preacher_curl',      sets: 3, reps: 10 },
+          { exerciseId: 'incline_db_curl',    sets: 3, reps: 10 },
+          { exerciseId: 'concentration_curl', sets: 3, reps: 12 },
+          { exerciseId: 'cable_curl',         sets: 3, reps: 12 },
+          { exerciseId: 'reverse_curl',       sets: 2, reps: 15 },
+        ],
+      },
+      {
+        day: 5, label: 'Shoulders',
+        exercises: [
+          { exerciseId: 'overhead_press', sets: 4, reps: 8  },
+          { exerciseId: 'arnold_press',   sets: 3, reps: 10 },
+          { exerciseId: 'lateral_raise',  sets: 4, reps: 12 },
+          { exerciseId: 'front_raise',    sets: 3, reps: 12 },
+          { exerciseId: 'rear_delt_fly',  sets: 3, reps: 12 },
+          { exerciseId: 'face_pull',      sets: 3, reps: 15 },
+          { exerciseId: 'shrug',          sets: 4, reps: 15 },
+        ],
+      },
+      {
+        day: 6, label: 'Legs',
+        exercises: [
+          { exerciseId: 'squat',                 sets: 4, reps: 8  },
+          { exerciseId: 'leg_press',             sets: 4, reps: 12 },
+          { exerciseId: 'lunge',                 sets: 3, reps: 12 },
+          { exerciseId: 'rdl',                   sets: 4, reps: 10 },
+          { exerciseId: 'leg_extension',         sets: 3, reps: 15 },
+          { exerciseId: 'leg_curl',              sets: 3, reps: 15 },
+          { exerciseId: 'calf_raise',            sets: 5, reps: 20 },
+          { exerciseId: 'bulgarian_split_squat', sets: 3, reps: 10 },
+        ],
+      },
       { day: 7, label: 'Rest', exercises: [] },
-    ]
+    ],
   },
   {
     id: 'hypertrophy',
@@ -207,17 +492,19 @@ export const PROGRAMS = [
     description: 'Push/Pull/Legs split optimized for maximal muscle hypertrophy. Requires 1+ year of consistent training experience.',
     schedule: [
       { day: 1, label: 'Push', exercises: [
-        { exerciseId: 'bench_press',    sets: 4, reps: 8  },
-        { exerciseId: 'overhead_press', sets: 3, reps: 10 },
-        { exerciseId: 'dumbbell_fly',   sets: 3, reps: 12 },
-        { exerciseId: 'lateral_raise',  sets: 3, reps: 15 },
-        { exerciseId: 'tricep_dip',     sets: 3, reps: 12 },
+        { exerciseId: 'bench_press',         sets: 4, reps: 8  },
+        { exerciseId: 'overhead_press',      sets: 3, reps: 10 },
+        { exerciseId: 'incline_bench_press', sets: 3, reps: 10 },
+        { exerciseId: 'dumbbell_fly',        sets: 3, reps: 12 },
+        { exerciseId: 'lateral_raise',       sets: 3, reps: 15 },
+        { exerciseId: 'tricep_dip',          sets: 3, reps: 12 },
       ]},
       { day: 2, label: 'Pull', exercises: [
         { exerciseId: 'barbell_row',  sets: 4, reps: 8  },
         { exerciseId: 'pull_up',      sets: 4, reps: 8  },
         { exerciseId: 'lat_pulldown', sets: 3, reps: 12 },
         { exerciseId: 'bicep_curl',   sets: 3, reps: 12 },
+        { exerciseId: 'hammer_curl',  sets: 3, reps: 12 },
         { exerciseId: 'face_pull',    sets: 3, reps: 15 },
       ]},
       { day: 3, label: 'Legs', exercises: [
@@ -225,6 +512,7 @@ export const PROGRAMS = [
         { exerciseId: 'rdl',        sets: 3, reps: 10 },
         { exerciseId: 'leg_press',  sets: 3, reps: 12 },
         { exerciseId: 'lunge',      sets: 3, reps: 20 },
+        { exerciseId: 'leg_curl',   sets: 3, reps: 15 },
         { exerciseId: 'calf_raise', sets: 4, reps: 20 },
       ]},
       { day: 4, label: 'Rest', exercises: [] },
@@ -234,10 +522,11 @@ export const PROGRAMS = [
         { exerciseId: 'lateral_raise',  sets: 4, reps: 15 },
         { exerciseId: 'plank',          sets: 3, reps: 1, isTime: true, duration: 45 },
         { exerciseId: 'leg_raise',      sets: 3, reps: 12 },
+        { exerciseId: 'russian_twist',  sets: 3, reps: 20 },
       ]},
       { day: 6, label: 'Rest', exercises: [] },
       { day: 7, label: 'Rest', exercises: [] },
-    ]
+    ],
   },
   {
     id: 'strength',
@@ -248,37 +537,38 @@ export const PROGRAMS = [
     description: 'Periodized program built around squat, bench, and deadlift. Pure strength development for experienced athletes only.',
     schedule: [
       { day: 1, label: 'Squat Day', exercises: [
-        { exerciseId: 'squat',          sets: 5, reps: 5  },
-        { exerciseId: 'bench_press',    sets: 3, reps: 8  },
-        { exerciseId: 'leg_press',      sets: 3, reps: 10 },
-        { exerciseId: 'lunge',          sets: 3, reps: 12 },
-        { exerciseId: 'plank',          sets: 3, reps: 1, isTime: true, duration: 60 },
+        { exerciseId: 'squat',       sets: 5, reps: 5  },
+        { exerciseId: 'bench_press', sets: 3, reps: 8  },
+        { exerciseId: 'leg_press',   sets: 3, reps: 10 },
+        { exerciseId: 'lunge',       sets: 3, reps: 12 },
+        { exerciseId: 'plank',       sets: 3, reps: 1, isTime: true, duration: 60 },
       ]},
       { day: 2, label: 'Rest', exercises: [] },
       { day: 3, label: 'Bench Day', exercises: [
-        { exerciseId: 'bench_press',    sets: 5, reps: 5  },
-        { exerciseId: 'overhead_press', sets: 4, reps: 6  },
-        { exerciseId: 'dumbbell_fly',   sets: 3, reps: 10 },
-        { exerciseId: 'tricep_dip',     sets: 4, reps: 10 },
-        { exerciseId: 'lateral_raise',  sets: 3, reps: 15 },
+        { exerciseId: 'bench_press',      sets: 5, reps: 5  },
+        { exerciseId: 'overhead_press',   sets: 4, reps: 6  },
+        { exerciseId: 'close_grip_bench', sets: 3, reps: 8  },
+        { exerciseId: 'dumbbell_fly',     sets: 3, reps: 10 },
+        { exerciseId: 'tricep_dip',       sets: 4, reps: 10 },
+        { exerciseId: 'lateral_raise',    sets: 3, reps: 15 },
       ]},
       { day: 4, label: 'Rest', exercises: [] },
       { day: 5, label: 'Deadlift Day', exercises: [
-        { exerciseId: 'deadlift',     sets: 5, reps: 3  },
-        { exerciseId: 'barbell_row',  sets: 4, reps: 6  },
-        { exerciseId: 'rdl',          sets: 3, reps: 8  },
-        { exerciseId: 'pull_up',      sets: 4, reps: 6  },
-        { exerciseId: 'face_pull',    sets: 3, reps: 15 },
+        { exerciseId: 'deadlift',    sets: 5, reps: 3  },
+        { exerciseId: 'barbell_row', sets: 4, reps: 6  },
+        { exerciseId: 'rdl',         sets: 3, reps: 8  },
+        { exerciseId: 'pull_up',     sets: 4, reps: 6  },
+        { exerciseId: 'face_pull',   sets: 3, reps: 15 },
       ]},
       { day: 6, label: 'Accessory', exercises: [
-        { exerciseId: 'seated_row',      sets: 4, reps: 10 },
-        { exerciseId: 'bicep_curl',      sets: 4, reps: 12 },
-        { exerciseId: 'calf_raise',      sets: 5, reps: 20 },
-        { exerciseId: 'leg_raise',       sets: 4, reps: 15 },
+        { exerciseId: 'seated_row',       sets: 4, reps: 10 },
+        { exerciseId: 'bicep_curl',       sets: 4, reps: 12 },
+        { exerciseId: 'calf_raise',       sets: 5, reps: 20 },
+        { exerciseId: 'leg_raise',        sets: 4, reps: 15 },
         { exerciseId: 'mountain_climber', sets: 3, reps: 30 },
       ]},
       { day: 7, label: 'Rest', exercises: [] },
-    ]
+    ],
   },
   {
     id: 'hiit',
@@ -311,15 +601,15 @@ export const PROGRAMS = [
         { exerciseId: 'mountain_climber', sets: 3, reps: 40 },
       ]},
       { day: 5, label: 'Cardio + Core', exercises: [
-        { exerciseId: 'jump_rope',  sets: 5, reps: 1, isTime: true, duration: 60 },
-        { exerciseId: 'plank',      sets: 4, reps: 1, isTime: true, duration: 45 },
-        { exerciseId: 'crunch',     sets: 4, reps: 25 },
-        { exerciseId: 'leg_raise',  sets: 4, reps: 15 },
+        { exerciseId: 'jump_rope',        sets: 5, reps: 1, isTime: true, duration: 60 },
+        { exerciseId: 'plank',            sets: 4, reps: 1, isTime: true, duration: 45 },
+        { exerciseId: 'crunch',           sets: 4, reps: 25 },
+        { exerciseId: 'leg_raise',        sets: 4, reps: 15 },
         { exerciseId: 'mountain_climber', sets: 3, reps: 30 },
       ]},
       { day: 6, label: 'Rest', exercises: [] },
       { day: 7, label: 'Rest', exercises: [] },
-    ]
+    ],
   },
 ]
 
