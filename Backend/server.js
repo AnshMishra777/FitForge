@@ -24,7 +24,7 @@ app.use('/api/workouts', require('./routes/workouts'))
 app.use('/api/custom',   require('./routes/custom'))
 app.use('/api/diet',     require('./routes/diet'))
 app.use('/api/progress', require('./routes/progress'))
-
+app.use('/api/user', require('./routes/user'))
 // ── Health check ────────────────────────────────────────────────────
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', time: new Date().toISOString() })

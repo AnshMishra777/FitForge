@@ -14,7 +14,12 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String, required: [true, 'Password is required'], minlength: 6,
   },
+
+  // ✅ FIX — avatar stores a URL string (or base64 data URL for demo).
+  // Max 2MB base64 ≈ ~2.7MB string — fine for MongoDB's 16MB doc limit.
+  // For production, swap to a Cloudinary/S3 URL string instead.
   avatar: { type: String, default: '' },
+
   activeProgram: { type: String, default: null },
   stats: {
     workoutsCompleted: { type: Number, default: 0 },

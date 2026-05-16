@@ -1,3 +1,101 @@
+/* ─────────────────────────────────────────────────────────────────
+   FitForge — Global Styles
+   Dark mode is the default. Light mode is activated by the .light
+   class on <html> (set by SettingsModal applyTheme()).
+   ───────────────────────────────────────────────────────────────── */
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ── CSS Variables — Dark (default) ─────────────────────────────── */
+:root {
+  --forge-bg:          #080808;
+  --forge-surface:     #101010;
+  --forge-card:        #141414;
+  --forge-border:      #1e1e1e;
+  --forge-border-light:#2a2a2a;
+  --forge-text:        #f0f0f0;
+  --forge-muted:       #888888;
+  --forge-dim:         #555555;
+  --forge-orange:      #ff5a1f;
+}
+
+/* ── CSS Variables — Light mode ─────────────────────────────────── */
+/*
+   When SettingsModal calls applyTheme('light'), it adds .light to <html>.
+   These overrides flip every surface to a clean white/gray palette while
+   keeping the forge-orange accent unchanged.
+*/
+html.light {
+  --forge-bg:          #f5f5f5;
+  --forge-surface:     #ffffff;
+  --forge-card:        #efefef;
+  --forge-border:      #e0e0e0;
+  --forge-border-light:#cccccc;
+  --forge-text:        #111111;
+  --forge-muted:       #555555;
+  --forge-dim:         #999999;
+  --forge-orange:      #ff5a1f;   /* accent stays the same */
+}
+
+/* ── Wire CSS vars into Tailwind utility classes ─────────────────── */
+/*
+   Tailwind compiles bg-forge-bg etc. at build time with the static hex
+   values from tailwind.config.js — they don't respond to CSS var changes
+   at runtime. The solution: override every forge- utility to USE the CSS
+   variable so they switch instantly when .light/.dark toggles on <html>.
+*/
+
+/* Backgrounds */
+.bg-forge-bg      { background-color: var(--forge-bg) !important; }
+.bg-forge-surface { background-color: var(--forge-surface) !important; }
+.bg-forge-card    { background-color: var(--forge-card) !important; }
+
+/* Text */
+.text-forge-text  { color: var(--forge-text) !important; }
+.text-forge-muted { color: var(--forge-muted) !important; }
+.text-forge-dim   { color: var(--forge-dim) !important; }
+
+/* Borders */
+.border-forge-border      { border-color: var(--forge-border) !important; }
+.border-forge-borderLight { border-color: var(--forge-border-light) !important; }
+.divide-forge-border > * + * { border-color: var(--forge-border) !important; }
+
+/* ── Shared component styles ─────────────────────────────────────── */
+@layer components {
+  .ff-card {
+    @apply bg-forge-card border border-forge-border rounded-xl p-5;
+  }
+  .ff-input {
+    @apply w-full bg-forge-card border border-forge-border rounded-lg
+           px-3 py-2 text-sm text-forge-text placeholder:text-forge-dim
+           focus:outline-none focus:border-forge-orange/60
+           focus:ring-1 focus:ring-forge-orange/20 transition-colors;
+  }
+  .ff-btn-primary {
+    @apply px-5 py-2.5 bg-forge-orange text-white font-bold rounded-lg
+           hover:bg-orange-400 transition-colors;
+  }
+  .ff-btn-secondary {
+    @apply px-5 py-2.5 border border-forge-border text-forge-text font-semibold rounded-lg
+           hover:bg-forge-card transition-colors;
+  }
+  .ff-btn-ghost {
+    @apply px-3 py-1.5 text-forge-muted text-sm font-semibold rounded-lg
+           hover:text-forge-text hover:bg-forge-card transition-colors;
+  }
+  .ff-section-title {
+    @apply text-[10px] font-bold tracking-[0.12em] uppercase text-forge-dim;
+  }
+  .ff-badge-orange {
+    @apply text-[10px] font-bold tracking-widest uppercase
+           px-2.5 py-0.5 rounded-full
+           bg-forge-orange/10 text-forge-orange border border-forge-orange/20;
+  }
+  .ff-badge {
+    @apply text-[10px] font-bold tracking-widest uppercase px-2.5 py-0.5 rounded-full;
+  }
+}
