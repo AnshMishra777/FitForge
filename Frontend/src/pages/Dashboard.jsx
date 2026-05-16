@@ -84,7 +84,7 @@ export default function Dashboard() {
             <div className="animate-fade-up delay-150">
               <div className="flex items-center justify-between mb-3">
                 <h2 className="ff-section-title text-white font-bold text-xl">Today's Session</h2>
-                <span className="ff-badge-orange text-white font-bold text-xl">{activeProgram.name}</span>
+                <span className="ff-badge-orange text-white font-bold text-xl ">{activeProgram.name}</span>
               </div>
 
               {todaySchedule.exercises.length === 0 ? (
@@ -101,7 +101,10 @@ export default function Dashboard() {
                       <p className="font-semibold text-sm text-forge-text">{todaySchedule.label}</p>
                       <p className="text-xs text-forge-dim">{todaySchedule.exercises.length} exercises</p>
                     </div>
-                    <Link to="/workouts" className="ff-btn-primary ff-btn-sm">
+                   <Link
+  to="/workouts"
+  className="ff-btn-primary ff-btn-sm text-black font-bold bg-orange-600 p-1 rounded-xl transition-all duration-300 hover:bg-orange-500 hover:scale-105 hover:shadow-lg"
+>
                       Start Session →
                     </Link>
                   </div>
@@ -218,7 +221,7 @@ export default function Dashboard() {
           {/* Exercise preview */}
           <div className="animate-fade-up delay-300">
             <div className="flex items-center justify-between mb-3">
-              <h2 className="ff-section-title">Exercise Library</h2>
+              <h2 className="ff-section-title font-bold text-white">Exercise Library</h2>
               <Link to="/workouts" className="text-forge-orange text-xs font-bold hover:underline">
                 All 26 →
               </Link>

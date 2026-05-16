@@ -666,7 +666,7 @@ export default function CustomWorkout() {
       {/* Header */}
       <div className="flex items-end justify-between mb-8">
         <div>
-          <h1 className="font-display text-5xl sm:text-6xl tracking-tight leading-none mb-1">
+          <h1 className="font-display text-5xl sm:text-6xl tracking-tight leading-none text-white mb-1">
             CUSTOM <span className="text-[#ff5a1f]">WORKOUTS</span>
           </h1>
           <p className="text-[#555] text-sm">Build and run your own personalized training routines</p>
