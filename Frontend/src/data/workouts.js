@@ -394,9 +394,282 @@ export const EXERCISES = [
     cues: ['Drive knees to waist height','Pump arms in opposition','Stay on the balls of feet','Maintain tall posture throughout'],
     defaultSets: 3, defaultReps: 1, rest: 45, isTime: true, duration: 30,
   },
+  {
+  id: 'chest_press_machine',
+  name: 'Chest Press Machine',
+  muscle: 'Chest',
+  category: 'push',
+  image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80',
+  cues: [
+    'Keep shoulders back',
+    'Push slowly',
+    'Do not lock elbows',
+    'Control the negative'
+  ],
+  defaultSets: 4,
+  defaultReps: 12,
+  rest: 60,
+},
+
+{
+  id: 'shoulder_press_machine',
+  name: 'Shoulder Press Machine',
+  muscle: 'Shoulders',
+  category: 'push',
+  image: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&q=80',
+  cues: [
+    'Keep back flat',
+    'Press overhead slowly',
+    'Do not shrug shoulders',
+    'Control the movement'
+  ],
+  defaultSets: 3,
+  defaultReps: 12,
+  rest: 60,
+},
+
+{
+  id: 'lat_pulldown_machine',
+  name: 'Lat Pulldown Machine',
+  muscle: 'Back',
+  category: 'pull',
+  image: 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80',
+  cues: [
+    'Pull to upper chest',
+    'Keep chest up',
+    'Do not swing body',
+    'Squeeze lats'
+  ],
+  defaultSets: 4,
+  defaultReps: 12,
+  rest: 60,
+},
+
+{
+  id: 'seated_row_machine',
+  name: 'Seated Row Machine',
+  muscle: 'Back',
+  category: 'pull',
+  image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80',
+  cues: [
+    'Keep chest up',
+    'Pull elbows back',
+    'Squeeze shoulder blades',
+    'Control return'
+  ],
+  defaultSets: 3,
+  defaultReps: 12,
+  rest: 60,
+},
+
+{
+  id: 'leg_press_machine',
+  name: 'Leg Press Machine',
+  muscle: 'Quads · Glutes',
+  category: 'legs',
+  image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=600&q=80',
+  cues: [
+    'Feet shoulder width apart',
+    'Lower slowly',
+    'Do not lock knees',
+    'Push through heels'
+  ],
+  defaultSets: 4,
+  defaultReps: 15,
+  rest: 90,
+},
+
+{
+  id: 'leg_extension_machine',
+  name: 'Leg Extension Machine',
+  muscle: 'Quads',
+  category: 'legs',
+  image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=600&q=80',
+  cues: [
+    'Lift slowly',
+    'Squeeze quads',
+    'Do not swing',
+    'Lower with control'
+  ],
+  defaultSets: 3,
+  defaultReps: 15,
+  rest: 60,
+},
+
+{
+  id: 'leg_curl_machine',
+  name: 'Leg Curl Machine',
+  muscle: 'Hamstrings',
+  category: 'legs',
+  image: 'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=600&q=80',
+  cues: [
+    'Curl slowly',
+    'Keep hips down',
+    'Squeeze hamstrings',
+    'Control eccentric'
+  ],
+  defaultSets: 3,
+  defaultReps: 15,
+  rest: 60,
+},
+
+{
+  id: 'bicep_curl_machine',
+  name: 'Bicep Curl Machine',
+  muscle: 'Biceps',
+  category: 'pull',
+  image: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=600&q=80',
+  cues: [
+    'Keep elbows fixed',
+    'Curl fully',
+    'Squeeze biceps',
+    'Lower slowly'
+  ],
+  defaultSets: 3,
+  defaultReps: 12,
+  rest: 45,
+},
+
+{
+  id: 'tricep_pushdown_machine',
+  name: 'Tricep Pushdown Machine',
+  muscle: 'Triceps',
+  category: 'push',
+  image: 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80',
+  cues: [
+    'Keep elbows close',
+    'Push fully down',
+    'Squeeze triceps',
+    'Slow return'
+  ],
+  defaultSets: 3,
+  defaultReps: 12,
+  rest: 45,
+},
+
+{
+  id: 'treadmill_walk',
+  name: 'Treadmill Walk',
+  muscle: 'Cardio',
+  category: 'cardio',
+  image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=600&q=80',
+  cues: [
+    'Maintain posture',
+    'Walk steadily',
+    'Breathe evenly',
+    'Keep core tight'
+  ],
+  defaultSets: 1,
+  defaultReps: 20,
+  rest: 0,
+  duration: 1200,
+},
 ]
 
 export const PROGRAMS = [
+  {
+  id: 'beginner_machine_split',
+
+  name: 'Beginner Machine Split',
+
+  description:
+    'Beginner-friendly weekly split with mix days, machine-based full body sessions, cardio, and recovery days.',
+
+  difficulty: 'Beginner',
+
+ schedule: [
+
+  // Monday — Mix
+  {
+    label: 'Monday Mix',
+    exercises: [
+      { exerciseId: 'push_up', sets: 3, reps: 15 },
+      { exerciseId: 'bench_press', sets: 3, reps: 10 },
+      { exerciseId: 'lat_pulldown', sets: 3, reps: 12 },
+      { exerciseId: 'seated_row', sets: 3, reps: 12 },
+      { exerciseId: 'leg_press_machine', sets: 3, reps: 15 },
+      { exerciseId: 'bodyweight_squat', sets: 3, reps: 20 },
+      { exerciseId: 'plank', sets: 3, duration: 45, isTime: true },
+      { exerciseId: 'mountain_climber', sets: 3, duration: 40, isTime: true },
+    ]
+  },
+
+  // Tuesday — Mix
+  {
+    label: 'Tuesday Mix',
+    exercises: [
+      { exerciseId: 'incline_bench_press', sets: 3, reps: 10 },
+      { exerciseId: 'shoulder_press_machine', sets: 3, reps: 12 },
+      { exerciseId: 'lat_pulldown_machine', sets: 3, reps: 12 },
+      { exerciseId: 'seated_row_machine', sets: 3, reps: 12 },
+      { exerciseId: 'leg_extension_machine', sets: 3, reps: 15 },
+      { exerciseId: 'leg_curl_machine', sets: 3, reps: 15 },
+      { exerciseId: 'bicep_curl_machine', sets: 3, reps: 12 },
+      { exerciseId: 'tricep_pushdown_machine', sets: 3, reps: 12 },
+    ]
+  },
+
+  // Wednesday — Rest
+  {
+    label: 'Rest Day',
+    exercises: []
+  },
+
+  // Thursday — Full Body Machines
+  {
+    label: 'Full Body Machine',
+    exercises: [
+      { exerciseId: 'chest_press_machine', sets: 4, reps: 12 },
+      { exerciseId: 'incline_bench_press', sets: 3, reps: 10 },
+      { exerciseId: 'lat_pulldown_machine', sets: 4, reps: 12 },
+      { exerciseId: 'seated_row_machine', sets: 3, reps: 12 },
+      { exerciseId: 'shoulder_press_machine', sets: 3, reps: 12 },
+      { exerciseId: 'leg_press_machine', sets: 4, reps: 15 },
+      { exerciseId: 'leg_extension_machine', sets: 3, reps: 15 },
+      { exerciseId: 'leg_curl_machine', sets: 3, reps: 15 },
+      { exerciseId: 'bicep_curl_machine', sets: 3, reps: 12 },
+      { exerciseId: 'tricep_pushdown_machine', sets: 3, reps: 12 },
+      { exerciseId: 'plank', sets: 3, duration: 60, isTime: true },
+    ]
+  },
+
+  // Friday — Full Body Machines
+  {
+    label: 'Full Body Machine',
+    exercises: [
+      { exerciseId: 'push_up', sets: 3, reps: 15 },
+      { exerciseId: 'chest_press_machine', sets: 4, reps: 12 },
+      { exerciseId: 'lat_pulldown_machine', sets: 4, reps: 12 },
+      { exerciseId: 'seated_row_machine', sets: 4, reps: 12 },
+      { exerciseId: 'shoulder_press_machine', sets: 3, reps: 12 },
+      { exerciseId: 'leg_press_machine', sets: 4, reps: 15 },
+      { exerciseId: 'leg_extension_machine', sets: 3, reps: 15 },
+      { exerciseId: 'leg_curl_machine', sets: 3, reps: 15 },
+      { exerciseId: 'bicep_curl_machine', sets: 3, reps: 12 },
+      { exerciseId: 'tricep_pushdown_machine', sets: 3, reps: 12 },
+      { exerciseId: 'mountain_climber', sets: 3, duration: 45, isTime: true },
+    ]
+  },
+
+  // Saturday — Cardio
+  {
+    label: 'Cardio Day',
+    exercises: [
+      { exerciseId: 'treadmill_walk', sets: 1, duration: 1200, isTime: true },
+      { exerciseId: 'jumping_jack', sets: 4, duration: 45, isTime: true },
+      { exerciseId: 'mountain_climber', sets: 4, duration: 40, isTime: true },
+      { exerciseId: 'plank', sets: 3, duration: 60, isTime: true },
+    ]
+  },
+
+  // Sunday — Rest
+  {
+    label: 'Rest Day',
+    exercises: []
+  },
+]
+  
+},
   {
     id: 'intermediate_split',
     name: 'Intermediate 6-Day Split',
