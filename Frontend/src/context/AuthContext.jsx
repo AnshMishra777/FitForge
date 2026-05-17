@@ -16,12 +16,25 @@ export function AuthProvider({ children }) {
       const { data } = await api.post('/auth/login', { email, password })
       localStorage.setItem('ff_token', data.token)
       localStorage.setItem('ff_user', JSON.stringify(data.user))
-      setUser(data.user)
+      // Also restore avatar from ff_avatar key if backend doesn't have it yet
+      const savedAvatar = localStorage.getItem('ff_avatar')
+      const userWithAvatar = data.user.avatar
+        ? data.user
+        : savedAvatar
+          ? { ...data.user, avatar: savedAvatar }
+          : data.user
+      setUser(userWithAvatar)
       return { success: true }
     } catch (err) {
       // Demo mode: accept demo@fitforge.app / demo123
       if (email === 'demo@fitforge.app' && password === 'demo123') {
-        const demoUser = { _id: 'demo', name: 'Demo Athlete', email }
+        const savedAvatar = localStorage.getItem('ff_avatar')
+        const demoUser = {
+          _id: 'demo',
+          name: 'Demo Athlete',
+          email,
+          avatar: savedAvatar || '',
+        }
         localStorage.setItem('ff_token', 'demo_token')
         localStorage.setItem('ff_user', JSON.stringify(demoUser))
         setUser(demoUser)
@@ -43,7 +56,7 @@ export function AuthProvider({ children }) {
       return { success: true }
     } catch (err) {
       // Demo fallback
-      const demoUser = { _id: Date.now().toString(), name, email }
+      const demoUser = { _id: Date.now().toString(), name, email, avatar: '' }
       localStorage.setItem('ff_token', 'demo_token_' + Date.now())
       localStorage.setItem('ff_user', JSON.stringify(demoUser))
       setUser(demoUser)
@@ -56,11 +69,21 @@ export function AuthProvider({ children }) {
   const logout = useCallback(() => {
     localStorage.removeItem('ff_token')
     localStorage.removeItem('ff_user')
+    // NOTE: We intentionally keep ff_avatar so it survives logout/login
     setUser(null)
   }, [])
 
+  // Call this after profile/avatar updates so the Navbar reflects changes immediately
+  const updateUser = useCallback((changes) => {
+    setUser(prev => {
+      const updated = { ...prev, ...changes }
+      localStorage.setItem('ff_user', JSON.stringify(updated))
+      return updated
+    })
+  }, [])
+
   return (
-    <AuthContext.Provider value={{ user, loading, login, signup, logout }}>
+    <AuthContext.Provider value={{ user, loading, login, signup, logout, updateUser }}>
       {children}
     </AuthContext.Provider>
   )

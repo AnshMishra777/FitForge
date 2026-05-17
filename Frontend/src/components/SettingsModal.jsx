@@ -80,42 +80,76 @@ function InfoRow({ icon, label, value, accent }) {
 
 // ═══════════════════════════════════════════════════════════════════════
 export default function SettingsModal({ onClose }) {
-  const { user, logout } = useAuth()
+  const { user, logout, updateUser } = useAuth()
   const navigate = useNavigate()
   const [tab, setTab] = useState('profile')
 
   // ── Avatar / Photo ────────────────────────────────────────────────
-  // Hidden file input — clicking Camera button triggers it programmatically
   const fileInputRef = useRef(null)
   const [avatarSrc, setAvatarSrc] = useState(
-    () => localStorage.getItem('ff_avatar') || null
+    () => user?.avatar || localStorage.getItem('ff_avatar') || null
   )
   const initials = user?.name?.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase() || 'U'
 
   const handleAvatarClick = () => fileInputRef.current?.click()
 
-  const handleFileChange = (e) => {
+  const handleFileChange = async (e) => {
     const file = e.target.files?.[0]
     if (!file || !file.type.startsWith('image/')) return
+
     const reader = new FileReader()
-    reader.onload = (ev) => {
-      const dataUrl = ev.target.result
-      setAvatarSrc(dataUrl)
-      localStorage.setItem('ff_avatar', dataUrl)
+
+    reader.onload = async (ev) => {
+      try {
+        const dataUrl = ev.target.result
+
+        // Update local state immediately for instant preview
+        setAvatarSrc(dataUrl)
+
+        // Persist to localStorage so it survives page refreshes and logout/login
+        localStorage.setItem('ff_avatar', dataUrl)
+
+        // Update AuthContext so Navbar avatar updates instantly without reload
+        updateUser({ avatar: dataUrl })
+
+        // Try to save to backend (best-effort for non-demo users)
+        const token = localStorage.getItem('ff_token')
+        if (token && token !== 'demo_token' && !token.startsWith('demo_token_')) {
+          try {
+            const response = await fetch('/api/user/avatar', {
+              method: 'PATCH',
+              headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
+              },
+              body: JSON.stringify({ avatar: dataUrl }),
+            })
+            const data = await response.json()
+            if (data.user) {
+              updateUser(data.user)
+              localStorage.setItem('ff_user', JSON.stringify({ ...data.user, avatar: dataUrl }))
+            }
+          } catch (_) {
+            // Backend unavailable — local save is enough for demo
+          }
+        }
+      } catch (err) {
+        console.error('Avatar upload failed', err)
+      }
     }
+
     reader.readAsDataURL(file)
-    e.target.value = '' // reset so same file can be picked again
+    e.target.value = ''
   }
 
   const removeAvatar = () => {
     setAvatarSrc(null)
     localStorage.removeItem('ff_avatar')
+    updateUser({ avatar: '' })
   }
 
   // ── Theme / Dark mode ─────────────────────────────────────────────
-  // Reads the current html class on mount so the UI reflects the real state
   const getInitialTheme = () => localStorage.getItem('ff_theme') || 'dark'
-
   const [theme, setThemeState] = useState(getInitialTheme)
 
   const applyTheme = (newTheme) => {
@@ -152,10 +186,12 @@ export default function SettingsModal({ onClose }) {
 
   const saveProfile = () => {
     const stored = JSON.parse(localStorage.getItem('ff_user') || '{}')
-    localStorage.setItem('ff_user', JSON.stringify({ ...stored, name: profile.name, email: profile.email }))
+    const updated = { ...stored, name: profile.name, email: profile.email }
+    localStorage.setItem('ff_user', JSON.stringify(updated))
     localStorage.setItem('ff_phone', profile.phone)
     localStorage.setItem('ff_bio',   profile.bio)
     localStorage.setItem('ff_goal',  profile.goal)
+    updateUser({ name: profile.name, email: profile.email })
     setProfileSaved(true)
     setTimeout(() => setProfileSaved(false), 2500)
   }
@@ -197,7 +233,7 @@ export default function SettingsModal({ onClose }) {
       className="fixed inset-0 z-50 flex items-center justify-center
                  bg-black/60 backdrop-blur-sm px-4"
     >
-      {/* Hidden file input — triggered by camera button */}
+      {/* Hidden file input */}
       <input
         ref={fileInputRef}
         type="file"
@@ -238,7 +274,6 @@ export default function SettingsModal({ onClose }) {
             <div className="px-3 pb-3 mb-1 border-b border-forge-border">
               <div className="flex flex-col items-center gap-2 py-3">
                 <div className="relative">
-                  {/* Clicking avatar or camera icon opens file picker */}
                   <div
                     onClick={handleAvatarClick}
                     className="w-14 h-14 rounded-full overflow-hidden cursor-pointer
@@ -273,7 +308,6 @@ export default function SettingsModal({ onClose }) {
                   <p className="text-[10px] text-forge-dim truncate max-w-[140px]">{user?.email}</p>
                 </div>
 
-                {/* Remove photo — only visible when a photo is set */}
                 {avatarSrc && (
                   <button
                     onClick={removeAvatar}

@@ -21,16 +21,16 @@ const CAT_COLOR = {
 function Stepper({ label, value, onChange, min = 1, max = 300, step = 1 }) {
   return (
     <div className="flex flex-col items-center gap-1">
-      <label className="text-[9px] font-bold tracking-[0.12em] uppercase text-[#444]">{label}</label>
-      <div className="flex items-center gap-0.5 bg-[#0d0d0d] border border-[#1e1e1e] rounded-lg overflow-hidden">
+      <label className="text-[9px] font-bold tracking-[0.12em] uppercase text-forge-dim">{label}</label>
+      <div className="flex items-center gap-0.5 bg-forge-surface border border-forge-border rounded-lg overflow-hidden">
         <button
           onClick={() => onChange(Math.max(min, value - step))}
-          className="w-7 h-8 text-[#555] hover:text-white hover:bg-[#1a1a1a] transition-colors text-sm font-bold"
+          className="w-7 h-8 text-forge-dim hover:text-forge-text hover:bg-forge-card transition-colors text-sm font-bold"
         >−</button>
-        <span className="w-10 text-center font-mono text-sm text-[#e0e0e0] font-bold">{value}</span>
+        <span className="w-10 text-center font-mono text-sm text-forge-text font-bold">{value}</span>
         <button
           onClick={() => onChange(Math.min(max, value + step))}
-          className="w-7 h-8 text-[#555] hover:text-white hover:bg-[#1a1a1a] transition-colors text-sm font-bold"
+          className="w-7 h-8 text-forge-dim hover:text-forge-text hover:bg-forge-card transition-colors text-sm font-bold"
         >+</button>
       </div>
     </div>
@@ -39,8 +39,8 @@ function Stepper({ label, value, onChange, min = 1, max = 300, step = 1 }) {
 
 // ─── Exercise Picker Modal ────────────────────────────────────────
 function ExercisePicker({ onSelect, onClose, alreadySelected = [] }) {
-  const [search, setSearch]   = useState('')
-  const [cat, setCat]         = useState('all')
+  const [search, setSearch] = useState('')
+  const [cat, setCat]       = useState('all')
   const CATS = ['all','push','pull','legs','core','cardio']
 
   useEffect(() => {
@@ -59,23 +59,23 @@ function ExercisePicker({ onSelect, onClose, alreadySelected = [] }) {
     <div className="fixed inset-0 z-[300] bg-black/85 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4"
       onClick={onClose}>
       <div
-        className="w-full sm:max-w-lg bg-[#111] border border-[#222] rounded-t-2xl sm:rounded-2xl flex flex-col"
+        className="w-full sm:max-w-lg bg-forge-card border border-forge-border rounded-t-2xl sm:rounded-2xl flex flex-col"
         style={{ maxHeight: '88vh', boxShadow: '0 24px 80px rgba(0,0,0,0.8)' }}
         onClick={e => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="flex items-center justify-between p-5 border-b border-[#1e1e1e] flex-shrink-0">
+        <div className="flex items-center justify-between p-5 border-b border-forge-border flex-shrink-0">
           <div>
-            <h3 className="font-display text-2xl tracking-[0.04em] text-[#e0e0e0]">Add Exercise</h3>
-            <p className="text-xs text-[#555]">Pick from {EXERCISES.length} exercises</p>
+            <h3 className="font-display text-2xl tracking-[0.04em] text-forge-text">Add Exercise</h3>
+            <p className="text-xs text-forge-dim">Pick from {EXERCISES.length} exercises</p>
           </div>
-          <button onClick={onClose} className="w-8 h-8 rounded-full bg-[#1a1a1a] border border-[#222] text-[#888] hover:text-white text-sm flex items-center justify-center transition-colors">✕</button>
+          <button onClick={onClose} className="w-8 h-8 rounded-full bg-forge-surface border border-forge-border text-forge-muted hover:text-forge-text text-sm flex items-center justify-center transition-colors">✕</button>
         </div>
 
         {/* Filters */}
-        <div className="p-4 border-b border-[#1e1e1e] flex-shrink-0 flex flex-col gap-3">
+        <div className="p-4 border-b border-forge-border flex-shrink-0 flex flex-col gap-3">
           <input
-            className="w-full px-4 py-2.5 bg-[#0d0d0d] border border-[#1e1e1e] rounded-lg text-sm text-[#f0f0f0] outline-none focus:border-[#ff5a1f] placeholder:text-[#333] transition-colors"
+            className="w-full px-4 py-2.5 bg-forge-surface border border-forge-border rounded-lg text-sm text-forge-text outline-none focus:border-forge-orange placeholder:text-forge-dim transition-colors"
             placeholder="Search exercises or muscle groups…"
             value={search}
             onChange={e => setSearch(e.target.value)}
@@ -87,8 +87,8 @@ function ExercisePicker({ onSelect, onClose, alreadySelected = [] }) {
                 onClick={() => setCat(c)}
                 className={`px-3 py-1.5 rounded-lg text-[11px] font-bold capitalize border transition-all ${
                   cat === c
-                    ? 'bg-[#ff5a1f] border-[#ff5a1f] text-white'
-                    : 'bg-[#0d0d0d] border-[#1e1e1e] text-[#555] hover:border-[#2a2a2a] hover:text-[#ccc]'
+                    ? 'bg-forge-orange border-forge-orange text-white'
+                    : 'bg-forge-surface border-forge-border text-forge-dim hover:border-forge-borderLight hover:text-forge-muted'
                 }`}
               >{c}</button>
             ))}
@@ -107,15 +107,15 @@ function ExercisePicker({ onSelect, onClose, alreadySelected = [] }) {
                 className={`w-full flex items-center gap-3 p-3 rounded-xl mb-1 text-left transition-all ${
                   added
                     ? 'opacity-40 cursor-not-allowed'
-                    : 'hover:bg-[#1a1a1a] cursor-pointer'
+                    : 'hover:bg-forge-surface cursor-pointer'
                 }`}
               >
                 <div className="w-12 h-9 rounded-md overflow-hidden flex-shrink-0">
                   <img src={ex.image} alt={ex.name} className="w-full h-full object-cover" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-semibold text-[#e0e0e0] truncate">{ex.name}</p>
-                  <p className="text-[11px] text-[#555] truncate">{ex.muscle}</p>
+                  <p className="text-sm font-semibold text-forge-text truncate">{ex.name}</p>
+                  <p className="text-[11px] text-forge-dim truncate">{ex.muscle}</p>
                 </div>
                 <div className="flex items-center gap-2 flex-shrink-0">
                   <span className={`text-[9px] font-bold uppercase tracking-widest px-2 py-0.5 rounded border ${CAT_COLOR[ex.category]}`}>
@@ -123,7 +123,7 @@ function ExercisePicker({ onSelect, onClose, alreadySelected = [] }) {
                   </span>
                   {added
                     ? <span className="text-green-400 text-sm">✓</span>
-                    : <span className="text-[#ff5a1f] text-lg font-bold">+</span>
+                    : <span className="text-forge-orange text-lg font-bold">+</span>
                   }
                 </div>
               </button>
@@ -141,18 +141,18 @@ function ExerciseRow({ item, index, total, onChange, onRemove, onMoveUp, onMoveD
   if (!exercise) return null
 
   return (
-    <div className="bg-[#141414] border border-[#1e1e1e] rounded-xl p-4 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+    <div className="bg-forge-card border border-forge-border rounded-xl p-4 flex flex-col sm:flex-row items-start sm:items-center gap-4">
       {/* Index + image + name */}
       <div className="flex items-center gap-3 flex-1 min-w-0">
-        <span className="font-mono text-[10px] text-[#333] font-bold w-5 flex-shrink-0">
+        <span className="font-mono text-[10px] text-forge-dim font-bold w-5 flex-shrink-0">
           {String(index + 1).padStart(2, '0')}
         </span>
         <div className="w-12 h-9 rounded-md overflow-hidden flex-shrink-0">
           <img src={exercise.image} alt={exercise.name} className="w-full h-full object-cover" />
         </div>
         <div className="min-w-0">
-          <p className="text-sm font-bold text-[#e0e0e0] truncate">{exercise.name}</p>
-          <p className="text-[10px] text-[#555] truncate">{exercise.muscle}</p>
+          <p className="text-sm font-bold text-forge-text truncate">{exercise.name}</p>
+          <p className="text-[10px] text-forge-dim truncate">{exercise.muscle}</p>
         </div>
       </div>
 
@@ -170,9 +170,9 @@ function ExerciseRow({ item, index, total, onChange, onRemove, onMoveUp, onMoveD
 
       {/* Controls */}
       <div className="flex items-center gap-1.5 flex-shrink-0">
-        <button onClick={onMoveUp}   disabled={index === 0}          className="w-7 h-7 rounded-lg border border-[#1e1e1e] text-[#444] hover:text-white hover:border-[#2a2a2a] disabled:opacity-20 text-xs transition-colors flex items-center justify-center">↑</button>
-        <button onClick={onMoveDown} disabled={index === total - 1}  className="w-7 h-7 rounded-lg border border-[#1e1e1e] text-[#444] hover:text-white hover:border-[#2a2a2a] disabled:opacity-20 text-xs transition-colors flex items-center justify-center">↓</button>
-        <button onClick={onRemove}                                   className="w-7 h-7 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 hover:bg-red-500/20 text-xs transition-colors flex items-center justify-center">✕</button>
+        <button onClick={onMoveUp}   disabled={index === 0}         className="w-7 h-7 rounded-lg border border-forge-border text-forge-dim hover:text-forge-text hover:border-forge-borderLight disabled:opacity-20 text-xs transition-colors flex items-center justify-center">↑</button>
+        <button onClick={onMoveDown} disabled={index === total - 1} className="w-7 h-7 rounded-lg border border-forge-border text-forge-dim hover:text-forge-text hover:border-forge-borderLight disabled:opacity-20 text-xs transition-colors flex items-center justify-center">↓</button>
+        <button onClick={onRemove}                                  className="w-7 h-7 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 hover:bg-red-500/20 text-xs transition-colors flex items-center justify-center">✕</button>
       </div>
     </div>
   )
@@ -183,23 +183,23 @@ function WorkoutCard({ workout, onEdit, onDelete, onStart }) {
   const totalSets = workout.exercises.reduce((s, e) => s + (e.sets || 0), 0)
 
   return (
-    <div className="bg-[#141414] border border-[#1e1e1e] rounded-xl p-5 flex flex-col gap-4 hover:border-[#2a2a2a] transition-all">
+    <div className="bg-forge-card border border-forge-border rounded-xl p-5 flex flex-col gap-4 hover:border-forge-borderLight transition-all">
       {/* Title row */}
       <div className="flex items-start justify-between gap-2">
         <div className="min-w-0">
-          <h3 className="font-display text-2xl tracking-wider text-[#e0e0e0] leading-tight">{workout.name}</h3>
+          <h3 className="font-display text-2xl tracking-wider text-forge-text leading-tight">{workout.name}</h3>
           {workout.description && (
-            <p className="text-xs text-[#555] mt-1 line-clamp-1">{workout.description}</p>
+            <p className="text-xs text-forge-dim mt-1 line-clamp-1">{workout.description}</p>
           )}
         </div>
         <div className="flex items-center gap-2 flex-shrink-0">
-          <button onClick={onEdit}   className="px-3 py-1.5 rounded-lg border border-[#1e1e1e] text-[#666] text-xs font-bold hover:text-[#ccc] hover:border-[#2a2a2a] transition-colors">Edit</button>
+          <button onClick={onEdit}   className="px-3 py-1.5 rounded-lg border border-forge-border text-forge-muted text-xs font-bold hover:text-forge-text hover:border-forge-borderLight transition-colors">Edit</button>
           <button onClick={onDelete} className="px-3 py-1.5 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 text-xs font-bold hover:bg-red-500/20 transition-colors">Delete</button>
         </div>
       </div>
 
       {/* Meta */}
-      <div className="flex items-center gap-4 text-[11px] text-[#555]">
+      <div className="flex items-center gap-4 text-[11px] text-forge-dim">
         <span>💪 {workout.exercises.length} exercises</span>
         <span>📋 {totalSets} total sets</span>
         {workout.goal && <span>🎯 {workout.goal}</span>}
@@ -210,13 +210,13 @@ function WorkoutCard({ workout, onEdit, onDelete, onStart }) {
         {workout.exercises.slice(0, 5).map((ex, i) => {
           const exercise = getExerciseById(ex.exerciseId)
           return exercise ? (
-            <span key={i} className="text-[10px] font-semibold text-[#555] bg-[#0d0d0d] border border-[#1a1a1a] px-2.5 py-1 rounded-lg">
+            <span key={i} className="text-[10px] font-semibold text-forge-muted bg-forge-surface border border-forge-border px-2.5 py-1 rounded-lg">
               {exercise.name}
             </span>
           ) : null
         })}
         {workout.exercises.length > 5 && (
-          <span className="text-[10px] font-semibold text-[#444] bg-[#0d0d0d] border border-[#1a1a1a] px-2.5 py-1 rounded-lg">
+          <span className="text-[10px] font-semibold text-forge-dim bg-forge-surface border border-forge-border px-2.5 py-1 rounded-lg">
             +{workout.exercises.length - 5} more
           </span>
         )}
@@ -225,7 +225,7 @@ function WorkoutCard({ workout, onEdit, onDelete, onStart }) {
       {/* Start button */}
       <button
         onClick={onStart}
-        className="w-full py-2.5 rounded-xl bg-[#ff5a1f] text-white text-sm font-bold hover:bg-orange-500 transition-all shadow-[0_2px_16px_rgba(255,90,31,0.2)] hover:shadow-[0_4px_24px_rgba(255,90,31,0.35)] active:scale-[0.98]"
+        className="w-full py-2.5 rounded-xl bg-forge-orange text-white text-sm font-bold hover:bg-orange-500 transition-all shadow-[0_2px_16px_rgba(255,90,31,0.2)] hover:shadow-[0_4px_24px_rgba(255,90,31,0.35)] active:scale-[0.98]"
       >
         ▶ Start Workout
       </button>
@@ -238,7 +238,7 @@ function LiveSession({ workout, onEnd }) {
   const [exIdx, setExIdx]   = useState(0)
   const [setIdx, setSetIdx] = useState(1)
   const [done, setDone]     = useState({})
-  const [resting, setResting]     = useState(false)
+  const [resting, setResting]         = useState(false)
   const [restCountdown, setRestCountdown] = useState(0)
 
   const total    = workout.exercises.length
@@ -246,7 +246,6 @@ function LiveSession({ workout, onEnd }) {
   const exercise = current ? getExerciseById(current.exerciseId) : null
   const progress = total > 0 ? (exIdx / total) * 100 : 100
 
-  // Rest timer countdown
   useEffect(() => {
     if (!resting) return
     setRestCountdown(current?.rest || 60)
@@ -274,7 +273,6 @@ function LiveSession({ workout, onEnd }) {
       setSetIdx(1)
       setResting(true)
     } else {
-      // All done — move to completion
       setExIdx(total)
     }
   }
@@ -284,10 +282,10 @@ function LiveSession({ workout, onEnd }) {
     return (
       <div className="max-w-md mx-auto text-center py-20 px-4">
         <div className="text-7xl mb-6 animate-bounce">🏆</div>
-        <h2 className="font-display text-5xl tracking-tight text-[#22c55e] mb-3">SESSION DONE!</h2>
-        <p className="text-[#666] mb-2">You crushed <span className="text-[#f0f0f0] font-bold">{workout.name}</span></p>
-        <p className="text-[#555] text-sm mb-8">{total} exercises completed. Rest, recover, repeat.</p>
-        <button onClick={onEnd} className="px-8 py-3.5 bg-[#ff5a1f] text-white font-bold rounded-xl text-base hover:bg-orange-500 transition-all shadow-[0_4px_24px_rgba(255,90,31,0.3)]">
+        <h2 className="font-display text-5xl tracking-tight text-green-400 mb-3">SESSION DONE!</h2>
+        <p className="text-forge-muted mb-2">You crushed <span className="text-forge-text font-bold">{workout.name}</span></p>
+        <p className="text-forge-dim text-sm mb-8">{total} exercises completed. Rest, recover, repeat.</p>
+        <button onClick={onEnd} className="px-8 py-3.5 bg-forge-orange text-white font-bold rounded-xl text-base hover:bg-orange-500 transition-all shadow-[0_4px_24px_rgba(255,90,31,0.3)]">
           Finish →
         </button>
       </div>
@@ -302,30 +300,30 @@ function LiveSession({ workout, onEnd }) {
     <div className="max-w-xl mx-auto px-4 py-6">
       {/* Progress bar */}
       <div className="mb-6">
-        <div className="flex justify-between text-xs text-[#555] mb-1.5">
+        <div className="flex justify-between text-xs text-forge-dim mb-1.5">
           <span>Exercise {exIdx + 1} of {total}</span>
-          <span className="text-[#ff5a1f] font-bold">{Math.round(progress)}% done</span>
+          <span className="text-forge-orange font-bold">{Math.round(progress)}% done</span>
         </div>
-        <div className="h-1.5 bg-[#1a1a1a] rounded-full overflow-hidden">
+        <div className="h-1.5 bg-forge-surface rounded-full overflow-hidden">
           <div
-            className="h-full bg-[#ff5a1f] rounded-full transition-all duration-700"
+            className="h-full bg-forge-orange rounded-full transition-all duration-700"
             style={{ width: `${progress}%` }}
           />
         </div>
       </div>
 
       {/* Current exercise card */}
-      <div className="bg-[#141414] border border-[#ff5a1f]/30 rounded-2xl overflow-hidden mb-4 shadow-[0_4px_32px_rgba(255,90,31,0.1)]">
+      <div className="bg-forge-card border border-forge-orange/30 rounded-2xl overflow-hidden mb-4 shadow-[0_4px_32px_rgba(255,90,31,0.1)]">
         <div className="relative h-52">
           <img src={exercise.image} alt={exercise.name} className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#141414] via-black/20 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
           <div className="absolute bottom-4 left-5 right-5 flex items-end justify-between">
             <div>
               <p className="font-display text-3xl tracking-wider text-white leading-none">{exercise.name}</p>
               <p className="text-white/60 text-xs mt-1">{exercise.muscle}</p>
             </div>
             <div className="text-right">
-              <p className="font-mono text-2xl font-bold text-[#ff5a1f]">
+              <p className="font-mono text-2xl font-bold text-forge-orange">
                 {setIdx}/{current.sets}
               </p>
               <p className="text-white/50 text-xs">sets</p>
@@ -341,9 +339,9 @@ function LiveSession({ workout, onEnd }) {
               ['Rest', `${current.rest || 60}s`],
               ['Remaining', `${current.sets - setIdx + 1} sets`],
             ].map(([label, val]) => (
-              <div key={label} className="flex-1 bg-[#0d0d0d] border border-[#1e1e1e] rounded-xl p-3 text-center">
-                <p className="font-mono text-lg font-bold text-[#ff5a1f]">{val}</p>
-                <p className="text-[10px] text-[#444] uppercase tracking-wider mt-0.5">{label}</p>
+              <div key={label} className="flex-1 bg-forge-surface border border-forge-border rounded-xl p-3 text-center">
+                <p className="font-mono text-lg font-bold text-forge-orange">{val}</p>
+                <p className="text-[10px] text-forge-dim uppercase tracking-wider mt-0.5">{label}</p>
               </div>
             ))}
           </div>
@@ -352,7 +350,7 @@ function LiveSession({ workout, onEnd }) {
           <div className="flex gap-2 mb-5">
             {completedSetsArr.map((c, i) => (
               <div key={i} className={`flex-1 h-2 rounded-full transition-all duration-300 ${
-                c ? 'bg-green-500' : (i + 1 === setIdx ? 'bg-[#ff5a1f] animate-pulse' : 'bg-[#1a1a1a]')
+                c ? 'bg-green-500' : (i + 1 === setIdx ? 'bg-forge-orange animate-pulse' : 'bg-forge-surface')
               }`} />
             ))}
           </div>
@@ -360,18 +358,18 @@ function LiveSession({ workout, onEnd }) {
           {/* Action */}
           {resting ? (
             <div className="text-center">
-              <p className="text-[#ffcc00] font-bold mb-1">
+              <p className="text-yellow-400 font-bold mb-1">
                 ⏱ Resting… {restCountdown}s
               </p>
-              <div className="w-full h-1 bg-[#1a1a1a] rounded-full mb-3">
+              <div className="w-full h-1 bg-forge-surface rounded-full mb-3">
                 <div
-                  className="h-full bg-[#ffcc00] rounded-full transition-all duration-1000"
+                  className="h-full bg-yellow-400 rounded-full transition-all duration-1000"
                   style={{ width: `${(restCountdown / (current.rest || 60)) * 100}%` }}
                 />
               </div>
               <button
                 onClick={() => setResting(false)}
-                className="text-xs text-[#555] hover:text-[#ccc] underline transition-colors"
+                className="text-xs text-forge-dim hover:text-forge-muted underline transition-colors"
               >
                 Skip rest →
               </button>
@@ -379,7 +377,7 @@ function LiveSession({ workout, onEnd }) {
           ) : (
             <button
               onClick={markSet}
-              className="w-full py-4 bg-[#ff5a1f] text-white font-bold text-base rounded-xl hover:bg-orange-500 transition-all active:scale-[0.98] shadow-[0_4px_24px_rgba(255,90,31,0.3)]"
+              className="w-full py-4 bg-forge-orange text-white font-bold text-base rounded-xl hover:bg-orange-500 transition-all active:scale-[0.98] shadow-[0_4px_24px_rgba(255,90,31,0.3)]"
             >
               {setIdx < current.sets
                 ? `✓ Complete Set ${setIdx} →`
@@ -393,19 +391,19 @@ function LiveSession({ workout, onEnd }) {
       </div>
 
       {/* Form cues */}
-      <div className="bg-[#141414] border border-[#1e1e1e] rounded-xl p-4 mb-4">
-        <p className="text-[10px] font-bold tracking-[0.12em] uppercase text-[#444] mb-3">Form Cues</p>
+      <div className="bg-forge-card border border-forge-border rounded-xl p-4 mb-4">
+        <p className="text-[10px] font-bold tracking-[0.12em] uppercase text-forge-dim mb-3">Form Cues</p>
         {exercise.cues.map((cue, i) => (
           <div key={i} className="flex gap-2.5 mb-2 last:mb-0">
-            <span className="font-mono text-[10px] text-[#ff5a1f] font-bold mt-0.5 flex-shrink-0">
+            <span className="font-mono text-[10px] text-forge-orange font-bold mt-0.5 flex-shrink-0">
               {String(i+1).padStart(2,'0')}
             </span>
-            <p className="text-xs text-[#999] leading-relaxed">{cue}</p>
+            <p className="text-xs text-forge-muted leading-relaxed">{cue}</p>
           </div>
         ))}
       </div>
 
-      <button onClick={onEnd} className="w-full py-2.5 rounded-xl border border-[#1e1e1e] text-[#555] text-sm font-bold hover:border-[#2a2a2a] hover:text-[#888] transition-colors">
+      <button onClick={onEnd} className="w-full py-2.5 rounded-xl border border-forge-border text-forge-dim text-sm font-bold hover:border-forge-borderLight hover:text-forge-muted transition-colors">
         End Session Early
       </button>
     </div>
@@ -460,35 +458,35 @@ function WorkoutBuilder({ initial, onSave, onCancel }) {
       <div className="flex items-center gap-3 mb-8">
         <button
           onClick={onCancel}
-          className="flex items-center gap-1.5 text-sm text-[#666] hover:text-[#f0f0f0] font-semibold transition-colors"
+          className="flex items-center gap-1.5 text-sm text-forge-muted hover:text-forge-text font-semibold transition-colors"
         >← Back</button>
-        <span className="text-[#1e1e1e]">|</span>
-        <h1 className="font-display text-3xl tracking-wider text-[#e0e0e0]">
+        <span className="text-forge-border">|</span>
+        <h1 className="font-display text-3xl tracking-wider text-forge-text">
           {initial ? 'Edit Workout' : 'New Workout'}
         </h1>
       </div>
 
       {/* Workout meta */}
-      <div className="bg-[#141414] border border-[#1e1e1e] rounded-xl p-5 mb-5">
-        <h2 className="text-[10px] font-bold tracking-[0.12em] uppercase text-[#444] mb-4">Workout Details</h2>
+      <div className="bg-forge-card border border-forge-border rounded-xl p-5 mb-5">
+        <h2 className="text-[10px] font-bold tracking-[0.12em] uppercase text-forge-dim mb-4">Workout Details</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
           <div>
-            <label className="block text-[10px] font-bold tracking-[0.1em] uppercase text-[#555] mb-1.5">
+            <label className="block text-[10px] font-bold tracking-[0.1em] uppercase text-forge-muted mb-1.5">
               Workout Name *
             </label>
             <input
-              className="w-full px-3.5 py-2.5 bg-[#0d0d0d] border border-[#1e1e1e] rounded-lg text-sm text-[#f0f0f0] outline-none focus:border-[#ff5a1f] transition-colors placeholder:text-[#333]"
+              className="w-full px-3.5 py-2.5 bg-forge-surface border border-forge-border rounded-lg text-sm text-forge-text outline-none focus:border-forge-orange transition-colors placeholder:text-forge-dim"
               placeholder="e.g. Monday Push Day"
               value={form.name}
               onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
             />
           </div>
           <div>
-            <label className="block text-[10px] font-bold tracking-[0.1em] uppercase text-[#555] mb-1.5">
+            <label className="block text-[10px] font-bold tracking-[0.1em] uppercase text-forge-muted mb-1.5">
               Goal (optional)
             </label>
             <input
-              className="w-full px-3.5 py-2.5 bg-[#0d0d0d] border border-[#1e1e1e] rounded-lg text-sm text-[#f0f0f0] outline-none focus:border-[#ff5a1f] transition-colors placeholder:text-[#333]"
+              className="w-full px-3.5 py-2.5 bg-forge-surface border border-forge-border rounded-lg text-sm text-forge-text outline-none focus:border-forge-orange transition-colors placeholder:text-forge-dim"
               placeholder="e.g. Muscle gain, Fat loss"
               value={form.goal}
               onChange={e => setForm(f => ({ ...f, goal: e.target.value }))}
@@ -496,11 +494,11 @@ function WorkoutBuilder({ initial, onSave, onCancel }) {
           </div>
         </div>
         <div>
-          <label className="block text-[10px] font-bold tracking-[0.1em] uppercase text-[#555] mb-1.5">
+          <label className="block text-[10px] font-bold tracking-[0.1em] uppercase text-forge-muted mb-1.5">
             Notes (optional)
           </label>
           <input
-            className="w-full px-3.5 py-2.5 bg-[#0d0d0d] border border-[#1e1e1e] rounded-lg text-sm text-[#f0f0f0] outline-none focus:border-[#ff5a1f] transition-colors placeholder:text-[#333]"
+            className="w-full px-3.5 py-2.5 bg-forge-surface border border-forge-border rounded-lg text-sm text-forge-text outline-none focus:border-forge-orange transition-colors placeholder:text-forge-dim"
             placeholder="Any notes about this workout…"
             value={form.description}
             onChange={e => setForm(f => ({ ...f, description: e.target.value }))}
@@ -512,17 +510,17 @@ function WorkoutBuilder({ initial, onSave, onCancel }) {
       <div className="mb-5">
         <div className="flex items-center justify-between mb-4">
           <div>
-            <h2 className="font-display text-xl tracking-wider text-[#e0e0e0]">
+            <h2 className="font-display text-xl tracking-wider text-forge-text">
               Exercises{' '}
-              <span className="text-[#444] text-lg">({form.exercises.length})</span>
+              <span className="text-forge-dim text-lg">({form.exercises.length})</span>
             </h2>
             {form.exercises.length === 0 && (
-              <p className="text-xs text-[#444] mt-0.5">Add at least one exercise to save</p>
+              <p className="text-xs text-forge-dim mt-0.5">Add at least one exercise to save</p>
             )}
           </div>
           <button
             onClick={() => setShowPicker(true)}
-            className="px-4 py-2 bg-[#ff5a1f] text-white text-sm font-bold rounded-xl hover:bg-orange-500 transition-all shadow-[0_2px_12px_rgba(255,90,31,0.25)] flex items-center gap-1.5"
+            className="px-4 py-2 bg-forge-orange text-white text-sm font-bold rounded-xl hover:bg-orange-500 transition-all shadow-[0_2px_12px_rgba(255,90,31,0.25)] flex items-center gap-1.5"
           >
             <span className="text-lg leading-none">+</span> Add Exercise
           </button>
@@ -530,12 +528,12 @@ function WorkoutBuilder({ initial, onSave, onCancel }) {
 
         {form.exercises.length === 0 ? (
           <div
-            className="border-2 border-dashed border-[#1e1e1e] rounded-2xl p-12 text-center cursor-pointer hover:border-[#ff5a1f]/30 transition-colors"
+            className="border-2 border-dashed border-forge-border rounded-2xl p-12 text-center cursor-pointer hover:border-forge-orange/30 transition-colors"
             onClick={() => setShowPicker(true)}
           >
             <p className="text-4xl mb-3">💪</p>
-            <p className="font-display text-xl tracking-wider text-[#444]">No exercises yet</p>
-            <p className="text-xs text-[#333] mt-2">Click to add exercises from the library</p>
+            <p className="font-display text-xl tracking-wider text-forge-dim">No exercises yet</p>
+            <p className="text-xs text-forge-dim mt-2">Click to add exercises from the library</p>
           </div>
         ) : (
           <div className="flex flex-col gap-3">
@@ -560,15 +558,15 @@ function WorkoutBuilder({ initial, onSave, onCancel }) {
           disabled={!canSave}
           className={`flex-1 py-3.5 rounded-xl font-bold text-base transition-all ${
             canSave
-              ? 'bg-[#ff5a1f] text-white hover:bg-orange-500 shadow-[0_4px_24px_rgba(255,90,31,0.25)]'
-              : 'bg-[#141414] text-[#333] border border-[#1e1e1e] cursor-not-allowed'
+              ? 'bg-forge-orange text-white hover:bg-orange-500 shadow-[0_4px_24px_rgba(255,90,31,0.25)]'
+              : 'bg-forge-card text-forge-dim border border-forge-border cursor-not-allowed'
           }`}
         >
           {initial ? 'Save Changes' : 'Create Workout'}
         </button>
         <button
           onClick={onCancel}
-          className="px-6 py-3.5 rounded-xl border border-[#1e1e1e] text-[#666] font-bold hover:text-[#ccc] hover:border-[#2a2a2a] transition-colors"
+          className="px-6 py-3.5 rounded-xl border border-forge-border text-forge-muted font-bold hover:text-forge-text hover:border-forge-borderLight transition-colors"
         >
           Cancel
         </button>
@@ -588,8 +586,8 @@ function WorkoutBuilder({ initial, onSave, onCancel }) {
 // ─── Main Page ────────────────────────────────────────────────────
 export default function CustomWorkout() {
   const [workouts, setWorkouts] = useState(loadWorkouts)
-  const [mode, setMode]         = useState('list')      // 'list' | 'create' | 'edit' | 'session'
-  const [editTarget, setEditTarget]   = useState(null)  // workout being edited
+  const [mode, setMode]         = useState('list')
+  const [editTarget, setEditTarget]       = useState(null)
   const [sessionTarget, setSessionTarget] = useState(null)
 
   useEffect(() => { saveWorkouts(workouts) }, [workouts])
@@ -609,24 +607,17 @@ export default function CustomWorkout() {
     setWorkouts(ws => ws.filter(w => w.id !== id))
   }
 
-  const handleEdit = (w) => {
-    setEditTarget(w)
-    setMode('edit')
-  }
-
-  const handleStart = (w) => {
-    setSessionTarget(w)
-    setMode('session')
-  }
+  const handleEdit  = (w) => { setEditTarget(w); setMode('edit') }
+  const handleStart = (w) => { setSessionTarget(w); setMode('session') }
 
   // ── Live Session ─────────────────────────────────────────────────
   if (mode === 'session' && sessionTarget) {
     return (
-      <div className="min-h-screen bg-[#080808]">
+      <div className="min-h-screen bg-forge-bg">
         {/* Session header */}
-        <div className="sticky top-[60px] z-10 bg-[#080808]/90 backdrop-blur border-b border-[#1e1e1e] px-4 py-3 flex items-center justify-between">
+        <div className="sticky top-[60px] z-10 bg-forge-bg/90 backdrop-blur border-b border-forge-border px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <h2 className="font-display text-xl tracking-wider text-[#e0e0e0]">{sessionTarget.name}</h2>
+            <h2 className="font-display text-xl tracking-wider text-forge-text">{sessionTarget.name}</h2>
             <span className="flex items-center gap-1.5 text-[11px] text-green-400 font-bold">
               <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
               LIVE
@@ -634,7 +625,7 @@ export default function CustomWorkout() {
           </div>
           <button
             onClick={() => { setMode('list'); setSessionTarget(null) }}
-            className="text-xs text-[#555] hover:text-[#ccc] font-semibold transition-colors"
+            className="text-xs text-forge-dim hover:text-forge-muted font-semibold transition-colors"
           >
             End Session
           </button>
@@ -650,7 +641,7 @@ export default function CustomWorkout() {
   // ── Builder ───────────────────────────────────────────────────────
   if (mode === 'create' || mode === 'edit') {
     return (
-      <div className="min-h-screen bg-[#080808]">
+      <div className="min-h-screen bg-forge-bg">
         <WorkoutBuilder
           initial={editTarget}
           onSave={handleSave}
@@ -666,14 +657,14 @@ export default function CustomWorkout() {
       {/* Header */}
       <div className="flex items-end justify-between mb-8">
         <div>
-          <h1 className="font-display text-5xl sm:text-6xl tracking-tight leading-none text-white mb-1">
-            CUSTOM <span className="text-[#ff5a1f]">WORKOUTS</span>
+          <h1 className="font-display text-5xl sm:text-6xl tracking-tight leading-none text-forge-text mb-1">
+            CUSTOM <span className="text-forge-orange">WORKOUTS</span>
           </h1>
-          <p className="text-[#555] text-sm">Build and run your own personalized training routines</p>
+          <p className="text-forge-dim text-sm">Build and run your own personalized training routines</p>
         </div>
         <button
           onClick={() => { setEditTarget(null); setMode('create') }}
-          className="flex-shrink-0 flex items-center gap-2 px-5 py-3 bg-[#ff5a1f] text-white font-bold rounded-xl hover:bg-orange-500 transition-all shadow-[0_2px_16px_rgba(255,90,31,0.25)] text-sm"
+          className="flex-shrink-0 flex items-center gap-2 px-5 py-3 bg-forge-orange text-white font-bold rounded-xl hover:bg-orange-500 transition-all shadow-[0_2px_16px_rgba(255,90,31,0.25)] text-sm"
         >
           <span className="text-lg leading-none">⊕</span> New Workout
         </button>
@@ -682,16 +673,16 @@ export default function CustomWorkout() {
       {/* Empty state */}
       {workouts.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-24 text-center">
-          <div className="w-20 h-20 rounded-2xl bg-[#141414] border border-[#1e1e1e] flex items-center justify-center text-4xl mb-6">
+          <div className="w-20 h-20 rounded-2xl bg-forge-card border border-forge-border flex items-center justify-center text-4xl mb-6">
             🏋️
           </div>
-          <h2 className="font-display text-3xl tracking-wider text-[#444] mb-2">No workouts yet</h2>
-          <p className="text-[#333] text-sm mb-8 max-w-sm">
+          <h2 className="font-display text-3xl tracking-wider text-forge-dim mb-2">No workouts yet</h2>
+          <p className="text-forge-dim text-sm mb-8 max-w-sm">
             Create your first custom routine tailored to your exact goals, schedule, and preferences.
           </p>
           <button
             onClick={() => setMode('create')}
-            className="px-8 py-3.5 bg-[#ff5a1f] text-white font-bold rounded-xl hover:bg-orange-500 transition-all shadow-[0_4px_24px_rgba(255,90,31,0.25)] text-sm"
+            className="px-8 py-3.5 bg-forge-orange text-white font-bold rounded-xl hover:bg-orange-500 transition-all shadow-[0_4px_24px_rgba(255,90,31,0.25)] text-sm"
           >
             Create Your First Workout
           </button>
@@ -705,9 +696,9 @@ export default function CustomWorkout() {
               [`${workouts.reduce((s, w) => s + w.exercises.length, 0)}`, 'Total exercises'],
               [`${workouts.reduce((s, w) => s + w.exercises.reduce((ss, e) => ss + (e.sets || 0), 0), 0)}`, 'Total sets'],
             ].map(([num, label]) => (
-              <div key={label} className="bg-[#141414] border border-[#1e1e1e] rounded-xl px-4 py-3">
-                <p className="font-mono text-lg font-bold text-[#ff5a1f]">{num}</p>
-                <p className="text-[10px] text-[#444] uppercase tracking-wider">{label}</p>
+              <div key={label} className="bg-forge-card border border-forge-border rounded-xl px-4 py-3">
+                <p className="font-mono text-lg font-bold text-forge-orange">{num}</p>
+                <p className="text-[10px] text-forge-dim uppercase tracking-wider">{label}</p>
               </div>
             ))}
           </div>

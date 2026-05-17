@@ -12,57 +12,69 @@
 
 /* ── CSS Variables — Dark (default) ─────────────────────────────── */
 :root {
-  --forge-bg:          #080808;
-  --forge-surface:     #101010;
-  --forge-card:        #141414;
-  --forge-border:      #1e1e1e;
-  --forge-border-light:#2a2a2a;
-  --forge-text:        #f0f0f0;
-  --forge-muted:       #888888;
-  --forge-dim:         #555555;
-  --forge-orange:      #ff5a1f;
+  --forge-bg:           #080808;
+  --forge-surface:      #101010;
+  --forge-card:         #141414;
+  --forge-border:       #1e1e1e;
+  --forge-border-light: #2a2a2a;
+  --forge-text:         #f0f0f0;
+  --forge-muted:        #888888;
+  --forge-dim:          #555555;
+  --forge-orange:       #ff5a1f;
 }
 
 /* ── CSS Variables — Light mode ─────────────────────────────────── */
-/*
-   When SettingsModal calls applyTheme('light'), it adds .light to <html>.
-   These overrides flip every surface to a clean white/gray palette while
-   keeping the forge-orange accent unchanged.
-*/
 html.light {
-  --forge-bg:          #f5f5f5;
-  --forge-surface:     #ffffff;
-  --forge-card:        #efefef;
-  --forge-border:      #e0e0e0;
-  --forge-border-light:#cccccc;
-  --forge-text:        #111111;
-  --forge-muted:       #555555;
-  --forge-dim:         #999999;
-  --forge-orange:      #ff5a1f;   /* accent stays the same */
+  --forge-bg:           #f5f5f5;
+  --forge-surface:      #ffffff;
+  --forge-card:         #efefef;
+  --forge-border:       #e0e0e0;
+  --forge-border-light: #cccccc;
+  --forge-text:         #111111;
+  --forge-muted:        #555555;
+  --forge-dim:          #999999;
+  --forge-orange:       #ff5a1f;
 }
 
 /* ── Wire CSS vars into Tailwind utility classes ─────────────────── */
 /*
-   Tailwind compiles bg-forge-bg etc. at build time with the static hex
-   values from tailwind.config.js — they don't respond to CSS var changes
-   at runtime. The solution: override every forge- utility to USE the CSS
-   variable so they switch instantly when .light/.dark toggles on <html>.
+   Tailwind compiles bg-forge-bg etc. at build time with static hex values
+   from tailwind.config.js — they don't respond to CSS var changes at runtime.
+   We override every forge- utility class here so they read from the CSS var
+   and switch instantly when .light / .dark toggles on <html>.
+
+   IMPORTANT: We use `*` selectors so nav, aside, div, button, etc. are all
+   covered — not just divs. The !important beats Tailwind's specificity.
 */
 
-/* Backgrounds */
-.bg-forge-bg      { background-color: var(--forge-bg) !important; }
-.bg-forge-surface { background-color: var(--forge-surface) !important; }
-.bg-forge-card    { background-color: var(--forge-card) !important; }
+/* Backgrounds — cover every element type */
+.bg-forge-bg,
+[class~="bg-forge-bg"]      { background-color: var(--forge-bg) !important; }
+
+.bg-forge-surface,
+[class~="bg-forge-surface"] { background-color: var(--forge-surface) !important; }
+
+.bg-forge-card,
+[class~="bg-forge-card"]    { background-color: var(--forge-card) !important; }
 
 /* Text */
-.text-forge-text  { color: var(--forge-text) !important; }
-.text-forge-muted { color: var(--forge-muted) !important; }
-.text-forge-dim   { color: var(--forge-dim) !important; }
+.text-forge-text,
+[class~="text-forge-text"]  { color: var(--forge-text) !important; }
+
+.text-forge-muted,
+[class~="text-forge-muted"] { color: var(--forge-muted) !important; }
+
+.text-forge-dim,
+[class~="text-forge-dim"]   { color: var(--forge-dim) !important; }
 
 /* Borders */
-.border-forge-border      { border-color: var(--forge-border) !important; }
-.border-forge-borderLight { border-color: var(--forge-border-light) !important; }
-.divide-forge-border > * + * { border-color: var(--forge-border) !important; }
+.border-forge-border,
+[class~="border-forge-border"]       { border-color: var(--forge-border) !important; }
+
+.border-forge-borderLight,
+[class~="border-forge-borderLight"]  { border-color: var(--forge-border-light) !important; }
+
+.divide-forge-border > * + *         { border-color: var(--forge-border) !important; }
 
 /* ── Shared component styles ─────────────────────────────────────── */
 @layer components {

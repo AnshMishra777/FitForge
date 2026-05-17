@@ -14,7 +14,7 @@ export default function Signup() {
     e.preventDefault()
     setError('')
     if (form.password !== form.confirm) { setError('Passwords do not match'); return }
-    if (form.password.length < 6)        { setError('Password must be at least 6 characters'); return }
+    if (form.password.length < 6)       { setError('Password must be at least 6 characters'); return }
     const res = await signup(form.name, form.email, form.password)
     if (res.success) navigate('/dashboard')
     else setError(res.message)
@@ -25,8 +25,8 @@ export default function Signup() {
 
       {/* ── Left Hero ── */}
       <div className="hidden lg:flex flex-col flex-1 relative overflow-hidden
-                      bg-gradient-to-br from-forge-bg via-[#001008] to-forge-bg
-                      border-r border-forge-border px-12 py-10">
+                      bg-forge-surface border-r border-forge-border px-12 py-10">
+
         <div className="absolute -top-32 -right-32 w-[500px] h-[500px] rounded-full
                         bg-forge-green/5 blur-3xl pointer-events-none" />
 
@@ -97,17 +97,17 @@ export default function Signup() {
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
             {[
-              { label: 'Full Name',        name: 'name',     type: 'text',     placeholder: 'Alex Johnson',      auto: 'name' },
-              { label: 'Email Address',    name: 'email',    type: 'email',    placeholder: 'you@example.com',   auto: 'email' },
+              { label: 'Full Name',        name: 'name',     type: 'text',     placeholder: 'Alex Johnson',         auto: 'name' },
+              { label: 'Email Address',    name: 'email',    type: 'email',    placeholder: 'you@example.com',      auto: 'email' },
               { label: 'Password',         name: 'password', type: 'password', placeholder: 'Minimum 6 characters', auto: 'new-password' },
-              { label: 'Confirm Password', name: 'confirm',  type: 'password', placeholder: '••••••••',          auto: 'new-password' },
+              { label: 'Confirm Password', name: 'confirm',  type: 'password', placeholder: '••••••••',             auto: 'new-password' },
             ].map(field => (
               <div key={field.name}>
                 <label className="block text-[10px] font-bold tracking-[0.1em] uppercase text-forge-muted mb-1.5">
                   {field.label}
                 </label>
                 <input
-                  className="ff-input w-60 rounded-r-xl"
+                  className="ff-input"
                   type={field.type} name={field.name} autoComplete={field.auto}
                   value={form[field.name]} onChange={handleChange}
                   placeholder={field.placeholder} required
@@ -118,9 +118,9 @@ export default function Signup() {
             <button
               type="submit"
               disabled={loading}
-              className="ff-btn-primary ff-btn-lg w-full mt-2 bg-gray-400 rounded-2xl"
+              className="ff-btn-primary w-full mt-2 rounded-xl py-3"
             >
-              {loading ? <span className="ff-spinner " /> : 'Create Account →'}
+              {loading ? <span className="ff-spinner" /> : 'Create Account →'}
             </button>
           </form>
 

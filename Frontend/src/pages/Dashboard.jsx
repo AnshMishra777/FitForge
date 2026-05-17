@@ -14,17 +14,17 @@ const TIPS = [
 ]
 
 const CATEGORY_COLORS = {
-  push: 'text-forge-orange border-forge-orange/30 bg-forge-orange/5',
-  pull: 'text-blue-400 border-blue-400/30 bg-blue-400/5',
-  legs: 'text-forge-yellow border-forge-yellow/30 bg-forge-yellow/5',
-  core: 'text-forge-green border-forge-green/30 bg-forge-green/5',
+  push:   'text-forge-orange border-forge-orange/30 bg-forge-orange/5',
+  pull:   'text-blue-400 border-blue-400/30 bg-blue-400/5',
+  legs:   'text-forge-yellow border-forge-yellow/30 bg-forge-yellow/5',
+  core:   'text-forge-green border-forge-green/30 bg-forge-green/5',
   cardio: 'text-purple-400 border-purple-400/30 bg-purple-400/5',
 }
 
 export default function Dashboard() {
   const { user } = useAuth()
-  const today   = new Date()
-  const hour    = today.getHours()
+  const today    = new Date()
+  const hour     = today.getHours()
   const greeting = hour < 12 ? 'Good morning' : hour < 17 ? 'Good afternoon' : 'Good evening'
   const tip      = TIPS[today.getDate() % TIPS.length]
   const firstName = user?.name?.split(' ')[0] || 'Athlete'
@@ -53,9 +53,9 @@ export default function Dashboard() {
       {/* ── Header ── */}
       <div className="mb-8 animate-fade-up">
         <p className="text-forge-dim text-xs font-mono tracking-widest uppercase mb-1">
-          {today.toLocaleDateString('en-US', { weekday:'long', month:'long', day:'numeric' })}
+          {today.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })}
         </p>
-        <h1 className="font-display text-white text-5xl sm:text-6xl tracking-tight leading-none">
+        <h1 className="font-display text-forge-text text-5xl sm:text-6xl tracking-tight leading-none">
           {greeting},{' '}
           <span className="text-forge-orange">{firstName}</span>
         </h1>
@@ -83,8 +83,8 @@ export default function Dashboard() {
           {activeProgram && todaySchedule && (
             <div className="animate-fade-up delay-150">
               <div className="flex items-center justify-between mb-3">
-                <h2 className="ff-section-title text-white font-bold text-xl">Today's Session</h2>
-                <span className="ff-badge-orange text-white font-bold text-xl ">{activeProgram.name}</span>
+                <h2 className="ff-section-title text-forge-text font-bold text-xl">Today's Session</h2>
+                <span className="ff-badge-orange font-bold text-xl">{activeProgram.name}</span>
               </div>
 
               {todaySchedule.exercises.length === 0 ? (
@@ -95,16 +95,15 @@ export default function Dashboard() {
                 </div>
               ) : (
                 <div className="ff-card p-0 overflow-hidden">
-                  <div className="flex items-center justify-between px-5 py-3.5
-                                  border-b border-forge-border">
+                  <div className="flex items-center justify-between px-5 py-3.5 border-b border-forge-border">
                     <div>
                       <p className="font-semibold text-sm text-forge-text">{todaySchedule.label}</p>
                       <p className="text-xs text-forge-dim">{todaySchedule.exercises.length} exercises</p>
                     </div>
-                   <Link
-  to="/workouts"
-  className="ff-btn-primary ff-btn-sm text-black font-bold bg-orange-600 p-1 rounded-xl transition-all duration-300 hover:bg-orange-500 hover:scale-105 hover:shadow-lg"
->
+                    <Link
+                      to="/workouts"
+                      className="ff-btn-primary ff-btn-sm text-white font-bold bg-forge-orange p-1 rounded-xl transition-all duration-300 hover:bg-orange-500 hover:scale-105 hover:shadow-lg"
+                    >
                       Start Session →
                     </Link>
                   </div>
@@ -117,11 +116,10 @@ export default function Dashboard() {
                         className={`flex items-center gap-3 px-5 py-3
                                    ${i < todaySchedule.exercises.length - 1 ? 'border-b border-forge-border' : ''}`}>
                         <span className="font-mono text-[10px] text-forge-dim w-5 flex-shrink-0">
-                          {String(i+1).padStart(2,'0')}
+                          {String(i + 1).padStart(2, '0')}
                         </span>
                         <div className="w-11 h-9 rounded-md overflow-hidden flex-shrink-0">
-                          <img src={exercise.image} alt={exercise.name}
-                            className="w-full h-full object-cover" />
+                          <img src={exercise.image} alt={exercise.name} className="w-full h-full object-cover" />
                         </div>
                         <div className="flex-1 min-w-0">
                           <p className="text-sm font-semibold text-forge-text truncate">{exercise.name}</p>
@@ -141,7 +139,7 @@ export default function Dashboard() {
           {/* Programs */}
           <div className="animate-fade-up delay-225">
             <div className="flex items-center justify-between mb-3">
-              <h2 className="ff-section-title text-white font-bold text-xl">Training Programs:</h2>
+              <h2 className="ff-section-title text-forge-text font-bold text-xl">Training Programs:</h2>
               {activeProgramId && (
                 <button onClick={clearProgram} className="ff-btn-ghost ff-btn-sm">
                   Clear Active
@@ -171,7 +169,7 @@ export default function Dashboard() {
                         </span>
                       )}
                     </div>
-                    <h3 className="font-display text-2xl tracking-wider text-forge-text/90 mb-2 leading-tight">
+                    <h3 className="font-display text-2xl tracking-wider text-forge-text mb-2 leading-tight">
                       {prog.name}
                     </h3>
                     <p className="text-xs text-forge-dim leading-relaxed mb-3 line-clamp-2">
@@ -194,11 +192,11 @@ export default function Dashboard() {
 
           {/* Quick Actions */}
           <div className="animate-fade-up delay-150">
-            <h2 className="ff-section-title mb-3 text-white text-xl font-bold">Quick Actions</h2>
+            <h2 className="ff-section-title mb-3 text-forge-text text-xl font-bold">Quick Actions</h2>
             <div className="flex flex-col gap-2">
               {[
-                { to: '/workouts', icon: '◈', label: 'Browse All Workouts', sub: '26 exercises · 4 programs' },
-                { to: '/diet',     icon: '◎', label: 'AI Diet Analysis',    sub: 'Powered by Claude AI' },
+                { to: '/workouts', icon: '◈', label: 'Browse All Workouts',  sub: '26 exercises · 4 programs' },
+                { to: '/diet',     icon: '◎', label: 'AI Diet Analysis',     sub: 'Powered by Claude AI' },
                 { to: '/custom',   icon: '⊕', label: 'Build Custom Routine', sub: 'Your personalized plan' },
               ].map(({ to, icon, label, sub }) => (
                 <Link key={to} to={to}
@@ -221,13 +219,13 @@ export default function Dashboard() {
           {/* Exercise preview */}
           <div className="animate-fade-up delay-300">
             <div className="flex items-center justify-between mb-3">
-              <h2 className="ff-section-title font-bold text-white">Exercise Library</h2>
+              <h2 className="ff-section-title font-bold text-forge-text">Exercise Library</h2>
               <Link to="/workouts" className="text-forge-orange text-xs font-bold hover:underline">
                 All 26 →
               </Link>
             </div>
             <div className="flex flex-col gap-2">
-              {EXERCISES.slice(0, 6).map((ex, i) => (
+              {EXERCISES.slice(0, 6).map((ex) => (
                 <div key={ex.id}
                   className="flex items-center gap-3 p-2.5 rounded-xl border border-forge-border
                              bg-forge-card hover:border-forge-borderLight transition-colors cursor-pointer">
@@ -245,6 +243,7 @@ export default function Dashboard() {
               ))}
             </div>
           </div>
+
         </div>
       </div>
     </div>

@@ -32,10 +32,9 @@ export default function Login() {
 
       {/* ── Left Hero Panel ── */}
       <div className="hidden lg:flex flex-col flex-1 relative overflow-hidden
-                      bg-gradient-to-br from-forge-bg via-[#0f0800] to-forge-bg
-                      border-r border-forge-border px-12 py-10">
+                      bg-forge-surface border-r border-forge-border px-12 py-10">
 
-        {/* Background glow */}
+        {/* Background glow — only visible in dark mode */}
         <div className="absolute -top-40 -left-40 w-[500px] h-[500px] rounded-full
                         bg-forge-orange/5 blur-3xl pointer-events-none" />
         <div className="absolute bottom-0 right-0 w-[400px] h-[400px] rounded-full
@@ -69,15 +68,15 @@ export default function Login() {
                                  flex items-center justify-center text-forge-orange text-sm flex-shrink-0">
                   {f.icon}
                 </span>
-                <span className="text-sm text-forge-muted/80">{f.text}</span>
+                <span className="text-sm text-forge-muted">{f.text}</span>
               </div>
             ))}
           </div>
         </div>
 
         {/* Bottom stats */}
-        <div className="flex gap-6 relative z-10 mt-3 ">
-          {[['26+','Exercises'],['4','Programs'],['AI','Diet Coach']].map(([num, label]) => (
+        <div className="flex gap-6 relative z-10 mt-3">
+          {[['26+', 'Exercises'], ['4', 'Programs'], ['AI', 'Diet Coach']].map(([num, label]) => (
             <div key={label}>
               <p className="font-display text-3xl text-forge-orange tracking-wide">{num}</p>
               <p className="text-[10px] text-forge-dim font-semibold tracking-widest uppercase mt-0.5">{label}</p>
@@ -120,7 +119,7 @@ export default function Login() {
                 Email Address
               </label>
               <input
-                className="ff-input w-60 rounded-r-xl"
+                className="ff-input"
                 type="email" name="email" autoComplete="email"
                 value={form.email} onChange={handleChange}
                 placeholder="you@example.com" required
@@ -128,13 +127,11 @@ export default function Login() {
             </div>
 
             <div>
-              <div className="flex justify-between items-center mb-1.5">
-                <label className="block text-[10px] font-bold tracking-[0.1em] uppercase text-forge-muted">
-                  Password
-                </label>
-              </div>
+              <label className="block text-[10px] font-bold tracking-[0.1em] uppercase text-forge-muted mb-1.5">
+                Password
+              </label>
               <input
-                className="w-60 rounded-r-xl"
+                className="ff-input"
                 type="password" name="password" autoComplete="current-password"
                 value={form.password} onChange={handleChange}
                 placeholder="••••••••" required
@@ -144,18 +141,18 @@ export default function Login() {
             <button
               type="submit"
               disabled={loading}
-              className="ff-btn-primary ff-btn-lg w-full mt-2 bg-yellow-200 rounded-2xl"
+              className="ff-btn-primary w-full mt-2 rounded-xl py-3"
             >
               {loading
                 ? <span className="ff-spinner text-2xl font-bold" />
-                :<p className='text-lg font-semibold'> Sign In →</p>
+                : <p className="text-lg font-semibold">Sign In →</p>
               }
             </button>
           </form>
 
           {/* Divider */}
           <div className="flex items-center gap-3 my-5">
-            <div className="flex-1 h-px bg-forge-border " />
+            <div className="flex-1 h-px bg-forge-border" />
             <span className="text-[11px] text-forge-dim tracking-wider">OR</span>
             <div className="flex-1 h-px bg-forge-border" />
           </div>
@@ -163,9 +160,9 @@ export default function Login() {
           {/* Demo */}
           <button
             onClick={fillDemo}
-            className="ff-btn-secondary w-full bg-white rounded-2xl"
+            className="ff-btn-secondary w-full rounded-xl py-3"
           >
-            <span className='text-lg font-semibold'>🎯 Use Demo Account</span> 
+            <span className="text-base font-semibold">🎯 Use Demo Account</span>
           </button>
 
           <p className="text-center text-forge-dim text-sm mt-6">

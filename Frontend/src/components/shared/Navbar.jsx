@@ -2,11 +2,12 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
 import { useState } from 'react'
 import { Settings } from 'lucide-react'
+
 const NAV = [
-  { to: '/dashboard', label: 'Dashboard',  icon: '⬡' },
-  { to: '/workouts',  label: 'Workouts',   icon: '◈' },
-  { to: '/diet',      label: 'AI Diet',    icon: '◎' },
-  { to: '/custom',    label: 'Custom',     icon: '⊕' },
+  { to: '/dashboard', label: 'Dashboard', icon: '⬡' },
+  { to: '/workouts',  label: 'Workouts',  icon: '◈' },
+  { to: '/diet',      label: 'AI Diet',   icon: '◎' },
+  { to: '/custom',    label: 'Custom',    icon: '⊕' },
 ]
 
 export default function Navbar({ onSettingsClick }) {
@@ -15,12 +16,18 @@ export default function Navbar({ onSettingsClick }) {
   const [mobileMenu, setMobileMenu] = useState(false)
 
   const handleLogout = () => { logout(); navigate('/login') }
-  const initials = user?.name?.split(' ').map(n => n[0]).join('').slice(0,2).toUpperCase() || 'U'
+  const initials = user?.name?.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase() || 'U'
+  const avatarSrc = user?.avatar || localStorage.getItem('ff_avatar') || null
 
   return (
     <>
       {/* ── Desktop / Tablet Top Bar ── */}
-      <nav className="sticky top-0 z-50 bg-forge-bg/95 backdrop-blur-xl border-b border-forge-border">
+      {/* bg-forge-bg/95 bypasses the CSS-var override in index.css, so we use
+          inline style with color-mix so the background correctly adapts to light mode */}
+      <nav
+        className="sticky top-0 z-50 backdrop-blur-xl border-b border-forge-border bg-forge-bg"
+        style={{ backgroundColor: 'color-mix(in srgb, var(--forge-bg) 95%, transparent)' }}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 h-[60px] flex items-center gap-3">
 
           {/* Logo */}
@@ -51,18 +58,26 @@ export default function Navbar({ onSettingsClick }) {
 
           {/* Right side */}
           <div className="flex items-center gap-2 ml-auto">
-            {/* Avatar */}
-            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-forge-orange to-orange-400
-                            flex items-center justify-center text-xs font-bold text-white
-                            ring-2 ring-forge-orange/20 flex-shrink-0">
-              {initials}
+            {/* Avatar — shows uploaded photo or initials fallback */}
+            <div className="w-8 h-8 rounded-full overflow-hidden ring-2 ring-forge-orange/20 flex-shrink-0">
+              {avatarSrc ? (
+                <img src={avatarSrc} alt={user?.name} className="w-full h-full object-cover" />
+              ) : (
+                <div className="w-full h-full bg-gradient-to-br from-forge-orange to-orange-400
+                                flex items-center justify-center text-xs font-bold text-white">
+                  {initials}
+                </div>
+              )}
             </div>
+
             <span className="hidden lg:block text-xs text-forge-muted font-medium max-w-[120px] truncate">
               {user?.name}
             </span>
+
             <button onClick={onSettingsClick}>
               <Settings className="w-5 h-5 ml-7 text-forge-muted hover:text-forge-orange cursor-pointer transition" />
             </button>
+
             {/* Mobile hamburger */}
             <button
               onClick={() => setMobileMenu(p => !p)}
@@ -101,9 +116,11 @@ export default function Navbar({ onSettingsClick }) {
       </nav>
 
       {/* ── Mobile Bottom Nav Bar ── */}
-      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50
-                      bg-forge-surface/95 backdrop-blur-xl border-t border-forge-border
-                      flex pb-safe">
+      <nav
+        className="md:hidden fixed bottom-0 left-0 right-0 z-50
+                   backdrop-blur-xl border-t border-forge-border bg-forge-surface flex pb-safe"
+        style={{ backgroundColor: 'color-mix(in srgb, var(--forge-surface) 95%, transparent)' }}
+      >
         {NAV.map(({ to, label, icon }) => (
           <NavLink key={to} to={to} className={({ isActive }) =>
             `flex-1 flex flex-col items-center gap-1 py-2.5 text-[10px] font-bold
