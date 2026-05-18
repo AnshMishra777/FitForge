@@ -13,11 +13,13 @@ export default function Signup() {
   const handleSubmit = async e => {
     e.preventDefault()
     setError('')
+
     if (form.password !== form.confirm) { setError('Passwords do not match'); return }
     if (form.password.length < 6)       { setError('Password must be at least 6 characters'); return }
+
     const res = await signup(form.name, form.email, form.password)
     if (res.success) navigate('/dashboard')
-    else setError(res.message)
+    else setError(res.message)          // ← now shows the real backend message
   }
 
   return (

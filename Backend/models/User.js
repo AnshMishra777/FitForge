@@ -14,12 +14,7 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String, required: [true, 'Password is required'], minlength: 6,
   },
-
-  // ✅ FIX — avatar stores a URL string (or base64 data URL for demo).
-  // Max 2MB base64 ≈ ~2.7MB string — fine for MongoDB's 16MB doc limit.
-  // For production, swap to a Cloudinary/S3 URL string instead.
   avatar: { type: String, default: '' },
-
   activeProgram: { type: String, default: null },
   stats: {
     workoutsCompleted: { type: Number, default: 0 },
@@ -30,19 +25,22 @@ const userSchema = new mongoose.Schema({
   },
 }, { timestamps: true })
 
-// Hash password before save
-userSchema.pre('save', async function (next) {
-  if (!this.isModified('password')) return next()
+// ── Hash password before save ─────────────────────────────────────────────────
+// FIX: Mongoose 9 async pre-hooks must NOT use the `next` callback.
+// Using an async function and simply returning handles flow correctly.
+// The old pattern called `next()` but `next` was undefined in this scope,
+// causing "TypeError: next is not a function".
+userSchema.pre('save', async function () {
+  if (!this.isModified('password')) return
   this.password = await bcrypt.hash(this.password, 12)
-  next()
 })
 
-// Compare passwords
+// ── Compare passwords ─────────────────────────────────────────────────────────
 userSchema.methods.comparePassword = async function (candidate) {
   return bcrypt.compare(candidate, this.password)
 }
 
-// Remove password from JSON output
+// ── Strip password from JSON output ──────────────────────────────────────────
 userSchema.methods.toJSON = function () {
   const obj = this.toObject()
   delete obj.password

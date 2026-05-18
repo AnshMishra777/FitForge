@@ -3,6 +3,18 @@ import api from '../api'
 
 const AuthContext = createContext(null)
 
+// ─── Demo user factory ────────────────────────────────────────────────────────
+const DEMO_EMAIL    = 'demo@fitforge.app'
+const DEMO_PASSWORD = 'demo123'
+
+const makeDemoUser = (name = 'Demo Athlete', email = DEMO_EMAIL) => ({
+  _id:    'demo',
+  name,
+  email,
+  avatar: localStorage.getItem('ff_avatar') || '',
+})
+
+// ─── Provider ─────────────────────────────────────────────────────────────────
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(() => {
     try { return JSON.parse(localStorage.getItem('ff_user')) }
@@ -10,70 +22,69 @@ export function AuthProvider({ children }) {
   })
   const [loading, setLoading] = useState(false)
 
+  // ── persist helpers ──────────────────────────────────────────────────────
+  const persistUser = (token, userData) => {
+    localStorage.setItem('ff_token', token)
+    localStorage.setItem('ff_user',  JSON.stringify(userData))
+    setUser(userData)
+  }
+
+  // ── login ────────────────────────────────────────────────────────────────
   const login = useCallback(async (email, password) => {
+    // Demo shortcut — never hits the network
+    if (email === DEMO_EMAIL && password === DEMO_PASSWORD) {
+      const demo = makeDemoUser()
+      persistUser('demo_token', demo)
+      return { success: true }
+    }
+
     setLoading(true)
     try {
       const { data } = await api.post('/auth/login', { email, password })
-      localStorage.setItem('ff_token', data.token)
-      localStorage.setItem('ff_user', JSON.stringify(data.user))
-      // Also restore avatar from ff_avatar key if backend doesn't have it yet
+
+      // Merge avatar from localStorage if backend doesn't have one yet
       const savedAvatar = localStorage.getItem('ff_avatar')
-      const userWithAvatar = data.user.avatar
+      const userData    = data.user.avatar
         ? data.user
         : savedAvatar
           ? { ...data.user, avatar: savedAvatar }
           : data.user
-      setUser(userWithAvatar)
+
+      persistUser(data.token, userData)
       return { success: true }
     } catch (err) {
-      // Demo mode: accept demo@fitforge.app / demo123
-      if (email === 'demo@fitforge.app' && password === 'demo123') {
-        const savedAvatar = localStorage.getItem('ff_avatar')
-        const demoUser = {
-          _id: 'demo',
-          name: 'Demo Athlete',
-          email,
-          avatar: savedAvatar || '',
-        }
-        localStorage.setItem('ff_token', 'demo_token')
-        localStorage.setItem('ff_user', JSON.stringify(demoUser))
-        setUser(demoUser)
-        return { success: true }
-      }
-      return { success: false, message: err.response?.data?.message || 'Invalid credentials' }
+      const message = err.response?.data?.message || 'Login failed. Please try again.'
+      return { success: false, message }
     } finally {
       setLoading(false)
     }
   }, [])
 
+  // ── signup ───────────────────────────────────────────────────────────────
+  // FIX: was calling /auth/signup — backend route is /auth/register
   const signup = useCallback(async (name, email, password) => {
     setLoading(true)
     try {
-      const { data } = await api.post('/auth/signup', { name, email, password })
-      localStorage.setItem('ff_token', data.token)
-      localStorage.setItem('ff_user', JSON.stringify(data.user))
-      setUser(data.user)
+      const { data } = await api.post('/auth/register', { name, email, password })
+      persistUser(data.token, data.user)
       return { success: true }
     } catch (err) {
-      // Demo fallback
-      const demoUser = { _id: Date.now().toString(), name, email, avatar: '' }
-      localStorage.setItem('ff_token', 'demo_token_' + Date.now())
-      localStorage.setItem('ff_user', JSON.stringify(demoUser))
-      setUser(demoUser)
-      return { success: true }
+      const message = err.response?.data?.message || 'Registration failed. Please try again.'
+      return { success: false, message }
     } finally {
       setLoading(false)
     }
   }, [])
 
+  // ── logout ───────────────────────────────────────────────────────────────
   const logout = useCallback(() => {
     localStorage.removeItem('ff_token')
     localStorage.removeItem('ff_user')
-    // NOTE: We intentionally keep ff_avatar so it survives logout/login
+    // Intentionally keep ff_avatar — survives logout/login cycle
     setUser(null)
   }, [])
 
-  // Call this after profile/avatar updates so the Navbar reflects changes immediately
+  // ── updateUser — called after profile / avatar changes ───────────────────
   const updateUser = useCallback((changes) => {
     setUser(prev => {
       const updated = { ...prev, ...changes }
