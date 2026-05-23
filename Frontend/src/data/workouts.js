@@ -1,106 +1,142 @@
-// FitForge — exercises across 5 categories, 4 full programs
+import arnoldPress from '../exercises/Arnold Press.png'
+import benchPress from '../exercises/Bench Press.png'
+import cableCrossover from '../exercises/Cable crossover.png'
+import chestDip from '../exercises/Chest Dip.png'
+import chestPressMachine from '../exercises/Chest Press Machine.png'
+import diamondPushup from '../exercises/Diamond Push-UP.png'
+import dumbbellFlies from '../exercises/Dumbbell flies.png'
+import lateralRaise from '../exercises/Lateral Raise.png'
+import overheadPress from '../exercises/Overhead Press.png'
+import overheadTricepExtension from '../exercises/Overhead Tricep Extension.png'
+import pushups from '../exercises/Pushups.png'
+import shoulderPressMachine from '../exercises/Shoulder Press Machine.png'
+import tricepDip from '../exercises/Tricep dip.png'
+import tricepPushdown from '../exercises/Tricep Pushdown.png'
+import tricepPushdownMachine from '../exercises/Tricep Pushdown Machine.png'
 
+// Pull / Back / Bicep images
+import pullUp from '../exercises/Pull-up.png'
+import chinUp from '../exercises/Chin-up.png'
+import barbellRow from '../exercises/Barbell-Row.png'
+import latsPulldown from '../exercises/Lats-Pulldown.png'
+import seatedCableRow from '../exercises/Seated-Cable-Row.png'
+import singleArmDumbbellRow from '../exercises/Single-Arm-Dumbbell Row.png'
+import tBarRow from '../exercises/T-Bar Row.png'
+import straightArmPulldown from '../exercises/Straight-Arm Pulldown.png'
+import facePull from '../exercises/Face Pull.png'
+import barbellShrug from '../exercises/Barbell Shrug.png'
+import rearDeltFly from '../exercises/Rear Delt Fly.png'
+import barbellCurl from '../exercises/Barbell Curl.png'
+import dumbbellCurl from '../exercises/Dumbbell curl.png'
+import hammerCurl from '../exercises/Hammer Curl.png'
+import inclineDumbbellCurl from '../exercises/Dumbbell curl.png'
+import preacherCurl from '../exercises/Preacher Curl.png'
+import concentrationCurl from '../exercises/Concentration Curl.png'
+import cableCurl from '../exercises/Cable Curl.png'
+import bicepCurlMachine from '../exercises/Bicep Curl Machine.png'
+import latPulldownMachine from '../exercises/Lat Pulldown Machine.png'
+import seatedRowMachine from '../exercises/Seated Row Machine.png'
 export const EXERCISES = [
   /* ── PUSH ─────────────────────────────────────────── */
   {
     id: 'push_up', name: 'Push-Up', muscle: 'Chest · Triceps · Shoulders', category: 'push',
-    image: 'https://images.unsplash.com/photo-1598971639058-fab3c3109a00?w=600&q=80',
+    image: pushups,
     cues: ['Hands just outside shoulder-width','Keep core braced throughout','Lower chest to 1" from floor','Press to full lockout at top'],
     defaultSets: 3, defaultReps: 15, rest: 60,
   },
   {
     id: 'bench_press', name: 'Bench Press', muscle: 'Chest · Triceps · Front Delts', category: 'push',
-    image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80',
+    image: benchPress,
     cues: ['Retract & depress scapula','Bar touches lower chest','Drive feet hard into floor','Controlled 2s descent'],
     defaultSets: 4, defaultReps: 8, rest: 90,
   },
   {
     id: 'incline_bench_press', name: 'Incline Bench Press', muscle: 'Upper Chest · Front Delts · Triceps', category: 'push',
-    image: 'https://images.unsplash.com/photo-1532029837206-abbe2b7620e3?w=600&q=80',
+    image: benchPress,
     cues: ['Set bench to 30-45°','Bar touches upper chest','Elbows at 75° angle','Squeeze upper chest at top'],
     defaultSets: 4, defaultReps: 8, rest: 90,
   },
   {
     id: 'decline_bench_press', name: 'Decline Bench Press', muscle: 'Lower Chest · Triceps', category: 'push',
-    image: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=600&q=80',
+    image: benchPress,
     cues: ['Feet secured on pad','Bar to lower chest','Keep back flat on bench','Drive bar in slight arc'],
     defaultSets: 3, defaultReps: 10, rest: 90,
   },
   {
     id: 'dumbbell_fly', name: 'Dumbbell Fly', muscle: 'Chest (isolation)', category: 'push',
-    image: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=600&q=80',
+    image: dumbbellFlies,
     cues: ['Slight fixed elbow bend','Feel deep stretch at bottom','Squeeze pecs hard at top','Arc motion, not press'],
     defaultSets: 3, defaultReps: 12, rest: 60,
   },
   {
     id: 'cable_crossover', name: 'Cable Crossover', muscle: 'Chest · Front Delts', category: 'push',
-    image: 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80',
+    image: cableCrossover,
     cues: ['High pulley setting','Slight forward lean','Bring hands together below chest','Squeeze pecs at centre'],
     defaultSets: 3, defaultReps: 15, rest: 60,
   },
   {
     id: 'chest_dip', name: 'Chest Dip', muscle: 'Lower Chest · Triceps', category: 'push',
-    image: 'https://images.unsplash.com/photo-1616803689943-5601631c7fec?w=600&q=80',
+    image: chestDip,
     cues: ['Lean forward ~30°','Elbows flare slightly out','Lower until pecs stretch','Full lockout at top'],
     defaultSets: 3, defaultReps: 12, rest: 60,
   },
   {
     id: 'overhead_press', name: 'Overhead Press', muscle: 'Shoulders · Triceps · Upper Chest', category: 'push',
-    image: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&q=80',
+    image: overheadPress,
     cues: ['Brace core like a plank','Bar path is perfectly vertical','Push head through at lockout','Re-rack by hinging at hips'],
     defaultSets: 3, defaultReps: 10, rest: 90,
   },
   {
     id: 'arnold_press', name: 'Arnold Press', muscle: 'All Three Delt Heads', category: 'push',
-    image: 'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=600&q=80',
+    image: arnoldPress,
     cues: ['Start with palms facing you','Rotate palms out as you press','Reach full overhead lockout','Reverse rotation on the way down'],
     defaultSets: 3, defaultReps: 12, rest: 60,
   },
   {
     id: 'lateral_raise', name: 'Lateral Raise', muscle: 'Side Deltoid', category: 'push',
-    image: 'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=600&q=80',
+    image: lateralRaise,
     cues: ['Slight forward torso lean','Lead movement with elbows','Stop exactly at shoulder height','Take 3s to lower the weight'],
     defaultSets: 3, defaultReps: 15, rest: 45,
   },
   {
     id: 'front_raise', name: 'Front Raise', muscle: 'Front Deltoid', category: 'push',
-    image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=600&q=80',
+    image: lateralRaise,
     cues: ['Arms extended, slight elbow bend','Raise to eye level only','Avoid swinging torso','Squeeze front delt at top'],
     defaultSets: 3, defaultReps: 12, rest: 45,
   },
   {
     id: 'tricep_dip', name: 'Tricep Dip', muscle: 'Triceps · Lower Chest', category: 'push',
-    image: 'https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=600&q=80',
+    image: tricepDip,
     cues: ['Lean slightly forward for chest','Keep elbows tracking back','Lower until 90° elbow bend','Full lockout on the press'],
     defaultSets: 3, defaultReps: 12, rest: 60,
   },
   {
     id: 'skull_crusher', name: 'Skull Crusher', muscle: 'Triceps (long head)', category: 'push',
-    image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80',
+    image: tricepPushdown,
     cues: ['Bar above forehead, elbows vertical','Only forearms move','Lower bar behind head slightly','Extend explosively to lockout'],
     defaultSets: 3, defaultReps: 10, rest: 60,
   },
   {
     id: 'tricep_pushdown', name: 'Tricep Pushdown', muscle: 'Triceps (lateral head)', category: 'push',
-    image: 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80',
+    image: tricepPushdown,
     cues: ['Elbows glued to sides','Push bar to full lockout','Squeeze triceps hard at bottom','Slow 2s return to start'],
     defaultSets: 4, defaultReps: 12, rest: 60,
   },
   {
     id: 'overhead_tricep_extension', name: 'Overhead Tricep Extension', muscle: 'Triceps (long head)', category: 'push',
-    image: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&q=80',
+    image: overheadTricepExtension,
     cues: ['Arms vertical overhead','Lower dumbbell behind head slowly','Feel full long-head stretch','Press back to full lockout'],
     defaultSets: 3, defaultReps: 12, rest: 60,
   },
   {
     id: 'close_grip_bench', name: 'Close-Grip Bench Press', muscle: 'Triceps · Inner Chest', category: 'push',
-    image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80',
+    image: benchPress,
     cues: ['Grip shoulder-width or slightly narrower','Elbows stay tucked in','Bar to lower chest','Full tricep lockout at top'],
     defaultSets: 4, defaultReps: 8, rest: 90,
   },
   {
     id: 'diamond_pushup', name: 'Diamond Push-Up', muscle: 'Triceps · Inner Chest', category: 'push',
-    image: 'https://images.unsplash.com/photo-1598971639058-fab3c3109a00?w=600&q=80',
+    image: diamondPushup,
     cues: ['Form diamond shape with hands','Elbows flare backward not out','Chest touches thumbs at bottom','Squeeze triceps hard at top'],
     defaultSets: 3, defaultReps: 15, rest: 45,
   },
@@ -108,109 +144,109 @@ export const EXERCISES = [
   /* ── PULL ─────────────────────────────────────────── */
   {
     id: 'pull_up', name: 'Pull-Up', muscle: 'Lats · Biceps · Rear Delts', category: 'pull',
-    image: 'https://images.unsplash.com/photo-1616803689943-5601631c7fec?w=600&q=80',
+    image: pullUp,
     cues: ['Start from a full dead hang','Depress shoulders first','Pull elbows to pockets','Chin clears the bar cleanly'],
     defaultSets: 4, defaultReps: 8, rest: 90,
   },
   {
     id: 'chin_up', name: 'Chin-Up', muscle: 'Lats · Biceps (supinated grip)', category: 'pull',
-    image: 'https://images.unsplash.com/photo-1616803689943-5601631c7fec?w=600&q=80',
+    image: chinUp,
     cues: ['Underhand shoulder-width grip','Hang fully at the bottom','Pull until chin clears bar','Slow and controlled descent'],
     defaultSets: 3, defaultReps: 8, rest: 90,
   },
   {
     id: 'barbell_row', name: 'Barbell Row', muscle: 'Mid Back · Lats · Biceps', category: 'pull',
-    image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80',
+    image: barbellRow,
     cues: ['Hinge to ~45° torso angle','Pull bar to lower sternum','Squeeze shoulder blades hard','No hip drive — strict form'],
     defaultSets: 4, defaultReps: 8, rest: 90,
   },
   {
     id: 'lat_pulldown', name: 'Lat Pulldown', muscle: 'Lats · Teres Major · Biceps', category: 'pull',
-    image: 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80',
+    image: latsPulldown,
     cues: ['Wide overhand grip','Slight backward lean','Pull bar to upper chest','Allow full stretch at top'],
     defaultSets: 3, defaultReps: 12, rest: 60,
   },
   {
     id: 'seated_row', name: 'Seated Cable Row', muscle: 'Mid Back · Rhomboids · Lats', category: 'pull',
-    image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80',
+    image: seatedCableRow,
     cues: ['Sit tall with chest up','Pull handle to lower sternum','Retract shoulder blades fully','Reach forward for full stretch'],
     defaultSets: 3, defaultReps: 12, rest: 60,
   },
   {
     id: 'one_arm_db_row', name: 'Single-Arm Dumbbell Row', muscle: 'Lats · Mid Back · Biceps', category: 'pull',
-    image: 'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=600&q=80',
+    image: singleArmDumbbellRow,
     cues: ['Brace on bench with opposite hand','Pull elbow to hip, not armpit','Rotate torso slightly at top','Lower with full lat stretch'],
     defaultSets: 4, defaultReps: 10, rest: 60,
   },
   {
     id: 't_bar_row', name: 'T-Bar Row', muscle: 'Mid Back · Lats · Erectors', category: 'pull',
-    image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=600&q=80',
+    image: tBarRow,
     cues: ['Wide stance over bar','Hinge to 45° or lower','Row bar to lower chest','Squeeze shoulder blades at top'],
     defaultSets: 4, defaultReps: 8, rest: 90,
   },
   {
     id: 'straight_arm_pulldown', name: 'Straight-Arm Pulldown', muscle: 'Lats (isolation)', category: 'pull',
-    image: 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80',
+    image: straightArmPulldown,
     cues: ['Arms straight throughout','Hinge slightly forward','Pull bar to hips using lats only','Squeeze lats fully at bottom'],
     defaultSets: 3, defaultReps: 15, rest: 45,
   },
   {
     id: 'face_pull', name: 'Face Pull', muscle: 'Rear Delts · Traps · Rotator Cuff', category: 'pull',
-    image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=600&q=80',
+    image: facePull,
     cues: ['Set cable at eye level','Pull rope to face, elbows high','Externally rotate at end range','Slow and deliberate always'],
     defaultSets: 3, defaultReps: 15, rest: 45,
   },
   {
     id: 'shrug', name: 'Barbell Shrug', muscle: 'Upper Traps', category: 'pull',
-    image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=600&q=80',
+    image: barbellShrug,
     cues: ['Arms fully straight','Shrug straight up — no rolling','Hold 1s squeeze at the top','Lower with control each rep'],
     defaultSets: 4, defaultReps: 15, rest: 60,
   },
   {
     id: 'rear_delt_fly', name: 'Rear Delt Fly', muscle: 'Rear Deltoid · Rhomboids', category: 'pull',
-    image: 'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=600&q=80',
+    image: rearDeltFly,
     cues: ['Hinge forward to 45°','Slight bend in elbows','Raise arms to shoulder height','Squeeze rear delts at top'],
     defaultSets: 3, defaultReps: 15, rest: 45,
   },
   {
     id: 'bicep_curl', name: 'Barbell Curl', muscle: 'Biceps · Brachialis', category: 'pull',
-    image: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=600&q=80',
+    image: barbellCurl,
     cues: ['Elbows pinned to sides','Supinate wrist fully at top','Squeeze hard for 1 second','3-second controlled eccentric'],
     defaultSets: 3, defaultReps: 12, rest: 60,
   },
   {
     id: 'hammer_curl', name: 'Hammer Curl', muscle: 'Brachialis · Brachioradialis · Biceps', category: 'pull',
-    image: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=600&q=80',
+    image: hammerCurl,
     cues: ['Neutral grip throughout','Elbows stay at sides','Curl to shoulder height','Slow 3s eccentric always'],
     defaultSets: 3, defaultReps: 12, rest: 60,
   },
   {
     id: 'incline_db_curl', name: 'Incline Dumbbell Curl', muscle: 'Biceps Long Head', category: 'pull',
-    image: 'https://images.unsplash.com/photo-1532029837206-abbe2b7620e3?w=600&q=80',
+    image: inclineDumbbellCurl,
     cues: ['Bench at 60°, arm hanging back','Full stretch at the bottom','Curl with supination','No swinging or momentum'],
     defaultSets: 3, defaultReps: 12, rest: 60,
   },
   {
     id: 'preacher_curl', name: 'Preacher Curl', muscle: 'Biceps Short Head', category: 'pull',
-    image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80',
+    image: preacherCurl,
     cues: ['Upper arm flat on pad','Do not let elbow hyperextend','Squeeze bicep hard at top','Slow 3-4s lowering phase'],
     defaultSets: 3, defaultReps: 10, rest: 60,
   },
   {
     id: 'concentration_curl', name: 'Concentration Curl', muscle: 'Biceps (peak contraction)', category: 'pull',
-    image: 'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=600&q=80',
+    image: concentrationCurl,
     cues: ['Elbow braced against inner thigh','Full hang at the bottom','Supinate and squeeze at top','No body movement at all'],
     defaultSets: 3, defaultReps: 12, rest: 45,
   },
   {
     id: 'cable_curl', name: 'Cable Curl', muscle: 'Biceps · Brachialis', category: 'pull',
-    image: 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80',
+    image: cableCurl,
     cues: ['Constant tension from cable','Elbows pinned at sides','Curl to chin height','Controlled descent always'],
     defaultSets: 3, defaultReps: 15, rest: 45,
   },
   {
     id: 'reverse_curl', name: 'Reverse Curl', muscle: 'Brachioradialis · Biceps · Forearms', category: 'pull',
-    image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=600&q=80',
+    image: dumbbellCurl,
     cues: ['Overhand (pronated) grip','Elbows stay at sides','Curl to shoulder height','Focus on forearm engagement'],
     defaultSets: 3, defaultReps: 15, rest: 45,
   },
@@ -242,13 +278,13 @@ export const EXERCISES = [
   },
   {
     id: 'deadlift', name: 'Deadlift', muscle: 'Hamstrings · Glutes · Erectors · Traps', category: 'legs',
-    image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=600&q=80',
+    image: barbellRow,
     cues: ['Bar over mid-foot always','Big breath — brace hard','Think "push floor away"','Lock hips out at top fully'],
     defaultSets: 4, defaultReps: 5, rest: 180,
   },
   {
     id: 'sumo_deadlift', name: 'Sumo Deadlift', muscle: 'Glutes · Inner Thighs · Hamstrings', category: 'legs',
-    image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=600&q=80',
+    image: barbellRow,
     cues: ['Wide stance, toes out 45°','Grip inside of legs','Drive knees out as you pull','Hips and shoulders rise together'],
     defaultSets: 4, defaultReps: 5, rest: 180,
   },
@@ -272,7 +308,7 @@ export const EXERCISES = [
   },
   {
     id: 'rdl', name: 'Romanian Deadlift', muscle: 'Hamstrings · Glutes · Erectors', category: 'legs',
-    image: 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80',
+    image: barbellRow,
     cues: ['Slight soft bend in knees','Push hips back, not down','Bar stays close to legs','Feel hamstring stretch fully'],
     defaultSets: 3, defaultReps: 10, rest: 90,
   },
@@ -340,7 +376,7 @@ export const EXERCISES = [
   },
   {
     id: 'leg_raise', name: 'Hanging Leg Raise', muscle: 'Lower Abs · Hip Flexors', category: 'core',
-    image: 'https://images.unsplash.com/photo-1616803689943-5601631c7fec?w=600&q=80',
+    image: pullUp,
     cues: ['Start from full dead hang','No kipping or swinging','Raise legs to 90° or beyond','Lower slowly and with control'],
     defaultSets: 3, defaultReps: 12, rest: 60,
   },
@@ -394,282 +430,192 @@ export const EXERCISES = [
     cues: ['Drive knees to waist height','Pump arms in opposition','Stay on the balls of feet','Maintain tall posture throughout'],
     defaultSets: 3, defaultReps: 1, rest: 45, isTime: true, duration: 30,
   },
+
+  /* ── MACHINES ─────────────────────────────────────── */
   {
-  id: 'chest_press_machine',
-  name: 'Chest Press Machine',
-  muscle: 'Chest',
-  category: 'push',
-  image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80',
-  cues: [
-    'Keep shoulders back',
-    'Push slowly',
-    'Do not lock elbows',
-    'Control the negative'
-  ],
-  defaultSets: 4,
-  defaultReps: 12,
-  rest: 60,
-},
-
-{
-  id: 'shoulder_press_machine',
-  name: 'Shoulder Press Machine',
-  muscle: 'Shoulders',
-  category: 'push',
-  image: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&q=80',
-  cues: [
-    'Keep back flat',
-    'Press overhead slowly',
-    'Do not shrug shoulders',
-    'Control the movement'
-  ],
-  defaultSets: 3,
-  defaultReps: 12,
-  rest: 60,
-},
-
-{
-  id: 'lat_pulldown_machine',
-  name: 'Lat Pulldown Machine',
-  muscle: 'Back',
-  category: 'pull',
-  image: 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80',
-  cues: [
-    'Pull to upper chest',
-    'Keep chest up',
-    'Do not swing body',
-    'Squeeze lats'
-  ],
-  defaultSets: 4,
-  defaultReps: 12,
-  rest: 60,
-},
-
-{
-  id: 'seated_row_machine',
-  name: 'Seated Row Machine',
-  muscle: 'Back',
-  category: 'pull',
-  image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80',
-  cues: [
-    'Keep chest up',
-    'Pull elbows back',
-    'Squeeze shoulder blades',
-    'Control return'
-  ],
-  defaultSets: 3,
-  defaultReps: 12,
-  rest: 60,
-},
-
-{
-  id: 'leg_press_machine',
-  name: 'Leg Press Machine',
-  muscle: 'Quads · Glutes',
-  category: 'legs',
-  image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=600&q=80',
-  cues: [
-    'Feet shoulder width apart',
-    'Lower slowly',
-    'Do not lock knees',
-    'Push through heels'
-  ],
-  defaultSets: 4,
-  defaultReps: 15,
-  rest: 90,
-},
-
-{
-  id: 'leg_extension_machine',
-  name: 'Leg Extension Machine',
-  muscle: 'Quads',
-  category: 'legs',
-  image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=600&q=80',
-  cues: [
-    'Lift slowly',
-    'Squeeze quads',
-    'Do not swing',
-    'Lower with control'
-  ],
-  defaultSets: 3,
-  defaultReps: 15,
-  rest: 60,
-},
-
-{
-  id: 'leg_curl_machine',
-  name: 'Leg Curl Machine',
-  muscle: 'Hamstrings',
-  category: 'legs',
-  image: 'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=600&q=80',
-  cues: [
-    'Curl slowly',
-    'Keep hips down',
-    'Squeeze hamstrings',
-    'Control eccentric'
-  ],
-  defaultSets: 3,
-  defaultReps: 15,
-  rest: 60,
-},
-
-{
-  id: 'bicep_curl_machine',
-  name: 'Bicep Curl Machine',
-  muscle: 'Biceps',
-  category: 'pull',
-  image: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=600&q=80',
-  cues: [
-    'Keep elbows fixed',
-    'Curl fully',
-    'Squeeze biceps',
-    'Lower slowly'
-  ],
-  defaultSets: 3,
-  defaultReps: 12,
-  rest: 45,
-},
-
-{
-  id: 'tricep_pushdown_machine',
-  name: 'Tricep Pushdown Machine',
-  muscle: 'Triceps',
-  category: 'push',
-  image: 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80',
-  cues: [
-    'Keep elbows close',
-    'Push fully down',
-    'Squeeze triceps',
-    'Slow return'
-  ],
-  defaultSets: 3,
-  defaultReps: 12,
-  rest: 45,
-},
-
-{
-  id: 'treadmill_walk',
-  name: 'Treadmill Walk',
-  muscle: 'Cardio',
-  category: 'cardio',
-  image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=600&q=80',
-  cues: [
-    'Maintain posture',
-    'Walk steadily',
-    'Breathe evenly',
-    'Keep core tight'
-  ],
-  defaultSets: 1,
-  defaultReps: 20,
-  rest: 0,
-  duration: 1200,
-},
+    id: 'chest_press_machine',
+    name: 'Chest Press Machine',
+    muscle: 'Chest',
+    category: 'push',
+    image: chestPressMachine,
+    cues: ['Keep shoulders back','Push slowly','Do not lock elbows','Control the negative'],
+    defaultSets: 4, defaultReps: 12, rest: 60,
+  },
+  {
+    id: 'shoulder_press_machine',
+    name: 'Shoulder Press Machine',
+    muscle: 'Shoulders',
+    category: 'push',
+    image: shoulderPressMachine,
+    cues: ['Keep back flat','Press overhead slowly','Do not shrug shoulders','Control the movement'],
+    defaultSets: 3, defaultReps: 12, rest: 60,
+  },
+  {
+    id: 'lat_pulldown_machine',
+    name: 'Lat Pulldown Machine',
+    muscle: 'Back',
+    category: 'pull',
+    image: latPulldownMachine,
+    cues: ['Pull to upper chest','Keep chest up','Do not swing body','Squeeze lats'],
+    defaultSets: 4, defaultReps: 12, rest: 60,
+  },
+  {
+    id: 'seated_row_machine',
+    name: 'Seated Row Machine',
+    muscle: 'Back',
+    category: 'pull',
+    image: seatedRowMachine,
+    cues: ['Keep chest up','Pull elbows back','Squeeze shoulder blades','Control return'],
+    defaultSets: 3, defaultReps: 12, rest: 60,
+  },
+  {
+    id: 'leg_press_machine',
+    name: 'Leg Press Machine',
+    muscle: 'Quads · Glutes',
+    category: 'legs',
+    image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=600&q=80',
+    cues: ['Feet shoulder width apart','Lower slowly','Do not lock knees','Push through heels'],
+    defaultSets: 4, defaultReps: 15, rest: 90,
+  },
+  {
+    id: 'leg_extension_machine',
+    name: 'Leg Extension Machine',
+    muscle: 'Quads',
+    category: 'legs',
+    image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=600&q=80',
+    cues: ['Lift slowly','Squeeze quads','Do not swing','Lower with control'],
+    defaultSets: 3, defaultReps: 15, rest: 60,
+  },
+  {
+    id: 'leg_curl_machine',
+    name: 'Leg Curl Machine',
+    muscle: 'Hamstrings',
+    category: 'legs',
+    image: 'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=600&q=80',
+    cues: ['Curl slowly','Keep hips down','Squeeze hamstrings','Control eccentric'],
+    defaultSets: 3, defaultReps: 15, rest: 60,
+  },
+  {
+    id: 'bicep_curl_machine',
+    name: 'Bicep Curl Machine',
+    muscle: 'Biceps',
+    category: 'pull',
+    image: bicepCurlMachine,
+    cues: ['Keep elbows fixed','Curl fully','Squeeze biceps','Lower slowly'],
+    defaultSets: 3, defaultReps: 12, rest: 45,
+  },
+  {
+    id: 'tricep_pushdown_machine',
+    name: 'Tricep Pushdown Machine',
+    muscle: 'Triceps',
+    category: 'push',
+    image: tricepPushdownMachine,
+    cues: ['Keep elbows close','Push fully down','Squeeze triceps','Slow return'],
+    defaultSets: 3, defaultReps: 12, rest: 45,
+  },
+  {
+    id: 'treadmill_walk',
+    name: 'Treadmill Walk',
+    muscle: 'Cardio',
+    category: 'cardio',
+    image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=600&q=80',
+    cues: ['Maintain posture','Walk steadily','Breathe evenly','Keep core tight'],
+    defaultSets: 1, defaultReps: 20, rest: 0, duration: 1200,
+  },
 ]
 
 export const PROGRAMS = [
   {
-  id: 'beginner_machine_split',
-
-  name: 'Beginner Machine Split',
-
-  description:
-    'Beginner-friendly weekly split with mix days, machine-based full body sessions, cardio, and recovery days.',
-
-  difficulty: 'Beginner',
-
- schedule: [
-
-  // Monday — Mix
-  {
-    label: 'Monday Mix',
-    exercises: [
-      { exerciseId: 'push_up', sets: 3, reps: 15 },
-      { exerciseId: 'bench_press', sets: 3, reps: 10 },
-      { exerciseId: 'lat_pulldown', sets: 3, reps: 12 },
-      { exerciseId: 'seated_row', sets: 3, reps: 12 },
-      { exerciseId: 'leg_press_machine', sets: 3, reps: 15 },
-      { exerciseId: 'bodyweight_squat', sets: 3, reps: 20 },
-      { exerciseId: 'plank', sets: 3, duration: 45, isTime: true },
-      { exerciseId: 'mountain_climber', sets: 3, duration: 40, isTime: true },
+    id: 'beginner_machine_split',
+    name: 'Beginner Machine Split',
+    description:
+      'Beginner-friendly weekly split with mix days, machine-based full body sessions, cardio, and recovery days.',
+    difficulty: 'Beginner',
+    schedule: [
+      // Monday — Mix
+      {
+        label: 'Monday Mix',
+        exercises: [
+          { exerciseId: 'push_up', sets: 3, reps: 15 },
+          { exerciseId: 'bench_press', sets: 3, reps: 10 },
+          { exerciseId: 'lat_pulldown', sets: 3, reps: 12 },
+          { exerciseId: 'seated_row', sets: 3, reps: 12 },
+          { exerciseId: 'leg_press_machine', sets: 3, reps: 15 },
+          { exerciseId: 'bodyweight_squat', sets: 3, reps: 20 },
+          { exerciseId: 'plank', sets: 3, duration: 45, isTime: true },
+          { exerciseId: 'mountain_climber', sets: 3, duration: 40, isTime: true },
+        ]
+      },
+      // Tuesday — Mix
+      {
+        label: 'Tuesday Mix',
+        exercises: [
+          { exerciseId: 'incline_bench_press', sets: 3, reps: 10 },
+          { exerciseId: 'shoulder_press_machine', sets: 3, reps: 12 },
+          { exerciseId: 'lat_pulldown_machine', sets: 3, reps: 12 },
+          { exerciseId: 'seated_row_machine', sets: 3, reps: 12 },
+          { exerciseId: 'leg_extension_machine', sets: 3, reps: 15 },
+          { exerciseId: 'leg_curl_machine', sets: 3, reps: 15 },
+          { exerciseId: 'bicep_curl_machine', sets: 3, reps: 12 },
+          { exerciseId: 'tricep_pushdown_machine', sets: 3, reps: 12 },
+        ]
+      },
+      // Wednesday — Rest
+      {
+        label: 'Rest Day',
+        exercises: []
+      },
+      // Thursday — Full Body Machines
+      {
+        label: 'Full Body Machine',
+        exercises: [
+          { exerciseId: 'chest_press_machine', sets: 4, reps: 12 },
+          { exerciseId: 'incline_bench_press', sets: 3, reps: 10 },
+          { exerciseId: 'lat_pulldown_machine', sets: 4, reps: 12 },
+          { exerciseId: 'seated_row_machine', sets: 3, reps: 12 },
+          { exerciseId: 'shoulder_press_machine', sets: 3, reps: 12 },
+          { exerciseId: 'leg_press_machine', sets: 4, reps: 15 },
+          { exerciseId: 'leg_extension_machine', sets: 3, reps: 15 },
+          { exerciseId: 'leg_curl_machine', sets: 3, reps: 15 },
+          { exerciseId: 'bicep_curl_machine', sets: 3, reps: 12 },
+          { exerciseId: 'tricep_pushdown_machine', sets: 3, reps: 12 },
+          { exerciseId: 'plank', sets: 3, duration: 60, isTime: true },
+        ]
+      },
+      // Friday — Full Body Machines
+      {
+        label: 'Full Body Machine',
+        exercises: [
+          { exerciseId: 'push_up', sets: 3, reps: 15 },
+          { exerciseId: 'chest_press_machine', sets: 4, reps: 12 },
+          { exerciseId: 'lat_pulldown_machine', sets: 4, reps: 12 },
+          { exerciseId: 'seated_row_machine', sets: 4, reps: 12 },
+          { exerciseId: 'shoulder_press_machine', sets: 3, reps: 12 },
+          { exerciseId: 'leg_press_machine', sets: 4, reps: 15 },
+          { exerciseId: 'leg_extension_machine', sets: 3, reps: 15 },
+          { exerciseId: 'leg_curl_machine', sets: 3, reps: 15 },
+          { exerciseId: 'bicep_curl_machine', sets: 3, reps: 12 },
+          { exerciseId: 'tricep_pushdown_machine', sets: 3, reps: 12 },
+          { exerciseId: 'mountain_climber', sets: 3, duration: 45, isTime: true },
+        ]
+      },
+      // Saturday — Cardio
+      {
+        label: 'Cardio Day',
+        exercises: [
+          { exerciseId: 'treadmill_walk', sets: 1, duration: 1200, isTime: true },
+          { exerciseId: 'jumping_jack', sets: 4, duration: 45, isTime: true },
+          { exerciseId: 'mountain_climber', sets: 4, duration: 40, isTime: true },
+          { exerciseId: 'plank', sets: 3, duration: 60, isTime: true },
+        ]
+      },
+      // Sunday — Rest
+      {
+        label: 'Rest Day',
+        exercises: []
+      },
     ]
   },
-
-  // Tuesday — Mix
-  {
-    label: 'Tuesday Mix',
-    exercises: [
-      { exerciseId: 'incline_bench_press', sets: 3, reps: 10 },
-      { exerciseId: 'shoulder_press_machine', sets: 3, reps: 12 },
-      { exerciseId: 'lat_pulldown_machine', sets: 3, reps: 12 },
-      { exerciseId: 'seated_row_machine', sets: 3, reps: 12 },
-      { exerciseId: 'leg_extension_machine', sets: 3, reps: 15 },
-      { exerciseId: 'leg_curl_machine', sets: 3, reps: 15 },
-      { exerciseId: 'bicep_curl_machine', sets: 3, reps: 12 },
-      { exerciseId: 'tricep_pushdown_machine', sets: 3, reps: 12 },
-    ]
-  },
-
-  // Wednesday — Rest
-  {
-    label: 'Rest Day',
-    exercises: []
-  },
-
-  // Thursday — Full Body Machines
-  {
-    label: 'Full Body Machine',
-    exercises: [
-      { exerciseId: 'chest_press_machine', sets: 4, reps: 12 },
-      { exerciseId: 'incline_bench_press', sets: 3, reps: 10 },
-      { exerciseId: 'lat_pulldown_machine', sets: 4, reps: 12 },
-      { exerciseId: 'seated_row_machine', sets: 3, reps: 12 },
-      { exerciseId: 'shoulder_press_machine', sets: 3, reps: 12 },
-      { exerciseId: 'leg_press_machine', sets: 4, reps: 15 },
-      { exerciseId: 'leg_extension_machine', sets: 3, reps: 15 },
-      { exerciseId: 'leg_curl_machine', sets: 3, reps: 15 },
-      { exerciseId: 'bicep_curl_machine', sets: 3, reps: 12 },
-      { exerciseId: 'tricep_pushdown_machine', sets: 3, reps: 12 },
-      { exerciseId: 'plank', sets: 3, duration: 60, isTime: true },
-    ]
-  },
-
-  // Friday — Full Body Machines
-  {
-    label: 'Full Body Machine',
-    exercises: [
-      { exerciseId: 'push_up', sets: 3, reps: 15 },
-      { exerciseId: 'chest_press_machine', sets: 4, reps: 12 },
-      { exerciseId: 'lat_pulldown_machine', sets: 4, reps: 12 },
-      { exerciseId: 'seated_row_machine', sets: 4, reps: 12 },
-      { exerciseId: 'shoulder_press_machine', sets: 3, reps: 12 },
-      { exerciseId: 'leg_press_machine', sets: 4, reps: 15 },
-      { exerciseId: 'leg_extension_machine', sets: 3, reps: 15 },
-      { exerciseId: 'leg_curl_machine', sets: 3, reps: 15 },
-      { exerciseId: 'bicep_curl_machine', sets: 3, reps: 12 },
-      { exerciseId: 'tricep_pushdown_machine', sets: 3, reps: 12 },
-      { exerciseId: 'mountain_climber', sets: 3, duration: 45, isTime: true },
-    ]
-  },
-
-  // Saturday — Cardio
-  {
-    label: 'Cardio Day',
-    exercises: [
-      { exerciseId: 'treadmill_walk', sets: 1, duration: 1200, isTime: true },
-      { exerciseId: 'jumping_jack', sets: 4, duration: 45, isTime: true },
-      { exerciseId: 'mountain_climber', sets: 4, duration: 40, isTime: true },
-      { exerciseId: 'plank', sets: 3, duration: 60, isTime: true },
-    ]
-  },
-
-  // Sunday — Rest
-  {
-    label: 'Rest Day',
-    exercises: []
-  },
-]
-  
-},
   {
     id: 'intermediate_split',
     name: 'Intermediate 6-Day Split',
