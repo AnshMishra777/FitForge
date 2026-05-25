@@ -1,9 +1,9 @@
-import arnoldPress from '../exercises/Arnold Press.png'
+import arnoldPress from '../exercises/Arnold Press.jpg'
 import benchPress from '../exercises/Bench Press.png'
-import cableCrossover from '../exercises/Cable crossover.png'
+import cableCrossover from '../exercises/Cable Crossover.png'
 import chestDip from '../exercises/Chest Dip.png'
 import chestPressMachine from '../exercises/Chest Press Machine.png'
-import diamondPushup from '../exercises/Diamond Push-UP.png'
+import diamondPushup from '../exercises/Diamond Push-UP.webp'
 import dumbbellFlies from '../exercises/Dumbbell flies.png'
 import lateralRaise from '../exercises/Lateral Raise.png'
 import overheadPress from '../exercises/Overhead Press.png'
@@ -13,6 +13,11 @@ import shoulderPressMachine from '../exercises/Shoulder Press Machine.png'
 import tricepDip from '../exercises/Tricep dip.png'
 import tricepPushdown from '../exercises/Tricep Pushdown.png'
 import tricepPushdownMachine from '../exercises/Tricep Pushdown Machine.png'
+import inclineBenchPress from '../exercises/Incline Bench Press.png'
+import skullCrusher from '../exercises/Skull Crusher.png'
+import frontRaise from '../exercises/Front Raise.webp'
+import closeGripBenchPress from '../exercises/Close Grip BenchPress.webp'
+import reverseCurl from '../exercises/Reverse Curls.webp'
 
 // Pull / Back / Bicep images
 import pullUp from '../exercises/Pull-up.png'
@@ -28,14 +33,38 @@ import barbellShrug from '../exercises/Barbell Shrug.png'
 import rearDeltFly from '../exercises/Rear Delt Fly.png'
 import barbellCurl from '../exercises/Barbell Curl.png'
 import dumbbellCurl from '../exercises/Dumbbell curl.png'
-import hammerCurl from '../exercises/Hammer Curl.png'
-import inclineDumbbellCurl from '../exercises/Dumbbell curl.png'
+import hammerCurl from '../exercises/Hammer Curl.webp'
+import inclineDumbbellCurl from '../exercises/Incline Dumbbell Curl.png'
 import preacherCurl from '../exercises/Preacher Curl.png'
 import concentrationCurl from '../exercises/Concentration Curl.png'
 import cableCurl from '../exercises/Cable Curl.png'
 import bicepCurlMachine from '../exercises/Bicep Curl Machine.png'
 import latPulldownMachine from '../exercises/Lat Pulldown Machine.png'
 import seatedRowMachine from '../exercises/Seated Row Machine.png'
+import declineChestPress from '../exercises/decine-chest-press.webp'
+
+
+// ── LEGS IMAGES ──────────────────────────────────────
+import backSquat from '../exercises/Back Squat.png'
+import frontSquat from '../exercises/Front Squat.png'
+import gobletSquat from '../exercises/Goblet Squat.png'
+import bulgarianSplitSquat from '../exercises/Bulgairan Split Squat.png'
+import deadliftImg from '../exercises/Deadlift.png'
+import sumoDeadlift from '../exercises/Sumo Deadlift.png'
+import walkingLunge from '../exercises/Walking Lunge.png'
+import reverseLunge from '../exercises/Reverse Lunge.png'
+import legPress from '../exercises/Leg Press.png'
+import romanianDeadlift from '../exercises/Romanian Deadlift.png'
+import legExtension from '../exercises/Leg Extension.png'
+import lyingLegCurl from '../exercises/Lying Leg Curl.png'
+import hipThrust from '../exercises/Hip Thrust.png'
+import gluteBridge from '../exercises/Glute Bridge.png'
+import calfRaiseImg from '../exercises/Calf Raise.png'
+import stepUp from '../exercises/Step-Up.png'
+import legPressMachine from '../exercises/Leg Press Machine.png'
+import legExtensionMachine from '../exercises/Leg Extension Machine.png'
+import legCurlMachine from '../exercises/Leg Curl Machine.png'
+
 export const EXERCISES = [
   /* ── PUSH ─────────────────────────────────────────── */
   {
@@ -52,13 +81,13 @@ export const EXERCISES = [
   },
   {
     id: 'incline_bench_press', name: 'Incline Bench Press', muscle: 'Upper Chest · Front Delts · Triceps', category: 'push',
-    image: benchPress,
+    image: inclineBenchPress,
     cues: ['Set bench to 30-45°','Bar touches upper chest','Elbows at 75° angle','Squeeze upper chest at top'],
     defaultSets: 4, defaultReps: 8, rest: 90,
   },
   {
     id: 'decline_bench_press', name: 'Decline Bench Press', muscle: 'Lower Chest · Triceps', category: 'push',
-    image: benchPress,
+    image: declineChestPress,
     cues: ['Feet secured on pad','Bar to lower chest','Keep back flat on bench','Drive bar in slight arc'],
     defaultSets: 3, defaultReps: 10, rest: 90,
   },
@@ -100,7 +129,7 @@ export const EXERCISES = [
   },
   {
     id: 'front_raise', name: 'Front Raise', muscle: 'Front Deltoid', category: 'push',
-    image: lateralRaise,
+    image: frontRaise,
     cues: ['Arms extended, slight elbow bend','Raise to eye level only','Avoid swinging torso','Squeeze front delt at top'],
     defaultSets: 3, defaultReps: 12, rest: 45,
   },
@@ -112,7 +141,7 @@ export const EXERCISES = [
   },
   {
     id: 'skull_crusher', name: 'Skull Crusher', muscle: 'Triceps (long head)', category: 'push',
-    image: tricepPushdown,
+    image: skullCrusher,
     cues: ['Bar above forehead, elbows vertical','Only forearms move','Lower bar behind head slightly','Extend explosively to lockout'],
     defaultSets: 3, defaultReps: 10, rest: 60,
   },
@@ -130,7 +159,7 @@ export const EXERCISES = [
   },
   {
     id: 'close_grip_bench', name: 'Close-Grip Bench Press', muscle: 'Triceps · Inner Chest', category: 'push',
-    image: benchPress,
+    image: closeGripBenchPress,
     cues: ['Grip shoulder-width or slightly narrower','Elbows stay tucked in','Bar to lower chest','Full tricep lockout at top'],
     defaultSets: 4, defaultReps: 8, rest: 90,
   },
@@ -246,7 +275,7 @@ export const EXERCISES = [
   },
   {
     id: 'reverse_curl', name: 'Reverse Curl', muscle: 'Brachioradialis · Biceps · Forearms', category: 'pull',
-    image: dumbbellCurl,
+    image: reverseCurl,
     cues: ['Overhand (pronated) grip','Elbows stay at sides','Curl to shoulder height','Focus on forearm engagement'],
     defaultSets: 3, defaultReps: 15, rest: 45,
   },
@@ -254,97 +283,97 @@ export const EXERCISES = [
   /* ── LEGS ─────────────────────────────────────────── */
   {
     id: 'squat', name: 'Back Squat', muscle: 'Quads · Glutes · Hamstrings · Core', category: 'legs',
-    image: 'https://images.unsplash.com/photo-1566241142559-40e1dab266c6?w=600&q=80',
+   image: backSquat,
     cues: ['High or low bar position','Feet shoulder-width, toes out','Break parallel on every rep','Drive knees out over toes'],
     defaultSets: 4, defaultReps: 6, rest: 120,
   },
   {
     id: 'front_squat', name: 'Front Squat', muscle: 'Quads · Core · Upper Back', category: 'legs',
-    image: 'https://images.unsplash.com/photo-1566241142559-40e1dab266c6?w=600&q=80',
+    image: frontSquat,
     cues: ['Bar rests on front delts','Elbows high throughout','Upright torso is essential','Drive knees out, heels flat'],
     defaultSets: 3, defaultReps: 6, rest: 120,
   },
   {
     id: 'goblet_squat', name: 'Goblet Squat', muscle: 'Quads · Glutes · Core', category: 'legs',
-    image: 'https://images.unsplash.com/photo-1566241142559-40e1dab266c6?w=600&q=80',
+     image: gobletSquat,
     cues: ['Hold kettlebell at chest','Keep chest up and tall','Squat deep between elbows','Drive through heels to stand'],
     defaultSets: 3, defaultReps: 15, rest: 60,
   },
   {
     id: 'bulgarian_split_squat', name: 'Bulgarian Split Squat', muscle: 'Quads · Glutes · Hip Flexors', category: 'legs',
-    image: 'https://images.unsplash.com/photo-1597452485669-2c7bb5fef90d?w=600&q=80',
+     image: bulgarianSplitSquat,
     cues: ['Rear foot elevated on bench','Front foot 2 steps forward','Back knee descends to floor','Front knee tracks over toes'],
     defaultSets: 3, defaultReps: 10, rest: 90,
   },
   {
     id: 'deadlift', name: 'Deadlift', muscle: 'Hamstrings · Glutes · Erectors · Traps', category: 'legs',
-    image: barbellRow,
+    image: deadliftImg,
     cues: ['Bar over mid-foot always','Big breath — brace hard','Think "push floor away"','Lock hips out at top fully'],
     defaultSets: 4, defaultReps: 5, rest: 180,
   },
   {
     id: 'sumo_deadlift', name: 'Sumo Deadlift', muscle: 'Glutes · Inner Thighs · Hamstrings', category: 'legs',
-    image: barbellRow,
+     image: sumoDeadlift,
     cues: ['Wide stance, toes out 45°','Grip inside of legs','Drive knees out as you pull','Hips and shoulders rise together'],
     defaultSets: 4, defaultReps: 5, rest: 180,
   },
   {
     id: 'lunge', name: 'Walking Lunge', muscle: 'Quads · Glutes · Hip Flexors', category: 'legs',
-    image: 'https://images.unsplash.com/photo-1597452485669-2c7bb5fef90d?w=600&q=80',
+    image: walkingLunge,
     cues: ['Take a large forward step','Back knee nearly touches floor','Keep torso perfectly upright','Push through front heel to rise'],
     defaultSets: 3, defaultReps: 20, rest: 60,
   },
   {
     id: 'reverse_lunge', name: 'Reverse Lunge', muscle: 'Quads · Glutes · Hamstrings', category: 'legs',
-    image: 'https://images.unsplash.com/photo-1597452485669-2c7bb5fef90d?w=600&q=80',
+    image: reverseLunge,
     cues: ['Step directly backward','Back knee drops to near floor','Front shin stays vertical','Drive through front foot to return'],
     defaultSets: 3, defaultReps: 12, rest: 60,
   },
   {
     id: 'leg_press', name: 'Leg Press', muscle: 'Quads · Glutes · Calves', category: 'legs',
-    image: 'https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=600&q=80',
+    image: legPress,
     cues: ['Feet mid-height on platform','Do NOT lock knees out','Full range every repetition','2-second controlled negative'],
     defaultSets: 3, defaultReps: 12, rest: 90,
   },
   {
     id: 'rdl', name: 'Romanian Deadlift', muscle: 'Hamstrings · Glutes · Erectors', category: 'legs',
-    image: barbellRow,
+    image: romanianDeadlift,
     cues: ['Slight soft bend in knees','Push hips back, not down','Bar stays close to legs','Feel hamstring stretch fully'],
     defaultSets: 3, defaultReps: 10, rest: 90,
   },
   {
     id: 'leg_extension', name: 'Leg Extension', muscle: 'Quads (isolation)', category: 'legs',
-    image: 'https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=600&q=80',
+    image: legExtension,
     cues: ['Pad just above ankles','Extend to full lockout','Squeeze quads at top for 1s','Slow 3s lowering phase'],
     defaultSets: 3, defaultReps: 15, rest: 60,
   },
   {
     id: 'leg_curl', name: 'Lying Leg Curl', muscle: 'Hamstrings (isolation)', category: 'legs',
-    image: 'https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=600&q=80',
+    image: lyingLegCurl,
     cues: ['Hips stay flat on pad','Curl heels to glutes','Squeeze hamstrings at top','Slow and controlled return'],
     defaultSets: 3, defaultReps: 15, rest: 60,
   },
   {
     id: 'hip_thrust', name: 'Hip Thrust', muscle: 'Glutes · Hamstrings', category: 'legs',
-    image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80',
+    image: hipThrust,
     cues: ['Upper back against bench','Bar padded across hips','Drive hips fully to ceiling','Squeeze glutes hard at top'],
     defaultSets: 4, defaultReps: 12, rest: 90,
   },
   {
     id: 'glute_bridge', name: 'Glute Bridge', muscle: 'Glutes · Hamstrings · Core', category: 'legs',
-    image: 'https://images.unsplash.com/photo-1591291621164-2c6367723315?w=600&q=80',
+     image: gluteBridge,
     cues: ['Feet flat, knees at 90°','Drive hips up through heels','Hold for 2s at the top','Lower slowly with control'],
     defaultSets: 3, defaultReps: 15, rest: 60,
   },
   {
     id: 'calf_raise', name: 'Calf Raise', muscle: 'Gastrocnemius · Soleus', category: 'legs',
-    image: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&q=80',
+    image: calfRaiseImg,
     cues: ['Full stretch at the bottom','Pause 1s at the peak','4-second slow eccentric','No bouncing at the bottom'],
     defaultSets: 4, defaultReps: 20, rest: 45,
   },
   {
     id: 'step_up', name: 'Step-Up', muscle: 'Quads · Glutes · Hamstrings', category: 'legs',
-    image: 'https://images.unsplash.com/photo-1597452485669-2c7bb5fef90d?w=600&q=80',
+    image: stepUp,
     cues: ['Step to a knee-high box','Drive through the front heel','Stand fully upright at top','Step down with control'],
     defaultSets: 3, defaultReps: 12, rest: 60,
   },
@@ -473,7 +502,7 @@ export const EXERCISES = [
     name: 'Leg Press Machine',
     muscle: 'Quads · Glutes',
     category: 'legs',
-    image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=600&q=80',
+    image: legPressMachine,
     cues: ['Feet shoulder width apart','Lower slowly','Do not lock knees','Push through heels'],
     defaultSets: 4, defaultReps: 15, rest: 90,
   },
@@ -482,7 +511,7 @@ export const EXERCISES = [
     name: 'Leg Extension Machine',
     muscle: 'Quads',
     category: 'legs',
-    image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=600&q=80',
+    image: legExtensionMachine,
     cues: ['Lift slowly','Squeeze quads','Do not swing','Lower with control'],
     defaultSets: 3, defaultReps: 15, rest: 60,
   },
@@ -491,7 +520,7 @@ export const EXERCISES = [
     name: 'Leg Curl Machine',
     muscle: 'Hamstrings',
     category: 'legs',
-    image: 'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=600&q=80',
+    image: legCurlMachine,
     cues: ['Curl slowly','Keep hips down','Squeeze hamstrings','Control eccentric'],
     defaultSets: 3, defaultReps: 15, rest: 60,
   },
