@@ -12,7 +12,6 @@ import pushups from '../exercises/Pushups.png'
 import shoulderPressMachine from '../exercises/Shoulder Press Machine.png'
 import tricepDip from '../exercises/Tricep dip.png'
 import tricepPushdown from '../exercises/Tricep Pushdown.png'
-import tricepPushdownMachine from '../exercises/Tricep Pushdown Machine.png'
 import inclineBenchPress from '../exercises/Incline Bench Press.png'
 import skullCrusher from '../exercises/Skull Crusher.png'
 import frontRaise from '../exercises/Front Raise.webp'
@@ -65,6 +64,30 @@ import legPressMachine from '../exercises/Leg Press Machine.png'
 import legExtensionMachine from '../exercises/Leg Extension Machine.png'
 import legCurlMachine from '../exercises/Leg Curl Machine.png'
 
+/* core exercises */
+
+import deadBug from '../exercises/Dead Bug.png'
+import mountainClimber from '../exercises/Mountain Climber.png'
+import russianTwist from '../exercises/Russian Twist.png'
+import hangingLegRaise from '../exercises/Hanging Leg Raise.png'
+import bicycleCrunch from '../exercises/Bicycle Crunch.png'
+import crunchImg from '../exercises/Crunch.png'
+import sidePlank from '../exercises/Side Plank.png'
+import plankImg from '../exercises/Plank.png'
+
+/* cardio exercises */
+
+import burpeeImg from '../exercises/Burpee.png'
+import treadmillWalk from '../exercises/Treadmill Walk.png'
+import highKnees from '../exercises/High Knees.png'
+import jumpingJack from '../exercises/Jumping Jack.png'
+import boxJump from '../exercises/Box Jump.png'
+import jumpRope from '../exercises/Jump Rope.png'
+
+import shoulderPressMachineImg from '../exercises/Shoulder press machine.webp'
+import chestPressMachineImg from '../exercises/Chest Press Machine.webp'
+import legExtensionMachineImg from '../exercises/leg extension machine.jpg'
+import bicepsCurlImg from '../exercises/Biceps curl.png'
 export const EXERCISES = [
   /* ── PUSH ─────────────────────────────────────────── */
   {
@@ -368,6 +391,7 @@ export const EXERCISES = [
   {
     id: 'calf_raise', name: 'Calf Raise', muscle: 'Gastrocnemius · Soleus', category: 'legs',
     image: calfRaiseImg,
+    imageStyle: { objectPosition: 'center top' },
     cues: ['Full stretch at the bottom','Pause 1s at the peak','4-second slow eccentric','No bouncing at the bottom'],
     defaultSets: 4, defaultReps: 20, rest: 45,
   },
@@ -381,49 +405,49 @@ export const EXERCISES = [
   /* ── CORE ─────────────────────────────────────────── */
   {
     id: 'plank', name: 'Plank', muscle: 'Transverse Abs · Obliques · Glutes', category: 'core',
-    image: 'https://images.unsplash.com/photo-1591291621164-2c6367723315?w=600&q=80',
+    image: plankImg,
     cues: ['Forearms parallel, elbows under shoulders','Hips perfectly level — no sag','Squeeze abs, glutes, quads hard','Breathe steadily throughout'],
     defaultSets: 3, defaultReps: 1, rest: 60, isTime: true, duration: 45,
   },
   {
     id: 'side_plank', name: 'Side Plank', muscle: 'Obliques · Lateral Core', category: 'core',
-    image: 'https://images.unsplash.com/photo-1591291621164-2c6367723315?w=600&q=80',
+    image: sidePlank,
     cues: ['Elbow directly under shoulder','Hips stacked perfectly','Squeeze obliques hard','Keep body in a straight line'],
     defaultSets: 3, defaultReps: 1, rest: 60, isTime: true, duration: 30,
   },
   {
     id: 'crunch', name: 'Crunch', muscle: 'Rectus Abdominis', category: 'core',
-    image: 'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=600&q=80',
+    image: crunchImg,
     cues: ['Hands lightly behind ears','Curl shoulders off the mat','Do NOT pull on neck at all','Squeeze abs hard at the top'],
     defaultSets: 3, defaultReps: 20, rest: 45,
   },
   {
     id: 'bicycle_crunch', name: 'Bicycle Crunch', muscle: 'Obliques · Rectus Abdominis', category: 'core',
-    image: 'https://images.unsplash.com/photo-1601422407692-ec4eeec1d9b3?w=600&q=80',
+    image: bicycleCrunch,
     cues: ['Opposite elbow to knee','Fully extend the other leg','Rotate through the core','Slow and deliberate pace'],
     defaultSets: 3, defaultReps: 30, rest: 45,
   },
   {
     id: 'leg_raise', name: 'Hanging Leg Raise', muscle: 'Lower Abs · Hip Flexors', category: 'core',
-    image: pullUp,
+    image: hangingLegRaise,
     cues: ['Start from full dead hang','No kipping or swinging','Raise legs to 90° or beyond','Lower slowly and with control'],
     defaultSets: 3, defaultReps: 12, rest: 60,
   },
   {
     id: 'russian_twist', name: 'Russian Twist', muscle: 'Obliques · Core', category: 'core',
-    image: 'https://images.unsplash.com/photo-1601422407692-ec4eeec1d9b3?w=600&q=80',
+    image: russianTwist,
     cues: ['Sit at 45°, feet off floor','Hold weight at chest','Rotate torso side to side','Touch ground beside each hip'],
     defaultSets: 3, defaultReps: 30, rest: 45,
   },
   {
     id: 'mountain_climber', name: 'Mountain Climber', muscle: 'Core · Cardio · Hip Flexors', category: 'core',
-    image: 'https://images.unsplash.com/photo-1601422407692-ec4eeec1d9b3?w=600&q=80',
+    image: mountainClimber,
     cues: ['High plank, wrists under shoulders','Drive alternating knees to chest','Move fast but keep hips stable','Breathe rhythmically throughout'],
     defaultSets: 3, defaultReps: 30, rest: 45,
   },
   {
     id: 'dead_bug', name: 'Dead Bug', muscle: 'Deep Core · Stability', category: 'core',
-    image: 'https://images.unsplash.com/photo-1591291621164-2c6367723315?w=600&q=80',
+    image: deadBug,
     cues: ['Press lower back flat to floor','Extend opposite arm and leg slowly','Do not let low back arch at all','Exhale as you extend, inhale to return'],
     defaultSets: 3, defaultReps: 10, rest: 60,
   },
@@ -431,31 +455,31 @@ export const EXERCISES = [
   /* ── CARDIO ───────────────────────────────────────── */
   {
     id: 'burpee', name: 'Burpee', muscle: 'Full Body · Cardiovascular', category: 'cardio',
-    image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80',
+    image: burpeeImg,
     cues: ['Squat down, hands to floor','Jump feet back to plank','Optional push-up at bottom','Explosive jump up, clap overhead'],
     defaultSets: 3, defaultReps: 10, rest: 60,
   },
   {
     id: 'jump_rope', name: 'Jump Rope', muscle: 'Calves · Cardio · Coordination', category: 'cardio',
-    image: 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80',
+    image: jumpRope,
     cues: ['Stay light on your toes','Make small, efficient jumps','Rotation comes from the wrists','Stay relaxed in shoulders and arms'],
     defaultSets: 3, defaultReps: 1, rest: 60, isTime: true, duration: 60,
   },
   {
     id: 'box_jump', name: 'Box Jump', muscle: 'Power · Quads · Glutes · Calves', category: 'cardio',
-    image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=600&q=80',
+     image: boxJump,
     cues: ['Swing arms explosively forward','Jump from hip extension fully','Land softly, absorb with legs','Always step down — never jump'],
     defaultSets: 4, defaultReps: 8, rest: 90,
   },
   {
     id: 'jumping_jack', name: 'Jumping Jack', muscle: 'Cardiovascular · Coordination', category: 'cardio',
-    image: 'https://images.unsplash.com/photo-1601422407692-ec4eeec1d9b3?w=600&q=80',
+    image: jumpingJack,
     cues: ['Land softly on the balls of feet','Arms fully extend overhead','Keep core engaged throughout','Maintain a steady rhythm'],
     defaultSets: 3, defaultReps: 50, rest: 30,
   },
   {
     id: 'high_knee', name: 'High Knees', muscle: 'Hip Flexors · Cardio · Core', category: 'cardio',
-    image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80',
+    image: highKnees,
     cues: ['Drive knees to waist height','Pump arms in opposition','Stay on the balls of feet','Maintain tall posture throughout'],
     defaultSets: 3, defaultReps: 1, rest: 45, isTime: true, duration: 30,
   },
@@ -466,7 +490,7 @@ export const EXERCISES = [
     name: 'Chest Press Machine',
     muscle: 'Chest',
     category: 'push',
-    image: chestPressMachine,
+    image: chestPressMachineImg,
     cues: ['Keep shoulders back','Push slowly','Do not lock elbows','Control the negative'],
     defaultSets: 4, defaultReps: 12, rest: 60,
   },
@@ -475,7 +499,7 @@ export const EXERCISES = [
     name: 'Shoulder Press Machine',
     muscle: 'Shoulders',
     category: 'push',
-    image: shoulderPressMachine,
+     image: shoulderPressMachineImg,
     cues: ['Keep back flat','Press overhead slowly','Do not shrug shoulders','Control the movement'],
     defaultSets: 3, defaultReps: 12, rest: 60,
   },
@@ -484,7 +508,7 @@ export const EXERCISES = [
     name: 'Lat Pulldown Machine',
     muscle: 'Back',
     category: 'pull',
-    image: latPulldownMachine,
+    image: latsPulldown,
     cues: ['Pull to upper chest','Keep chest up','Do not swing body','Squeeze lats'],
     defaultSets: 4, defaultReps: 12, rest: 60,
   },
@@ -511,7 +535,7 @@ export const EXERCISES = [
     name: 'Leg Extension Machine',
     muscle: 'Quads',
     category: 'legs',
-    image: legExtensionMachine,
+    image: legExtensionMachineImg,
     cues: ['Lift slowly','Squeeze quads','Do not swing','Lower with control'],
     defaultSets: 3, defaultReps: 15, rest: 60,
   },
@@ -529,7 +553,7 @@ export const EXERCISES = [
     name: 'Bicep Curl Machine',
     muscle: 'Biceps',
     category: 'pull',
-    image: bicepCurlMachine,
+    image: bicepsCurlImg,
     cues: ['Keep elbows fixed','Curl fully','Squeeze biceps','Lower slowly'],
     defaultSets: 3, defaultReps: 12, rest: 45,
   },
@@ -538,7 +562,7 @@ export const EXERCISES = [
     name: 'Tricep Pushdown Machine',
     muscle: 'Triceps',
     category: 'push',
-    image: tricepPushdownMachine,
+    image: tricepPushdown,
     cues: ['Keep elbows close','Push fully down','Squeeze triceps','Slow return'],
     defaultSets: 3, defaultReps: 12, rest: 45,
   },
@@ -547,7 +571,7 @@ export const EXERCISES = [
     name: 'Treadmill Walk',
     muscle: 'Cardio',
     category: 'cardio',
-    image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=600&q=80',
+    image: treadmillWalk,
     cues: ['Maintain posture','Walk steadily','Breathe evenly','Keep core tight'],
     defaultSets: 1, defaultReps: 20, rest: 0, duration: 1200,
   },
