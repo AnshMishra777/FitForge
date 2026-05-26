@@ -579,6 +579,145 @@ export const EXERCISES = [
 
 export const PROGRAMS = [
   {
+  id: 'ansh_personal_split',
+  name: 'Ansh Personal Favourite Split',
+  level: 'Intermediate',
+  levelColor: '#8b5cf6',
+  duration: 'Ongoing',
+  daysPerWeek: 6,
+  goal: 'Aesthetic Muscle Growth + Strength',
+  description:
+    'Personal high-volume Push Pull Legs split focused on hypertrophy, strength, aesthetics, and balanced recovery.',
+
+  schedule: [
+
+    // ── MONDAY PUSH ─────────────────────────────
+    {
+      day: 1,
+      label: 'Push',
+      exercises: [
+        { exerciseId: 'bench_press', sets: 4, reps: 8 },
+        { exerciseId: 'incline_bench_press', sets: 4, reps: 10 },
+        { exerciseId: 'dumbbell_fly', sets: 3, reps: 12 },
+        { exerciseId: 'cable_crossover', sets: 3, reps: 15 },
+        { exerciseId: 'decline_bench_press', sets: 3, reps: 10 },
+
+        { exerciseId: 'skull_crusher', sets: 3, reps: 10 },
+        { exerciseId: 'tricep_pushdown', sets: 4, reps: 12 },
+        { exerciseId: 'overhead_tricep_extension', sets: 3, reps: 12 },
+        { exerciseId: 'diamond_pushup', sets: 3, reps: 15 },
+        { exerciseId: 'tricep_dip', sets: 3, reps: 12 },
+      ],
+    },
+
+    // ── TUESDAY PULL ────────────────────────────
+    {
+      day: 2,
+      label: 'Pull',
+      exercises: [
+        { exerciseId: 'pull_up', sets: 4, reps: 10 },
+        { exerciseId: 'deadlift', sets: 4, reps: 5 },
+        { exerciseId: 'lat_pulldown', sets: 4, reps: 12 },
+        { exerciseId: 'barbell_row', sets: 4, reps: 8 },
+        { exerciseId: 'seated_row', sets: 4, reps: 10 },
+        { exerciseId: 'straight_arm_pulldown', sets: 3, reps: 15 },
+
+        { exerciseId: 'bicep_curl', sets: 4, reps: 12 },
+        { exerciseId: 'incline_db_curl', sets: 3, reps: 12 },
+        { exerciseId: 'preacher_curl', sets: 3, reps: 10 },
+        { exerciseId: 'concentration_curl', sets: 3, reps: 12 },
+        { exerciseId: 'hammer_curl', sets: 3, reps: 12 },
+      ],
+    },
+
+    // ── WEDNESDAY LEGS + SHOULDERS ─────────────
+    {
+      day: 3,
+      label: 'Legs + Shoulders',
+      exercises: [
+        { exerciseId: 'squat', sets: 4, reps: 8 },
+        { exerciseId: 'sumo_deadlift', sets: 4, reps: 5 },
+        { exerciseId: 'leg_press', sets: 4, reps: 15 },
+        { exerciseId: 'leg_extension', sets: 3, reps: 15 },
+        { exerciseId: 'leg_curl', sets: 3, reps: 15 },
+        { exerciseId: 'goblet_squat', sets: 3, reps: 15 },
+
+        { exerciseId: 'overhead_press', sets: 4, reps: 8 },
+        { exerciseId: 'arnold_press', sets: 3, reps: 10 },
+        { exerciseId: 'lateral_raise', sets: 4, reps: 15 },
+        { exerciseId: 'front_raise', sets: 3, reps: 12 },
+        { exerciseId: 'shrug', sets: 4, reps: 15 },
+      ],
+    },
+
+    // ── THURSDAY PUSH ───────────────────────────
+    {
+      day: 4,
+      label: 'Push',
+      exercises: [
+        { exerciseId: 'incline_bench_press', sets: 4, reps: 8 },
+        { exerciseId: 'bench_press', sets: 4, reps: 8 },
+        { exerciseId: 'cable_crossover', sets: 3, reps: 15 },
+        { exerciseId: 'chest_dip', sets: 3, reps: 12 },
+        { exerciseId: 'dumbbell_fly', sets: 3, reps: 12 },
+
+        { exerciseId: 'close_grip_bench', sets: 4, reps: 8 },
+        { exerciseId: 'skull_crusher', sets: 3, reps: 10 },
+        { exerciseId: 'tricep_pushdown', sets: 4, reps: 12 },
+        { exerciseId: 'diamond_pushup', sets: 3, reps: 20 },
+        { exerciseId: 'overhead_tricep_extension', sets: 3, reps: 12 },
+      ],
+    },
+
+    // ── FRIDAY PULL ─────────────────────────────
+    {
+      day: 5,
+      label: 'Pull',
+      exercises: [
+        { exerciseId: 'chin_up', sets: 4, reps: 10 },
+        { exerciseId: 't_bar_row', sets: 4, reps: 10 },
+        { exerciseId: 'lat_pulldown', sets: 4, reps: 12 },
+        { exerciseId: 'one_arm_db_row', sets: 3, reps: 12 },
+        { exerciseId: 'seated_row', sets: 3, reps: 12 },
+        { exerciseId: 'face_pull', sets: 3, reps: 15 },
+
+        { exerciseId: 'bicep_curl', sets: 4, reps: 12 },
+        { exerciseId: 'preacher_curl', sets: 3, reps: 10 },
+        { exerciseId: 'incline_db_curl', sets: 3, reps: 12 },
+        { exerciseId: 'hammer_curl', sets: 3, reps: 12 },
+        { exerciseId: 'reverse_curl', sets: 3, reps: 15 },
+      ],
+    },
+
+    // ── SATURDAY LEGS + SHOULDERS ──────────────
+    {
+      day: 6,
+      label: 'Legs + Shoulders',
+      exercises: [
+        { exerciseId: 'front_squat', sets: 4, reps: 8 },
+        { exerciseId: 'rdl', sets: 4, reps: 10 },
+        { exerciseId: 'bulgarian_split_squat', sets: 3, reps: 10 },
+        { exerciseId: 'leg_press', sets: 4, reps: 15 },
+        { exerciseId: 'leg_extension', sets: 3, reps: 15 },
+        { exerciseId: 'calf_raise', sets: 5, reps: 20 },
+
+        { exerciseId: 'overhead_press', sets: 4, reps: 8 },
+        { exerciseId: 'arnold_press', sets: 3, reps: 10 },
+        { exerciseId: 'lateral_raise', sets: 4, reps: 15 },
+        { exerciseId: 'rear_delt_fly', sets: 3, reps: 15 },
+        { exerciseId: 'shrug', sets: 4, reps: 15 },
+      ],
+    },
+
+    // ── SUNDAY REST ─────────────────────────────
+    {
+      day: 7,
+      label: 'Rest',
+      exercises: [],
+    },
+  ],
+},
+  {
     id: 'beginner_machine_split',
     name: 'Beginner Machine Split',
     description:
