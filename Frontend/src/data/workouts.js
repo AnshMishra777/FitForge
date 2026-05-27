@@ -1,6 +1,6 @@
 import arnoldPress from '../exercises/Arnold Press.jpg'
 import benchPress from '../exercises/Bench Press.png'
-import cableCrossover from '../exercises/Cable Crossover.png'
+import cableCrossover from '../exercises/cable-crossover.png'
 import chestDip from '../exercises/Chest Dip.png'
 import chestPressMachine from '../exercises/Chest Press Machine.png'
 import diamondPushup from '../exercises/Diamond Push-UP.webp'
