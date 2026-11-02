@@ -52,14 +52,16 @@ router.patch('/profile', async (req, res) => {
 // ⚠️  For production: replace base64 storage with Cloudinary/S3.
 //     Receive the file with multer, upload to cloud, store the URL.
 //
-
+// ── PATCH /api/user/avatar — upload or replace avatar ────────────
 router.patch('/avatar', upload.single('avatar'), async (req, res) => {
+  let uploadedPublicId = null
+
   try {
     if (!req.file) {
       return res.status(400).json({ message: 'Please select an image' })
     }
 
-    // Upload image buffer to Cloudinary
+    // Upload image to Cloudinary
     const result = await new Promise((resolve, reject) => {
       const stream = cloudinary.uploader.upload_stream(
         {
@@ -78,17 +80,34 @@ router.patch('/avatar', upload.single('avatar'), async (req, res) => {
       Readable.from(req.file.buffer).pipe(stream)
     })
 
-    // Save Cloudinary URL in MongoDB
+    uploadedPublicId = result.public_id
+
+    // Save new avatar URL and public ID
     const user = await User.findByIdAndUpdate(
       req.user._id,
-      { $set: { avatar: result.secure_url } },
+      {
+        $set: {
+          avatar: result.secure_url,
+          avatarPublicId: result.public_id,
+        },
+      },
       { new: true, runValidators: true }
     ).select('-password')
 
     if (!user) {
-      // Avoid leaving an uploaded image if the user no longer exists
       await cloudinary.uploader.destroy(result.public_id)
       return res.status(404).json({ message: 'User not found' })
+    }
+
+    // Delete previous image after successfully saving the new one
+    const previousPublicId = req.user.avatarPublicId
+
+    if (previousPublicId && previousPublicId !== result.public_id) {
+      try {
+        await cloudinary.uploader.destroy(previousPublicId)
+      } catch (error) {
+        console.error('Previous avatar cleanup failed:', error)
+      }
     }
 
     return res.json({
@@ -97,24 +116,53 @@ router.patch('/avatar', upload.single('avatar'), async (req, res) => {
       user,
     })
   } catch (error) {
+    // Clean up newly uploaded image if database update fails
+    if (uploadedPublicId) {
+      try {
+        await cloudinary.uploader.destroy(uploadedPublicId)
+      } catch (cleanupError) {
+        console.error('New avatar cleanup failed:', cleanupError)
+      }
+    }
+
     console.error('Avatar upload error:', error)
-    return res.status(500).json({
-      message: 'Avatar upload failed',
-    })
+    return res.status(500).json({ message: 'Avatar upload failed' })
   }
 })
 
-// ── DELETE /api/user/avatar — remove avatar ───────────────────────
+// ── DELETE /api/user/avatar — remove avatar ──────────────────────
 router.delete('/avatar', async (req, res) => {
   try {
-    const user = await User.findByIdAndUpdate(
-      req.user._id,
-      { $set: { avatar: '' } },
-      { new: true }
-    ).select('-password')
-    res.json({ user })
-  } catch (err) {
-    res.status(500).json({ message: 'Server error' })
+    const user = await User.findById(req.user._id)
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' })
+    }
+
+    const previousPublicId = user.avatarPublicId
+
+    // Clear avatar details in MongoDB
+    user.avatar = ''
+    user.avatarPublicId = ''
+    await user.save()
+
+    // Delete image from Cloudinary
+    if (previousPublicId) {
+      try {
+        await cloudinary.uploader.destroy(previousPublicId)
+      } catch (error) {
+        console.error('Cloudinary avatar deletion failed:', error)
+      }
+    }
+
+    return res.json({
+      success: true,
+      message: 'Avatar removed successfully',
+      user,
+    })
+  } catch (error) {
+    console.error('Avatar removal error:', error)
+    return res.status(500).json({ message: 'Could not remove avatar' })
   }
 })
 

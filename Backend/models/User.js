@@ -15,6 +15,7 @@ const userSchema = new mongoose.Schema({
     type: String, required: [true, 'Password is required'], minlength: 6,
   },
   avatar: { type: String, default: '' },
+  avatarPublicId: { type: String, default: '' },
   activeProgram: { type: String, default: null },
   stats: {
     workoutsCompleted: { type: Number, default: 0 },
