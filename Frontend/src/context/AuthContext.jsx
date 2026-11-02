@@ -1,14 +1,22 @@
-import { createContext, useContext, useState, useCallback } from 'react'
+
+import {
+  createContext,
+  useContext,
+  useState,
+  useCallback,
+  useEffect,
+} from 'react'
+
 import api from '../api'
 
 const AuthContext = createContext(null)
 
-// ─── Demo user factory ────────────────────────────────────────────────────────
-const DEMO_EMAIL    = 'demo@fitforge.app'
+// ─── Demo user ────────────────────────────────────────────────────────────────
+const DEMO_EMAIL = 'demo@fitforge.app'
 const DEMO_PASSWORD = 'demo123'
 
 const makeDemoUser = (name = 'Demo Athlete', email = DEMO_EMAIL) => ({
-  _id:    'demo',
+  _id: 'demo',
   name,
   email,
   avatar: localStorage.getItem('ff_avatar') || '',
@@ -16,85 +24,140 @@ const makeDemoUser = (name = 'Demo Athlete', email = DEMO_EMAIL) => ({
 
 // ─── Provider ─────────────────────────────────────────────────────────────────
 export function AuthProvider({ children }) {
-  const [user, setUser] = useState(() => {
-    try { return JSON.parse(localStorage.getItem('ff_user')) }
-    catch { return null }
-  })
-  const [loading, setLoading] = useState(false)
+  const [user, setUser] = useState(null)
+  const [loading, setLoading] = useState(true)
 
-  // ── persist helpers ──────────────────────────────────────────────────────
-  const persistUser = (token, userData) => {
-    localStorage.setItem('ff_token', token)
-    localStorage.setItem('ff_user',  JSON.stringify(userData))
-    setUser(userData)
-  }
+  // ── Restore session when app loads or refreshes ───────────────────────────
+  useEffect(() => {
+    const restoreSession = async () => {
+      // Restore the frontend-only demo session
+      if (localStorage.getItem('ff_demo_mode') === 'true') {
+        try {
+          const savedUser = JSON.parse(localStorage.getItem('ff_user'))
+          setUser(savedUser || makeDemoUser())
+        } catch {
+          setUser(makeDemoUser())
+        }
 
-  // ── login ────────────────────────────────────────────────────────────────
+        setLoading(false)
+        return
+      }
+
+      // Restore a real session using the HTTP-only cookie
+      try {
+        const { data } = await api.get('/auth/me')
+        setUser(data.user)
+      } catch {
+        setUser(null)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    restoreSession()
+  }, [])
+
+  // ── Login ─────────────────────────────────────────────────────────────────
   const login = useCallback(async (email, password) => {
-    // Demo shortcut — never hits the network
+    // Demo shortcut — does not authenticate with the backend
     if (email === DEMO_EMAIL && password === DEMO_PASSWORD) {
       const demo = makeDemoUser()
-      persistUser('demo_token', demo)
+      localStorage.setItem('ff_demo_mode', 'true')
+      localStorage.setItem('ff_user', JSON.stringify(demo))
+      setUser(demo)
       return { success: true }
     }
 
     setLoading(true)
-    try {
-      const { data } = await api.post('/auth/login', { email, password })
 
-      // Merge avatar from localStorage if backend doesn't have one yet
+    try {
+      const { data } = await api.post('/auth/login', {
+        email,
+        password,
+      })
+
+      localStorage.removeItem('ff_demo_mode')
+
       const savedAvatar = localStorage.getItem('ff_avatar')
-      const userData    = data.user.avatar
+      const userData = data.user.avatar
         ? data.user
         : savedAvatar
           ? { ...data.user, avatar: savedAvatar }
           : data.user
 
-      persistUser(data.token, userData)
+      localStorage.setItem('ff_user', JSON.stringify(userData))
+      setUser(userData)
+
       return { success: true }
     } catch (err) {
-      const message = err.response?.data?.message || 'Login failed. Please try again.'
+      const message =
+        err.response?.data?.message || 'Login failed. Please try again.'
+
       return { success: false, message }
     } finally {
       setLoading(false)
     }
   }, [])
 
-  // ── signup ───────────────────────────────────────────────────────────────
-  // FIX: was calling /auth/signup — backend route is /auth/register
+  // ── Signup ────────────────────────────────────────────────────────────────
   const signup = useCallback(async (name, email, password) => {
     setLoading(true)
+
     try {
-      const { data } = await api.post('/auth/register', { name, email, password })
-      persistUser(data.token, data.user)
+      const { data } = await api.post('/auth/register', {
+        name,
+        email,
+        password,
+      })
+
+      localStorage.removeItem('ff_demo_mode')
+      localStorage.setItem('ff_user', JSON.stringify(data.user))
+      setUser(data.user)
+
       return { success: true }
     } catch (err) {
-      const message = err.response?.data?.message || 'Registration failed. Please try again.'
+      const message =
+        err.response?.data?.message ||
+        'Registration failed. Please try again.'
+
       return { success: false, message }
     } finally {
       setLoading(false)
     }
   }, [])
 
-  // ── logout ───────────────────────────────────────────────────────────────
-  const logout = useCallback(() => {
-    localStorage.removeItem('ff_token')
-    localStorage.removeItem('ff_user')
-    // Intentionally keep ff_avatar — survives logout/login cycle
-    setUser(null)
+  // ── Logout ────────────────────────────────────────────────────────────────
+  const logout = useCallback(async () => {
+    try {
+      if (localStorage.getItem('ff_demo_mode') !== 'true') {
+        await api.post('/auth/logout')
+      }
+    } catch (err) {
+      console.error('Logout request failed:', err)
+    } finally {
+      localStorage.removeItem('ff_demo_mode')
+      localStorage.removeItem('ff_user')
+      // Keep ff_avatar so it survives logout/login
+      setUser(null)
+    }
   }, [])
 
-  // ── updateUser — called after profile / avatar changes ───────────────────
+  // ── Update user ──────────────────────────────────────────────────────────
   const updateUser = useCallback((changes) => {
-    setUser(prev => {
+    setUser((prev) => {
+      if (!prev) return prev
+
       const updated = { ...prev, ...changes }
       localStorage.setItem('ff_user', JSON.stringify(updated))
+
       return updated
     })
   }, [])
 
   return (
-    <AuthContext.Provider value={{ user, loading, login, signup, logout, updateUser }}>
+    <AuthContext.Provider
+      value={{ user, loading, login, signup, logout, updateUser }}
+    >
       {children}
     </AuthContext.Provider>
   )
