@@ -1,6 +1,10 @@
 // routes/user.js
 // Handles profile updates (name, email, phone, bio, goal) and avatar upload.
 // Mount in server.js:  app.use('/api/user', require('./routes/user'))
+const cloudinary = require('../config/cloudinary')
+const upload = require('../middleware/upload')
+const { Readable } = require('stream')
+
 
 const express   = require('express')
 const { protect } = require('../middleware/auth')
@@ -48,27 +52,55 @@ router.patch('/profile', async (req, res) => {
 // ⚠️  For production: replace base64 storage with Cloudinary/S3.
 //     Receive the file with multer, upload to cloud, store the URL.
 //
-router.patch('/avatar', async (req, res) => {
+
+router.patch('/avatar', upload.single('avatar'), async (req, res) => {
   try {
-    const { avatar } = req.body
-
-    if (!avatar) return res.status(400).json({ message: 'No avatar provided' })
-
-    // Rough size check — base64 of a 1MB image ≈ 1.37MB string
-    const sizeBytes = Buffer.byteLength(avatar, 'utf8')
-    if (sizeBytes > 3 * 1024 * 1024) {  // 3 MB limit
-      return res.status(413).json({ message: 'Image too large. Max 2MB.' })
+    if (!req.file) {
+      return res.status(400).json({ message: 'Please select an image' })
     }
 
+    // Upload image buffer to Cloudinary
+    const result = await new Promise((resolve, reject) => {
+      const stream = cloudinary.uploader.upload_stream(
+        {
+          folder: 'fitforge/avatars',
+          transformation: [
+            { width: 500, height: 500, crop: 'fill', gravity: 'face' },
+          ],
+          resource_type: 'image',
+        },
+        (error, result) => {
+          if (error) return reject(error)
+          resolve(result)
+        }
+      )
+
+      Readable.from(req.file.buffer).pipe(stream)
+    })
+
+    // Save Cloudinary URL in MongoDB
     const user = await User.findByIdAndUpdate(
       req.user._id,
-      { $set: { avatar } },
-      { new: true }
+      { $set: { avatar: result.secure_url } },
+      { new: true, runValidators: true }
     ).select('-password')
 
-    res.json({ user })
-  } catch (err) {
-    res.status(500).json({ message: 'Server error' })
+    if (!user) {
+      // Avoid leaving an uploaded image if the user no longer exists
+      await cloudinary.uploader.destroy(result.public_id)
+      return res.status(404).json({ message: 'User not found' })
+    }
+
+    return res.json({
+      success: true,
+      message: 'Avatar updated successfully',
+      user,
+    })
+  } catch (error) {
+    console.error('Avatar upload error:', error)
+    return res.status(500).json({
+      message: 'Avatar upload failed',
+    })
   }
 })
 

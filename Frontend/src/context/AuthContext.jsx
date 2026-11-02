@@ -127,20 +127,20 @@ export function AuthProvider({ children }) {
   }, [])
 
   // ── Logout ────────────────────────────────────────────────────────────────
-  const logout = useCallback(async () => {
-    try {
-      if (localStorage.getItem('ff_demo_mode') !== 'true') {
-        await api.post('/auth/logout')
-      }
-    } catch (err) {
-      console.error('Logout request failed:', err)
-    } finally {
-      localStorage.removeItem('ff_demo_mode')
-      localStorage.removeItem('ff_user')
-      // Keep ff_avatar so it survives logout/login
-      setUser(null)
-    }
-  }, [])
+  
+const logout = useCallback(async () => {
+  try {
+    await api.post('/auth/logout')
+  } catch (err) {
+    console.error('Logout request failed:', err)
+  } finally {
+    localStorage.removeItem('ff_demo_mode')
+    localStorage.removeItem('ff_user')
+    localStorage.removeItem('ff_avatar')
+    setUser(null)
+  }
+}, [])
+
 
   // ── Update user ──────────────────────────────────────────────────────────
   const updateUser = useCallback((changes) => {

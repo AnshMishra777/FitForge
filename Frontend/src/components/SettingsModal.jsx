@@ -1,3 +1,4 @@
+import api from '../api'
 import { X, User, Bell, Moon, Sun, Shield, HelpCircle, LogOut, ChevronRight, Mail, Camera, Check, Monitor } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
 import { useNavigate } from 'react-router-dom'
@@ -86,67 +87,74 @@ export default function SettingsModal({ onClose }) {
 
   // ── Avatar / Photo ────────────────────────────────────────────────
   const fileInputRef = useRef(null)
-  const [avatarSrc, setAvatarSrc] = useState(
-    () => user?.avatar || localStorage.getItem('ff_avatar') || null
-  )
+ const [avatarSrc, setAvatarSrc] = useState(
+  () => user?.avatar || null
+)
   const initials = user?.name?.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase() || 'U'
 
   const handleAvatarClick = () => fileInputRef.current?.click()
 
-  const handleFileChange = async (e) => {
-    const file = e.target.files?.[0]
-    if (!file || !file.type.startsWith('image/')) return
+  
+  
+const handleFileChange = async (e) => {
+  const file = e.target.files?.[0]
 
-    const reader = new FileReader()
+  if (!file) return
 
-    reader.onload = async (ev) => {
-      try {
-        const dataUrl = ev.target.result
-
-        // Update local state immediately for instant preview
-        setAvatarSrc(dataUrl)
-
-        // Persist to localStorage so it survives page refreshes and logout/login
-        localStorage.setItem('ff_avatar', dataUrl)
-
-        // Update AuthContext so Navbar avatar updates instantly without reload
-        updateUser({ avatar: dataUrl })
-
-        // Try to save to backend (best-effort for non-demo users)
-        const token = localStorage.getItem('ff_token')
-        if (token && token !== 'demo_token' && !token.startsWith('demo_token_')) {
-          try {
-            const response = await fetch('/api/user/avatar', {
-              method: 'PATCH',
-              headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${token}`,
-              },
-              body: JSON.stringify({ avatar: dataUrl }),
-            })
-            const data = await response.json()
-            if (data.user) {
-              updateUser(data.user)
-              localStorage.setItem('ff_user', JSON.stringify({ ...data.user, avatar: dataUrl }))
-            }
-          } catch (_) {
-            // Backend unavailable — local save is enough for demo
-          }
-        }
-      } catch (err) {
-        console.error('Avatar upload failed', err)
-      }
-    }
-
-    reader.readAsDataURL(file)
+  if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type)) {
+    alert('Only JPG, PNG and WEBP images are allowed')
     e.target.value = ''
+    return
   }
 
-  const removeAvatar = () => {
-    setAvatarSrc(null)
-    localStorage.removeItem('ff_avatar')
-    updateUser({ avatar: '' })
+  if (file.size > 2 * 1024 * 1024) {
+    alert('Image size must be less than 2MB')
+    e.target.value = ''
+    return
   }
+
+  try {
+    const formData = new FormData()
+    formData.append('avatar', file)
+
+    const { data } = await api.patch('/user/avatar', formData)
+
+    // Update UI using the URL saved in MongoDB
+    setAvatarSrc(data.user.avatar)
+    updateUser(data.user)
+
+    // Remove old browser-only avatar storage
+    localStorage.removeItem('ff_avatar')
+    localStorage.setItem('ff_user', JSON.stringify(data.user))
+
+  } catch (error) {
+    console.error('Avatar upload failed:', error)
+    alert(error.response?.data?.message || 'Avatar upload failed')
+  }
+
+  e.target.value = ''
+}
+
+
+ 
+
+  
+const removeAvatar = async () => {
+  try {
+    const { data } = await api.delete('/user/avatar')
+
+    setAvatarSrc(null)
+    updateUser(data.user)
+
+    localStorage.removeItem('ff_avatar')
+    localStorage.setItem('ff_user', JSON.stringify(data.user))
+
+  } catch (error) {
+    console.error('Avatar removal failed:', error)
+    alert(error.response?.data?.message || 'Could not remove avatar')
+  }
+}
+
 
   // ── Theme / Dark mode ─────────────────────────────────────────────
   const getInitialTheme = () => localStorage.getItem('ff_theme') || 'dark'
